@@ -47,85 +47,100 @@ const imageVariants = {
 export function HeroSection() {
   return (
     <section className="relative w-full min-h-screen bg-white overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full blur-3xl -mr-48 -mt-48" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-accent/5 to-primary/5 rounded-full blur-3xl -ml-48 -mb-48" />
+      {/* Minimal decorative background */}
+      <div className="absolute top-1/2 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl -ml-32" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-200px)]">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center min-h-[calc(100vh-150px)]">
           {/* Left Column - Content */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="flex flex-col gap-6"
+            className="flex flex-col gap-8"
           >
-            {/* Headline */}
+            {/* Badge */}
+            <motion.div variants={itemVariants}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-full border border-gray-200">
+                <div className="w-2 h-2 rounded-full bg-primary" />
+                <span className="text-xs font-medium text-gray-700 font-[var(--font-inter)] uppercase tracking-wider">
+                  Precision Engineering
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Headline - Bold Poppins */}
             <motion.h1
               variants={itemVariants}
-              className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight font-[var(--font-poppins)] text-balance"
+              className="text-5xl lg:text-7xl font-black text-gray-900 leading-tight font-[var(--font-poppins)] text-balance tracking-tight"
             >
-              Smart Products.{' '}
-              <span className="text-primary">Printed Layer</span> by Layer.
+              Objects of{' '}
+              <span className="text-primary">Intent</span>
             </motion.h1>
 
             {/* Description */}
             <motion.p
               variants={itemVariants}
-              className="text-lg text-gray-600 leading-relaxed max-w-lg font-[var(--font-inter)]"
+              className="text-lg text-gray-600 leading-relaxed max-w-lg font-[var(--font-inter)] font-light"
             >
-              Discover useful products, home decor, toys and personalized creations crafted
-              through modern 3D printing.
+              Every layer matters. We design and print products that merge form with function, 
+              creating pieces that last.
             </motion.p>
 
             {/* Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 pt-6"
+              className="flex flex-col sm:flex-row gap-3 pt-2"
             >
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl px-8 py-6 text-base font-[var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
+                  className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 text-base font-[var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
                 >
-                  Shop Collection
+                  Explore
                 </Button>
               </motion.div>
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-gray-200 text-gray-900 hover:bg-gray-50 font-semibold rounded-xl px-8 py-6 text-base font-[var(--font-poppins)] transition-all"
+                  className="border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full px-8 py-6 text-base font-[var(--font-poppins)] transition-all"
                 >
-                  Custom Order
+                  Custom Design
                 </Button>
               </motion.div>
             </motion.div>
 
-            {/* Trust Badge */}
+            {/* Trust Indicators */}
             <motion.div
               variants={itemVariants}
-              className="flex items-center gap-4 pt-4"
+              className="flex flex-col gap-3 pt-8 border-t border-gray-200"
             >
-              <div className="flex -space-x-2">
-                {[...Array(3)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white text-xs font-bold border-2 border-white"
-                  >
-                    {i + 1}
-                  </div>
-                ))}
+              <div className="flex items-center gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                <p className="text-sm text-gray-700 font-[var(--font-inter)]">
+                  <span className="font-medium">Designed & Printed in India</span>
+                </p>
               </div>
-              <p className="text-sm text-gray-600 font-[var(--font-inter)]">
-                Trusted by 10K+ creators
-              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                <p className="text-sm text-gray-700 font-[var(--font-inter)]">
+                  <span className="font-medium">Made with Precision</span>
+                </p>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                <p className="text-sm text-gray-700 font-[var(--font-inter)]">
+                  <span className="font-medium">Custom Orders Available</span>
+                </p>
+              </div>
             </motion.div>
           </motion.div>
 
@@ -135,59 +150,59 @@ export function HeroSection() {
             initial="hidden"
             animate="visible"
             whileHover="hover"
-            className="relative h-full min-h-[500px] lg:min-h-[600px]"
+            className="relative h-full min-h-[500px] lg:min-h-[600px] flex items-center justify-center"
           >
-            {/* Product Card with Shadow */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative w-full h-full max-w-sm">
-                {/* Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
-                
-                {/* Card */}
-                <div className="relative bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
-                  {/* Image container */}
-                  <div className="aspect-square bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-8">
-                    <div className="w-full h-full rounded-2xl bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center text-white text-4xl font-bold">
-                          3D
-                        </div>
-                        <p className="text-gray-600 font-[var(--font-inter)] text-sm">Premium Product Showcase</p>
-                      </div>
-                    </div>
-                  </div>
+            <div className="relative w-full h-full flex items-center justify-center">
+              {/* Premium product render container */}
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                className="relative w-80 h-80 lg:w-96 lg:h-96"
+              >
+                {/* Subtle glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl blur-3xl" />
 
-                  {/* Product Details */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 font-[var(--font-poppins)] mb-2">
-                      Premium 3D Printed Product
-                    </h3>
-                    <p className="text-sm text-gray-600 font-[var(--font-inter)] mb-4">
-                      High-quality craftsmanship meets modern design
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-primary font-[var(--font-poppins)]">$89.99</span>
-                      <div className="flex gap-1">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i} className="text-accent text-sm">★</span>
-                        ))}
+                {/* Product render */}
+                <div className="relative bg-gradient-to-br from-gray-50 via-white to-gray-50 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 h-full flex items-center justify-center p-8">
+                  {/* 3D Product Placeholder - Premium style */}
+                  <div className="w-full h-full flex items-center justify-center relative">
+                    {/* Gradient background for product area */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 rounded-2xl" />
+                    
+                    {/* Isometric-style product shape */}
+                    <motion.div
+                      animate={{ rotateX: [0, 5, 0], rotateY: [0, 10, 0] }}
+                      transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                      className="relative"
+                    >
+                      <div className="w-40 h-40 bg-gradient-to-br from-primary/80 to-primary/60 rounded-2xl shadow-2xl flex items-center justify-center text-white relative transform perspective">
+                        <div className="text-center">
+                          <div className="text-6xl font-black font-[var(--font-poppins)] mb-2 opacity-20">
+                            ●
+                          </div>
+                          <p className="text-xs font-medium tracking-widest opacity-60 font-[var(--font-inter)]">
+                            3D PRINTED
+                          </p>
+                        </div>
+                        {/* Glossy effect */}
+                        <div className="absolute top-0 left-1/4 w-20 h-20 bg-white/20 rounded-full blur-2xl" />
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
 
-                {/* Floating elements for depth */}
+                {/* Floating accent elements */}
                 <motion.div
-                  className="absolute -top-8 -right-8 w-32 h-32 bg-accent/20 rounded-full blur-2xl"
-                  animate={{ y: [0, 20, 0], x: [0, 10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity }}
+                  className="absolute -top-10 right-0 w-24 h-24 bg-accent/20 rounded-full blur-2xl"
+                  animate={{ y: [0, 15, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
                 />
                 <motion.div
-                  className="absolute -bottom-8 -left-8 w-32 h-32 bg-primary/20 rounded-full blur-2xl"
-                  animate={{ y: [0, -20, 0], x: [0, -10, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, delay: 0.5 }}
+                  className="absolute -bottom-10 left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl"
+                  animate={{ y: [0, -15, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
                 />
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
