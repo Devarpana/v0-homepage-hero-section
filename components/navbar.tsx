@@ -45,9 +45,9 @@ export function Navbar() {
           <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <ShoppingCart className="w-5 h-5 text-gray-700" />
           </button>
-          <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+          <Link href="/admin" className="p-2 hover:bg-gray-100 rounded-lg transition-colors" title="Admin Dashboard">
             <User className="w-5 h-5 text-gray-700" />
-          </button>
+          </Link>
         </div>
       </div>
     </motion.nav>
