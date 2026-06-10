@@ -29,7 +29,7 @@ export function Navbar() {
           <Link href="/shop" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
             Shop
           </Link>
-          <Link href="#" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
+          <Link href="/custom-orders" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
             Custom Orders
           </Link>
           <Link href="#" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
