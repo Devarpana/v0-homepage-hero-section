@@ -23,7 +23,7 @@ export function Navbar() {
 
         {/* Navigation Links */}
         <div className="hidden md:flex items-center gap-8">
-          <Link href="#" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
+          <Link href="/shop" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
             Shop
           </Link>
           <Link href="#" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
