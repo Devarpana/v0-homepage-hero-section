@@ -23,17 +23,17 @@ export function Navbar() {
 
         {/* Navigation Links */}
         <div className="hidden md:flex items-center gap-8">
-          <Link href="#" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
-            Shop
+          <Link href="/" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
+            Home
           </Link>
-          <Link href="#" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
-            Collections
+          <Link href="/shop" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
+            Shop
           </Link>
           <Link href="#" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
             Custom Orders
           </Link>
           <Link href="#" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
-            About
+            Contact
           </Link>
         </div>
 
