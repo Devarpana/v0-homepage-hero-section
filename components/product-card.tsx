@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
+
 interface ProductCardProps {
   id: string
   name: string
