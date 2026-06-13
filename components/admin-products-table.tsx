@@ -1,17 +1,20 @@
 'use client'
 
 import { Card } from '@/components/ui/card'
-import { Edit2, Trash2 } from 'lucide-react'
+import { Edit2, Trash2, Package } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 interface Product {
   id: string
+  image?: string
   name: string
   category: string
   price: number
   stock: number
   status: 'active' | 'inactive'
+  featured?: boolean
+  visibility?: 'public' | 'hidden'
 }
 
 interface AdminProductsTableProps {
@@ -26,11 +29,12 @@ export function AdminProductsTable({ products, onDelete }: AdminProductsTablePro
         <table className="w-full">
           <thead className="border-b border-border bg-muted/50">
             <tr>
-              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Name</th>
+              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Product</th>
               <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Category</th>
               <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Price</th>
               <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Stock</th>
-              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Status</th>
+              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Featured</th>
+              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Visibility</th>
               <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Actions</th>
             </tr>
           </thead>
@@ -44,7 +48,16 @@ export function AdminProductsTable({ products, onDelete }: AdminProductsTablePro
                 className="border-b border-border hover:bg-muted/30 transition-colors"
               >
                 <td className="px-6 py-4">
-                  <p className="font-medium text-foreground font-[var(--font-poppins)]">{product.name}</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center flex-shrink-0">
+                      {product.image ? (
+                        <img src={product.image} alt={product.name} className="w-full h-full rounded-lg object-cover" />
+                      ) : (
+                        <Package className="w-5 h-5 text-muted-foreground" />
+                      )}
+                    </div>
+                    <p className="font-medium text-foreground font-[var(--font-poppins)]">{product.name}</p>
+                  </div>
                 </td>
                 <td className="px-6 py-4">
                   <p className="text-sm text-muted-foreground">{product.category}</p>
@@ -59,11 +72,20 @@ export function AdminProductsTable({ products, onDelete }: AdminProductsTablePro
                 </td>
                 <td className="px-6 py-4">
                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                    product.status === 'active'
-                      ? 'bg-green-500/10 text-green-700'
+                    product.featured
+                      ? 'bg-primary/10 text-primary'
                       : 'bg-gray-500/10 text-gray-700'
                   }`}>
-                    {product.status === 'active' ? 'Active' : 'Inactive'}
+                    {product.featured ? 'Featured' : 'Not Featured'}
+                  </span>
+                </td>
+                <td className="px-6 py-4">
+                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+                    product.visibility === 'public'
+                      ? 'bg-blue-500/10 text-blue-700'
+                      : 'bg-gray-500/10 text-gray-700'
+                  }`}>
+                    {product.visibility === 'public' ? 'Public' : 'Hidden'}
                   </span>
                 </td>
                 <td className="px-6 py-4">

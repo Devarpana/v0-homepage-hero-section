@@ -33,7 +33,7 @@ export function AdminSidebar() {
       </div>
 
       {/* Navigation Items */}
-      <nav className="flex-1 p-4 space-y-2">
+      <nav className="flex-1 p-4 space-y-3">
         {navItems.map((item) => {
           const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
           const Icon = item.icon
@@ -41,16 +41,15 @@ export function AdminSidebar() {
           return (
             <Link key={item.href} href={item.href}>
               <motion.div
-                whileHover={{ backgroundColor: 'hsl(var(--sidebar-accent))' }}
                 whileTap={{ scale: 0.98 }}
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors cursor-pointer ${
+                className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-sidebar-primary text-sidebar-primary-foreground'
-                    : 'text-sidebar-foreground hover:bg-sidebar-accent'
+                    ? 'bg-gray-900 text-white'
+                    : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
                 <Icon className="w-5 h-5" />
-                <span className="font-medium font-[var(--font-inter)]">{item.label}</span>
+                <span className={`font-medium font-[var(--font-inter)] text-sm ${isActive ? 'font-semibold' : ''}`}>{item.label}</span>
               </motion.div>
             </Link>
           )
@@ -58,11 +57,14 @@ export function AdminSidebar() {
       </nav>
 
       {/* Footer Section */}
-      <div className="p-4 border-t border-sidebar-border space-y-2">
-        <button className="flex items-center gap-3 w-full px-4 py-3 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors cursor-pointer font-[var(--font-inter)]">
+      <div className="p-4 border-t border-sidebar-border">
+        <motion.button
+          whileTap={{ scale: 0.98 }}
+          className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-gray-600 hover:bg-gray-100 transition-all cursor-pointer font-[var(--font-inter)] text-sm"
+        >
           <LogOut className="w-5 h-5" />
           <span className="font-medium">Logout</span>
-        </button>
+        </motion.button>
       </div>
     </motion.aside>
   )

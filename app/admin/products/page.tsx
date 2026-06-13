@@ -9,11 +9,11 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 const mockProducts = [
-  { id: '1', name: 'Modular Desk Organizer', category: 'Daily Essentials', price: 1299, stock: 15, status: 'active' as const },
-  { id: '2', name: 'Phone Stand Pro', category: 'Daily Essentials', price: 799, stock: 8, status: 'active' as const },
-  { id: '3', name: 'Geometric Planter', category: 'Home Decor', price: 1599, stock: 5, status: 'active' as const },
-  { id: '4', name: 'Articulated Dragon', category: 'Toys', price: 4999, stock: 0, status: 'inactive' as const },
-  { id: '5', name: 'Headphone Holder', category: 'Daily Essentials', price: 549, stock: 24, status: 'active' as const },
+  { id: '1', name: 'Modular Desk Organizer', category: 'Daily Essentials', price: 1299, stock: 15, status: 'active' as const, featured: true, visibility: 'public' as const },
+  { id: '2', name: 'Phone Stand Pro', category: 'Daily Essentials', price: 799, stock: 8, status: 'active' as const, featured: false, visibility: 'public' as const },
+  { id: '3', name: 'Geometric Planter', category: 'Home Decor', price: 1599, stock: 5, status: 'active' as const, featured: true, visibility: 'public' as const },
+  { id: '4', name: 'Articulated Dragon', category: 'Toys', price: 4999, stock: 0, status: 'inactive' as const, featured: false, visibility: 'hidden' as const },
+  { id: '5', name: 'Headphone Holder', category: 'Daily Essentials', price: 549, stock: 24, status: 'active' as const, featured: false, visibility: 'public' as const },
 ]
 
 export default function ProductsPage() {
