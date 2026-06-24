@@ -7,17 +7,13 @@ import { Plus, Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { supabase } from "@/lib/supabase"
+import { useEffect } from "react"
 
-const mockProducts = [
-  { id: '1', name: 'Modular Desk Organizer', category: 'Daily Essentials', price: 1299, stock: 15, status: 'active' as const, featured: true, visibility: 'public' as const },
-  { id: '2', name: 'Phone Stand Pro', category: 'Daily Essentials', price: 799, stock: 8, status: 'active' as const, featured: false, visibility: 'public' as const },
-  { id: '3', name: 'Geometric Planter', category: 'Home Decor', price: 1599, stock: 5, status: 'active' as const, featured: true, visibility: 'public' as const },
-  { id: '4', name: 'Articulated Dragon', category: 'Toys', price: 4999, stock: 0, status: 'inactive' as const, featured: false, visibility: 'hidden' as const },
-  { id: '5', name: 'Headphone Holder', category: 'Daily Essentials', price: 549, stock: 24, status: 'active' as const, featured: false, visibility: 'public' as const },
-]
+
 
 export default function ProductsPage() {
-  const [products, setProducts] = useState(mockProducts)
+  const [products, setProducts] = useState<any[]>([])
   const [searchQuery, setSearchQuery] = useState('')
 
   const filteredProducts = products.filter((p) =>
@@ -25,9 +21,61 @@ export default function ProductsPage() {
     p.category.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
-  const handleDelete = (id: string) => {
-    setProducts((prev) => prev.filter((p) => p.id !== id))
+  const handleDelete = async (id: string) => {
+  const confirmed = window.confirm(
+    "Are you sure you want to delete this product?"
+  )
+
+  if (!confirmed) return
+
+  const { error } = await supabase
+    .from("products")
+    .delete()
+    .eq("id", id)
+
+  if (error) {
+    console.error(error)
+    alert("Failed to delete product")
+    return
   }
+
+  setProducts((prev) =>
+    prev.filter((p) => p.id !== id)
+  )
+
+  alert("Product deleted successfully!")
+}
+
+  useEffect(() => {
+      const loadProducts = async () => {
+        console.log(
+      "SUPABASE URL:",
+      process.env.NEXT_PUBLIC_SUPABASE_URL
+    )
+
+    console.log("Loading products...")
+    
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .order("created_at", { ascending: false })
+
+    if (error) {
+      console.error(error)
+      return
+    }
+
+    setProducts(
+    (data || []).map((product) => ({
+      ...product,
+      featured: false,
+      visibility: "public",
+    }))
+  )
+    }
+
+  loadProducts()
+}, [])
 
   return (
     <div>

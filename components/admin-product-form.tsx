@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { ImageUploader } from '@/components/image-uploader'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { supabase } from "@/lib/supabase"
 
 interface ProductFormProps {
   initialData?: {
@@ -38,27 +39,81 @@ export function AdminProductForm({ initialData, isEditing = false }: ProductForm
   const [featuredImage, setFeaturedImage] = useState<File | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: name === 'price' || name === 'stock' ? parseFloat(value) : value,
-    }))
-  }
+const handleInputChange = (
+  e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+) => {
+  const { name, value } = e.target
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    // Mock submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    console.log('[v0] Form submitted:', {
-      ...formData,
-      mainImage: mainImage?.name,
-      galleryImages: galleryImages.map((f) => f.name),
-      featuredImage: featuredImage?.name,
-    })
+  setFormData((prev) => ({
+    ...prev,
+    [name]:
+      name === 'price' || name === 'stock'
+        ? (value === '' ? 0 : parseFloat(value))
+        : value,
+  }))
+}
+
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault()
+  setIsSubmitting(true)
+
+  try {
+    let error
+
+    if (isEditing && initialData?.id) {
+      const result = await supabase
+        .from("products")
+        .update({
+          name: formData.name,
+          category: formData.category,
+          price: formData.price,
+          stock: formData.stock,
+          description: formData.description,
+        })
+        .eq("id", initialData.id)
+
+      error = result.error
+    } else {
+      const result = await supabase
+        .from("products")
+        .insert([
+          {
+            name: formData.name,
+            category: formData.category,
+            price: formData.price,
+            stock: formData.stock,
+            description: formData.description,
+            status: "active",
+          },
+        ])
+
+      error = result.error
+    }
+
+    if (error) {
+      console.error(error)
+      alert(
+        isEditing
+          ? "Failed to update product"
+          : "Failed to create product"
+      )
+      return
+    }
+
+    alert(
+      isEditing
+        ? "Product updated successfully!"
+        : "Product created successfully!"
+    )
+
+  } catch (err) {
+    console.error(err)
+    alert("Something went wrong")
+  } finally {
     setIsSubmitting(false)
   }
+}
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">

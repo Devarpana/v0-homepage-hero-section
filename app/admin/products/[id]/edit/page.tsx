@@ -1,17 +1,28 @@
 import { AdminProductForm } from '@/components/admin-product-form'
+import { supabase } from '@/lib/supabase'
+import { notFound } from 'next/navigation'
 
-// Mock product data for demo
-const mockProductData = {
-  id: '1',
-  name: 'Modular Desk Organizer',
-  category: 'Daily Essentials',
-  price: 1299,
-  stock: 15,
-  description: 'A premium 3D-printed modular desk organizer designed for maximum productivity.',
-}
+export default async function EditProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = await params
 
-export default function EditProductPage({ params }: { params: { id: string } }) {
+  const { data: product, error } = await supabase
+    .from('products')
+    .select('*')
+    .eq('id', id)
+    .single()
+
+  if (error || !product) {
+    notFound()
+  }
+
   return (
-    <AdminProductForm initialData={mockProductData} isEditing={true} />
+    <AdminProductForm
+      initialData={product}
+      isEditing={true}
+    />
   )
 }
