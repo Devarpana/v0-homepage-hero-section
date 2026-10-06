@@ -1,9 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -14,7 +15,7 @@ const containerVariants = {
   },
 }
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -81,10 +82,11 @@ export function CustomOrdersFinalCTA() {
               whileTap={{ scale: 0.95 }}
             >
               <Button
+                asChild
                 size="lg"
                 className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 text-base font-[family-name:var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
               >
-                Start Your Custom Order
+                <a href="#custom-form">Start Your Custom Order</a>
               </Button>
             </motion.div>
             <motion.div
@@ -92,11 +94,12 @@ export function CustomOrdersFinalCTA() {
               whileTap={{ scale: 0.95 }}
             >
               <Button
+                asChild
                 size="lg"
                 variant="outline"
                 className="border border-gray-400 text-gray-900 hover:bg-white font-semibold rounded-full px-8 py-6 text-base font-[family-name:var(--font-poppins)] transition-all"
               >
-                Schedule Consultation
+                <Link href="/contact">Schedule Consultation</Link>
               </Button>
             </motion.div>
           </motion.div>

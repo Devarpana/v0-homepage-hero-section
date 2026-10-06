@@ -1,8 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { motion, type Variants } from 'framer-motion'
+import { SITE } from '@/lib/site'
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 10 },
   visible: {
     opacity: 1,
@@ -22,7 +24,7 @@ export function Footer() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16"
+          className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16"
         >
           {/* Brand */}
           <motion.div variants={itemVariants} className="col-span-1">
@@ -34,17 +36,21 @@ export function Footer() {
                 Precision 3D printing for creators
               </p>
             </div>
-            <div className="flex gap-4 mt-6">
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                <span className="text-sm">Twitter</span>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                <span className="text-sm">Instagram</span>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                <span className="text-sm">LinkedIn</span>
-              </a>
-            </div>
+            {SITE.socials.length > 0 && (
+              <div className="flex gap-4 mt-6">
+                {SITE.socials.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-primary transition-colors"
+                  >
+                    <span className="text-sm">{social.label}</span>
+                  </a>
+                ))}
+              </div>
+            )}
           </motion.div>
 
           {/* Products */}
@@ -54,24 +60,24 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-sm text-gray-400 font-[family-name:var(--font-inter)]">
               <li>
-                <a href="#" className="hover:text-primary transition-colors">
+                <Link href="/shop" className="hover:text-primary transition-colors">
                   Collections
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-primary transition-colors">
+                <Link href="/custom-orders" className="hover:text-primary transition-colors">
                   Custom Orders
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-primary transition-colors">
+                <Link href="/#trending" className="hover:text-primary transition-colors">
                   Trending
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-primary transition-colors">
+                <Link href="/shop" className="hover:text-primary transition-colors">
                   New Releases
-                </a>
+                </Link>
               </li>
             </ul>
           </motion.div>
@@ -83,54 +89,24 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-sm text-gray-400 font-[family-name:var(--font-inter)]">
               <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
+                <Link href="/contact" className="hover:text-primary transition-colors">
                   Contact
-                </a>
+                </Link>
               </li>
-            </ul>
-          </motion.div>
-
-          {/* Legal */}
-          <motion.div variants={itemVariants}>
-            <h4 className="font-bold font-[family-name:var(--font-poppins)] text-white mb-4">
-              Legal
-            </h4>
-            <ul className="space-y-2 text-sm text-gray-400 font-[family-name:var(--font-inter)]">
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  Terms of Service
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  Shipping Info
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  Returns
-                </a>
-              </li>
+              {SITE.email && (
+                <li>
+                  <a href={`mailto:${SITE.email}`} className="hover:text-primary transition-colors">
+                    {SITE.email}
+                  </a>
+                </li>
+              )}
+              {SITE.phone && (
+                <li>
+                  <a href={`tel:${SITE.phone.replace(/[^+\d]/g, '')}`} className="hover:text-primary transition-colors">
+                    {SITE.phone}
+                  </a>
+                </li>
+              )}
             </ul>
           </motion.div>
         </motion.div>
@@ -147,7 +123,12 @@ export function Footer() {
           className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 font-[family-name:var(--font-inter)]"
         >
           <p>© {currentYear} XYZ Layers. All rights reserved.</p>
-          <p>Designed & Printed in India with Precision</p>
+          <p className="flex items-center gap-4">
+            <span>Designed &amp; Printed in India with Precision</span>
+            <Link href="/admin" className="text-gray-600 hover:text-gray-300 transition-colors">
+              Admin
+            </Link>
+          </p>
         </motion.div>
       </div>
     </footer>

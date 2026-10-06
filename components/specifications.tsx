@@ -1,18 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { STORE_WIDE_SPECS, type Product } from '@/lib/products'
 
-export function Specifications() {
-  const specs = [
-    { label: 'Material', value: 'Premium PLA+' },
-    { label: 'Print Time', value: '8 Hours' },
-    { label: 'Layer Height', value: '0.2mm' },
-    { label: 'Weight', value: '220g' },
-    { label: 'Dimensions', value: '15 × 8 × 4 cm' },
-    { label: 'Color Options', value: '4 Colors + Custom' },
-    { label: 'Finish', value: 'Smooth Matte' },
-    { label: 'Warranty', value: '1 Year' },
-  ]
+export function Specifications({ product }: { product: Product }) {
+  const specs = [...product.specs, ...STORE_WIDE_SPECS]
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -48,7 +40,7 @@ export function Specifications() {
             Specifications
           </h2>
           <p className="text-lg text-gray-600 mt-4 max-w-2xl font-[family-name:var(--font-inter)]">
-            Detailed information about your desk organizer.
+            Detailed information about the {product.name}.
           </p>
         </motion.div>
 

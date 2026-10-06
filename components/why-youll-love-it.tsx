@@ -7,13 +7,13 @@ export function WhyYoullLoveIt() {
   const features = [
     {
       icon: Package,
-      title: 'Keeps Your Workspace Organized',
-      description: 'Multiple compartments for pens, clips, and small items. Designed to maximize desk space efficiently.'
+      title: 'Designed for Everyday Use',
+      description: 'Thoughtfully designed to fit naturally into your home, desk, or workspace and hold up to daily use.'
     },
     {
       icon: Zap,
       title: 'Durable and Lightweight',
-      description: 'Built with premium PLA+ material. Incredibly strong yet weighs just 220 grams.'
+      description: 'Built with premium PLA+ material. Incredibly strong yet lightweight.'
     },
     {
       icon: Award,

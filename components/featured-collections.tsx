@@ -1,8 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { motion, type Variants } from 'framer-motion'
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -13,7 +14,7 @@ const containerVariants = {
   },
 }
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -28,18 +29,21 @@ const collections = [
     name: 'Home Essentials',
     description: 'Functional, beautiful pieces for every room',
     color: 'from-blue-400 to-blue-600',
+    href: '/shop?category=Daily%20Essentials',
   },
   {
     id: 2,
     name: 'Design Objects',
     description: 'Art meets engineering in our signature collection',
     color: 'from-orange-400 to-orange-600',
+    href: '/shop?category=Home%20Decor',
   },
   {
     id: 3,
     name: 'Personalized',
     description: 'Custom designs tailored to your vision',
     color: 'from-slate-400 to-slate-600',
+    href: '/custom-orders',
   },
 ]
 
@@ -82,9 +86,9 @@ export function FeaturedCollections() {
               key={collection.id}
               variants={itemVariants}
               whileHover={{ y: -8 }}
-              className="group cursor-pointer"
+              className="group"
             >
-              <div className="relative overflow-hidden rounded-2xl bg-white border border-gray-200 h-64">
+              <Link href={collection.href} className="block relative overflow-hidden rounded-2xl bg-white border border-gray-200 h-64">
                 {/* Gradient background */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${collection.color} opacity-10 group-hover:opacity-15 transition-opacity duration-300`} />
 
@@ -106,7 +110,7 @@ export function FeaturedCollections() {
                     </motion.span>
                   </div>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </motion.div>

@@ -1,10 +1,11 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -15,7 +16,7 @@ const containerVariants = {
   },
 }
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -27,7 +28,7 @@ const itemVariants = {
   },
 }
 
-const imageVariants = {
+const imageVariants: Variants = {
   hidden: { opacity: 0, scale: 0.9, rotateZ: -5 },
   visible: {
     opacity: 1,
@@ -98,10 +99,11 @@ export function HeroSection() {
                 whileTap={{ scale: 0.98 }}
               >
                 <Button
+                  asChild
                   size="lg"
                   className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 text-base font-[family-name:var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
                 >
-                  Explore
+                  <Link href="/shop">Explore</Link>
                 </Button>
               </motion.div>
               <motion.div
@@ -109,11 +111,12 @@ export function HeroSection() {
                 whileTap={{ scale: 0.98 }}
               >
                 <Button
+                  asChild
                   size="lg"
                   variant="outline"
                   className="border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full px-8 py-6 text-base font-[family-name:var(--font-poppins)] transition-all"
                 >
-                  Custom Design
+                  <Link href="/custom-orders">Custom Design</Link>
                 </Button>
               </motion.div>
             </motion.div>

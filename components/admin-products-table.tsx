@@ -7,14 +7,14 @@ import Link from 'next/link'
 
 interface Product {
   id: string
-  image?: string
+  image?: string | null
   name: string
   category: string
   price: number
   stock: number
-  status: 'active' | 'inactive'
   featured?: boolean
-  visibility?: 'public' | 'hidden'
+  /** True when the product is active and public, i.e. customers can see and order it. */
+  live?: boolean
 }
 
 interface AdminProductsTableProps {
@@ -63,7 +63,7 @@ export function AdminProductsTable({ products, onDelete }: AdminProductsTablePro
                   <p className="text-sm text-muted-foreground">{product.category}</p>
                 </td>
                 <td className="px-6 py-4">
-                  <p className="font-medium text-foreground font-[family-name:var(--font-poppins)]">₹{product.price.toLocaleString()}</p>
+                  <p className="font-medium text-foreground font-[family-name:var(--font-poppins)]">₹{product.price.toLocaleString('en-IN')}</p>
                 </td>
                 <td className="px-6 py-4">
                   <p className={`text-sm font-medium ${product.stock > 10 ? 'text-green-600' : product.stock > 0 ? 'text-orange-600' : 'text-red-600'}`}>
@@ -81,17 +81,19 @@ export function AdminProductsTable({ products, onDelete }: AdminProductsTablePro
                 </td>
                 <td className="px-6 py-4">
                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                    product.visibility === 'public'
+                    product.live
                       ? 'bg-blue-500/10 text-blue-700'
                       : 'bg-gray-500/10 text-gray-700'
                   }`}>
-                    {product.visibility === 'public' ? 'Public' : 'Hidden'}
+                    {product.live ? 'Public' : 'Hidden'}
                   </span>
                 </td>
                 <td className="px-6 py-4">
                   <div className="flex items-center gap-2">
                     <Link href={`/admin/products/${product.id}/edit`}>
                       <motion.button
+                        type="button"
+                        aria-label={`Edit ${product.name}`}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="p-2 hover:bg-primary/10 text-primary rounded-lg transition-colors"
@@ -100,6 +102,8 @@ export function AdminProductsTable({ products, onDelete }: AdminProductsTablePro
                       </motion.button>
                     </Link>
                     <motion.button
+                      type="button"
+                      aria-label={`Delete ${product.name}`}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => onDelete?.(product.id)}

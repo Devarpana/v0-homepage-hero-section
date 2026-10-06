@@ -1,8 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -13,7 +13,7 @@ const containerVariants = {
   },
 }
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -69,7 +69,7 @@ const projects = [
 
 export function PreviousCustomProjects() {
   return (
-    <section className="relative w-full py-24 bg-gray-50">
+    <section id="previous-projects" className="relative w-full py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -142,13 +142,14 @@ export function PreviousCustomProjects() {
           viewport={{ once: true, margin: '-100px' }}
           className="text-center mt-16"
         >
-          <motion.button
+          <motion.a
+            href="#custom-form"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-primary hover:bg-primary/90 text-white rounded-full font-semibold font-[family-name:var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
+            className="inline-block px-8 py-4 bg-primary hover:bg-primary/90 text-white rounded-full font-semibold font-[family-name:var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
           >
-            Browse All Projects
-          </motion.button>
+            Start Your Own Project
+          </motion.a>
         </motion.div>
       </div>
     </section>

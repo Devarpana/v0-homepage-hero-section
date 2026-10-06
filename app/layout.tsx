@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import { Poppins, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { CartProvider } from '@/components/cart-provider'
+import { CartDrawer } from '@/components/cart-drawer'
+import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
 
 const poppins = Poppins({ 
@@ -45,7 +48,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
       <body className="font-sans antialiased bg-white">
-        {children}
+        <CartProvider>
+          {children}
+          <CartDrawer />
+        </CartProvider>
+        <Toaster position="top-center" richColors />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

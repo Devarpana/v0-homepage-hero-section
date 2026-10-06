@@ -1,9 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -14,7 +14,7 @@ const containerVariants = {
   },
 }
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -23,7 +23,7 @@ const itemVariants = {
   },
 }
 
-const imageVariants = {
+const imageVariants: Variants = {
   hidden: { opacity: 0, scale: 0.95 },
   visible: {
     opacity: 1,
@@ -104,6 +104,7 @@ export function CustomOrdersHero() {
                   size="lg"
                   variant="outline"
                   className="border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full px-8 py-6 text-base font-[family-name:var(--font-poppins)] transition-all"
+                  onClick={() => document.getElementById('previous-projects')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   See Examples
                 </Button>

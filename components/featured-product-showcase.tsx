@@ -1,9 +1,12 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { motion, type Variants } from 'framer-motion'
 import { Button } from '@/components/ui/button'
+import { useAddToCart } from '@/components/add-to-cart'
+import { formatPrice, gradientFor, type Product } from '@/lib/products'
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -14,7 +17,7 @@ const containerVariants = {
   },
 }
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -23,7 +26,11 @@ const itemVariants = {
   },
 }
 
-export function FeaturedProductShowcase() {
+export function FeaturedProductShowcase({ product }: { product: Product }) {
+  const addToCart = useAddToCart()
+  const image = product.featuredImage ?? product.image
+  const soldOut = product.stock < 1
+
   return (
     <section className="w-full py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -39,29 +46,32 @@ export function FeaturedProductShowcase() {
             variants={itemVariants}
             className="relative aspect-square rounded-3xl bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10 overflow-hidden flex items-center justify-center"
           >
-            {/* Decorative elements */}
-            <motion.div
-              animate={{ y: [0, 20, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative z-10 text-center"
-            >
-              <div className="w-40 h-40 mx-auto bg-gradient-to-br from-primary/80 to-primary/60 rounded-3xl shadow-2xl flex items-center justify-center text-white mb-4">
-                <div className="text-6xl font-black font-[family-name:var(--font-poppins)] opacity-20">◆</div>
-              </div>
-              <p className="text-sm text-gray-600 font-[family-name:var(--font-inter)] mt-6">Premium 3D Printed Piece</p>
-            </motion.div>
-
-            {/* Floating elements */}
-            <motion.div
-              className="absolute top-10 right-10 w-32 h-32 bg-accent/20 rounded-full blur-3xl"
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 5, repeat: Infinity }}
-            />
-            <motion.div
-              className="absolute bottom-10 left-10 w-24 h-24 bg-primary/20 rounded-full blur-2xl"
-              animate={{ scale: [1, 1.15, 1] }}
-              transition={{ duration: 6, repeat: Infinity, delay: 0.5 }}
-            />
+            {image ? (
+              <img src={image} alt={product.name} className="absolute inset-0 w-full h-full object-cover" />
+            ) : (
+              <>
+                <motion.div
+                  animate={{ y: [0, 20, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                  className="relative z-10 text-center"
+                >
+                  <div className={`w-40 h-40 mx-auto rounded-3xl shadow-2xl flex items-center justify-center text-white mb-4 ${gradientFor(product.id)}`}>
+                    <div className="text-6xl font-black font-[family-name:var(--font-poppins)] opacity-40">◆</div>
+                  </div>
+                  <p className="text-sm text-gray-600 font-[family-name:var(--font-inter)] mt-6">Premium 3D Printed Piece</p>
+                </motion.div>
+                <motion.div
+                  className="absolute top-10 right-10 w-32 h-32 bg-accent/20 rounded-full blur-3xl"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 5, repeat: Infinity }}
+                />
+                <motion.div
+                  className="absolute bottom-10 left-10 w-24 h-24 bg-primary/20 rounded-full blur-2xl"
+                  animate={{ scale: [1, 1.15, 1] }}
+                  transition={{ duration: 6, repeat: Infinity, delay: 0.5 }}
+                />
+              </>
+            )}
           </motion.div>
 
           {/* Right - Product Story */}
@@ -71,42 +81,34 @@ export function FeaturedProductShowcase() {
                 Featured
               </p>
               <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 font-[family-name:var(--font-poppins)] leading-tight">
-                Articulated Dragon Figurine
+                {product.name}
               </h2>
             </div>
 
-            <p className="text-lg text-gray-600 leading-relaxed font-[family-name:var(--font-inter)]">
-              This mesmerizing articulated dragon combines mechanical precision with artistic design. 
-              Each segment moves fluidly, created through advanced 3D printing techniques and finished with meticulous care.
-            </p>
+            {product.description && (
+              <p className="text-lg text-gray-600 leading-relaxed font-[family-name:var(--font-inter)]">{product.description}</p>
+            )}
 
             <div className="grid grid-cols-3 gap-6 py-8 border-y border-gray-200">
               <div>
                 <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-2 font-[family-name:var(--font-inter)]">
-                  Material
+                  Category
                 </p>
-                <p className="font-bold text-gray-900 font-[family-name:var(--font-poppins)]">Premium PLA</p>
+                <p className="font-bold text-gray-900 font-[family-name:var(--font-poppins)]">{product.category}</p>
               </div>
               <div>
                 <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-2 font-[family-name:var(--font-inter)]">
-                  Finish
+                  Availability
                 </p>
-                <p className="font-bold text-gray-900 font-[family-name:var(--font-poppins)]">Hand-polished</p>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-2 font-[family-name:var(--font-inter)]">
-                  Size
+                <p className={`font-bold font-[family-name:var(--font-poppins)] ${soldOut ? 'text-red-600' : 'text-gray-900'}`}>
+                  {soldOut ? 'Sold out' : 'In stock'}
                 </p>
-                <p className="font-bold text-gray-900 font-[family-name:var(--font-poppins)]">25cm Length</p>
               </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4">
               <div>
                 <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-2 font-[family-name:var(--font-inter)]">
                   Price
                 </p>
-                <p className="text-3xl font-black text-primary font-[family-name:var(--font-poppins)]">₹4,999</p>
+                <p className="font-black text-primary font-[family-name:var(--font-poppins)] text-xl">{formatPrice(product.price)}</p>
               </div>
             </div>
 
@@ -114,18 +116,21 @@ export function FeaturedProductShowcase() {
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Button
                   size="lg"
+                  disabled={soldOut}
+                  onClick={() => addToCart(product)}
                   className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 font-[family-name:var(--font-poppins)] shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
                 >
-                  Add to Cart
+                  {soldOut ? 'Sold out' : 'Add to Cart'}
                 </Button>
               </motion.div>
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Button
+                  asChild
                   size="lg"
                   variant="outline"
                   className="border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full px-8 py-6 font-[family-name:var(--font-poppins)] transition-all w-full sm:w-auto"
                 >
-                  View Details
+                  <Link href={`/product/${product.id}`}>View Details</Link>
                 </Button>
               </motion.div>
             </div>

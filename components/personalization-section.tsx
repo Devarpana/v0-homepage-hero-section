@@ -4,8 +4,10 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
+import Link from 'next/link'
+import { formatPrice, type Product } from '@/lib/products'
 
-export function PersonalizationSection() {
+export function PersonalizationSection({ product }: { product: Product }) {
   const [selectedOptions, setSelectedOptions] = useState({
     addName: false,
     addText: false,
@@ -17,7 +19,7 @@ export function PersonalizationSection() {
     {
       id: 'addName',
       title: 'Add Name',
-      description: 'Engrave your name on the organizer',
+      description: 'Engrave your name on it',
       icon: '👤'
     },
     {
@@ -60,6 +62,19 @@ export function PersonalizationSection() {
     },
   }
 
+  // Hand the chosen options to the custom order form, which is where personalised work is quoted.
+  const chosen = [
+    selectedOptions.addName && 'Name engraving',
+    selectedOptions.addText && 'Custom text engraving',
+    selectedOptions.uploadLogo && 'Logo engraving',
+    selectedOptions.customColor !== 'blue' && 'Custom colour',
+  ].filter(Boolean)
+  const customRequestHref =
+    `/custom-orders?${new URLSearchParams({
+      project: `${product.name} (personalised)`,
+      ...(chosen.length ? { details: `Personalisation wanted: ${chosen.join(', ')}.` } : {}),
+    }).toString()}#custom-form`
+
   return (
     <section className="w-full py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -74,7 +89,7 @@ export function PersonalizationSection() {
             Make It Yours
           </h2>
           <p className="text-xl text-gray-600 mt-4 max-w-2xl font-[family-name:var(--font-inter)]">
-            Personalize your desk organizer with custom options that reflect your style.
+            Personalize your {product.name} with custom options that reflect your style.
           </p>
         </motion.div>
 
@@ -155,10 +170,10 @@ export function PersonalizationSection() {
               <div className="p-8 space-y-6">
                 <div>
                   <p className="text-sm text-gray-600 uppercase tracking-wider font-[family-name:var(--font-inter)] mb-2">
-                    Your Custom Organizer
+                    Your Custom Piece
                   </p>
                   <h3 className="text-2xl font-bold text-gray-900 font-[family-name:var(--font-poppins)]">
-                    Modular Desk Organizer
+                    {product.name}
                   </h3>
                 </div>
 
@@ -188,18 +203,22 @@ export function PersonalizationSection() {
                 </div>
 
                 <div className="text-right">
-                  <p className="text-sm text-gray-600 mb-2 font-[family-name:var(--font-inter)]">From</p>
+                  <p className="text-sm text-gray-600 mb-2 font-[family-name:var(--font-inter)]">Base price from</p>
                   <p className="text-3xl font-bold text-gray-900 font-[family-name:var(--font-poppins)]">
-                    ₹1,499
+                    {formatPrice(product.price)}
                   </p>
                 </div>
 
                 <Button
+                  asChild
                   size="lg"
                   className="w-full bg-primary hover:bg-primary/90 text-white font-semibold rounded-full h-12 text-base font-[family-name:var(--font-poppins)]"
                 >
-                  Add to Cart
+                  <Link href={customRequestHref}>Request Personalised Version</Link>
                 </Button>
+                <p className="text-xs text-gray-500 text-center font-[family-name:var(--font-inter)]">
+                  Personalised pieces are quoted individually. We&apos;ll reply within 24 hours.
+                </p>
               </div>
             </div>
           </motion.div>

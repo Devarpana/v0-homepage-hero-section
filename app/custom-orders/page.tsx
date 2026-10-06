@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { CustomOrdersHero } from '@/components/custom-orders-hero'
 import { WhatWeCanCreate } from '@/components/what-we-can-create'
 import { CustomOrdersProcess } from '@/components/custom-orders-process'
@@ -12,7 +13,10 @@ export default function CustomOrdersPage() {
       <CustomOrdersHero />
       <WhatWeCanCreate />
       <CustomOrdersProcess />
-      <CustomOrderForm />
+      {/* The form reads ?project= and ?details= from the URL, which needs a Suspense boundary. */}
+      <Suspense fallback={<div className="min-h-[40rem]" />}>
+        <CustomOrderForm />
+      </Suspense>
       <PreviousCustomProjects />
       <CustomOrdersFAQ />
       <CustomOrdersFinalCTA />

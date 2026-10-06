@@ -1,8 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -13,7 +13,7 @@ const containerVariants = {
   },
 }
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -135,13 +135,14 @@ export function WhatWeCanCreate() {
                   whileHover={{ opacity: 1 }}
                   className="absolute inset-0 bg-primary/5 backdrop-blur-sm flex items-center justify-center"
                 >
-                  <motion.button
+                  <motion.a
+                    href="#custom-form"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="px-6 py-3 bg-primary text-white rounded-full font-semibold text-sm font-[family-name:var(--font-poppins)] shadow-lg"
                   >
                     Learn More
-                  </motion.button>
+                  </motion.a>
                 </motion.div>
               </div>
             </motion.div>

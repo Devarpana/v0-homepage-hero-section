@@ -3,18 +3,19 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
+import type { Product } from '@/lib/products'
 
-export function FAQSection() {
+export function FAQSection({ product }: { product: Product }) {
   const [openIndex, setOpenIndex] = useState(0)
 
   const faqs = [
     {
       question: 'Can I customize this product?',
-      answer: 'Absolutely! You can personalize your desk organizer with name engraving, custom text, logo uploads, and choose from our premium color options. We also offer bespoke designs for bulk orders.'
+      answer: `Absolutely! You can personalize your ${product.name} with name engraving, custom text, logo uploads, and choose from our premium color options. We also offer bespoke designs for bulk orders.`
     },
     {
       question: 'What material is used?',
-      answer: 'We use premium PLA+, a high-quality biodegradable plastic that&apos;s durable, eco-friendly, and perfect for everyday use. It&apos;s stronger than standard PLA and has excellent finish quality.'
+      answer: "We use premium PLA+, a high-quality biodegradable plastic that's durable, eco-friendly, and perfect for everyday use. It's stronger than standard PLA and has excellent finish quality."
     },
     {
       question: 'How long does shipping take?',
@@ -22,15 +23,15 @@ export function FAQSection() {
     },
     {
       question: 'Is the product durable?',
-      answer: 'Yes, our products are built to last. With proper care, your desk organizer will serve you for years. It&apos;s designed to withstand daily use in offices, studios, and home workspaces. We offer a 1-year warranty.'
+      answer: `Yes, our products are built to last. With proper care, your ${product.name} will serve you for years. It's designed to withstand daily use in offices, studios, and home workspaces. We offer a 1-year warranty.`
     },
     {
       question: 'What if my product arrives damaged?',
-      answer: 'We stand behind our products with a damage replacement guarantee. If your organizer arrives damaged, simply contact our support team with photos and we&apos;ll replace it immediately, free of charge.'
+      answer: "We stand behind our products with a damage replacement guarantee. If your order arrives damaged, simply contact our support team with photos and we'll replace it immediately, free of charge."
     },
     {
       question: 'Can I use this outdoors?',
-      answer: 'While our organizers are durable, they&apos;re designed for indoor use. Prolonged exposure to direct sunlight or extreme weather may cause discoloration over time.'
+      answer: "While our products are durable, they're designed for indoor use. Prolonged exposure to direct sunlight or extreme weather may cause discoloration over time."
     }
   ]
 

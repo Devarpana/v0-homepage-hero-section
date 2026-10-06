@@ -1,8 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import type { Product } from '@/lib/products'
 
-export function ProductShowcaseSection() {
+export function ProductShowcaseSection({ product }: { product: Product }) {
+  // A second photo if there is one, otherwise the featured/main image; placeholder if none.
+  const image = product.featuredImage ?? product.gallery[0] ?? product.image
+
   return (
     <section className="w-full py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-6">
@@ -15,10 +19,14 @@ export function ProductShowcaseSection() {
             viewport={{ once: true }}
             className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center"
           >
-            <div className="text-gray-400 text-center">
-              <div className="text-6xl mb-4">📦</div>
-              <p className="font-[family-name:var(--font-inter)]">Lifestyle Image</p>
-            </div>
+            {image ? (
+              <img src={image} alt={product.name} className="w-full h-full object-cover" />
+            ) : (
+              <div className="text-gray-400 text-center">
+                <div className="text-6xl mb-4">📦</div>
+                <p className="font-[family-name:var(--font-inter)]">Lifestyle Image</p>
+              </div>
+            )}
           </motion.div>
 
           {/* Right - Content */}
@@ -54,7 +62,7 @@ export function ProductShowcaseSection() {
                   Practical Benefits
                 </h3>
                 <p className="text-gray-600 font-[family-name:var(--font-inter)]">
-                  Designed for real life. Multiple compartments keep your desk clutter-free, while the premium material ensures durability for years to come.
+                  Designed for real life. Thoughtful details make it easy to use every day, while the premium material ensures durability for years to come.
                 </p>
               </div>
 
@@ -63,7 +71,7 @@ export function ProductShowcaseSection() {
                   Everyday Use Cases
                 </h3>
                 <p className="text-gray-600 font-[family-name:var(--font-inter)]">
-                  Perfect for home offices, classrooms, studios, and workspaces. Store pens, pencils, paper clips, USB drives, and more. One organizer, endless possibilities.
+                  Perfect for homes, offices, classrooms, studios, and workspaces. Made to be used every day.
                 </p>
               </div>
             </div>

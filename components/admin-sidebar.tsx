@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Package, FileText, ShoppingCart, LogOut } from 'lucide-react'
+import { LayoutDashboard, Package, FileText, ShoppingCart, MessageSquare, LogOut } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const navItems = [
@@ -10,9 +10,15 @@ const navItems = [
   { label: 'Products', href: '/admin/products', icon: Package },
   { label: 'Custom Requests', href: '/admin/custom-requests', icon: FileText },
   { label: 'Orders', href: '/admin/orders', icon: ShoppingCart },
+  { label: 'Messages', href: '/admin/messages', icon: MessageSquare },
 ]
 
-export function AdminSidebar() {
+interface AdminSidebarProps {
+  email: string
+  onSignOut: () => void
+}
+
+export function AdminSidebar({ email, onSignOut }: AdminSidebarProps) {
   const pathname = usePathname()
 
   return (
@@ -20,7 +26,7 @@ export function AdminSidebar() {
       initial={{ x: -250 }}
       animate={{ x: 0 }}
       transition={{ duration: 0.3 }}
-      className="w-64 bg-sidebar border-r border-sidebar-border h-screen sticky top-0 flex flex-col"
+      className="w-64 shrink-0 bg-sidebar border-r border-sidebar-border h-screen sticky top-0 flex flex-col"
     >
       {/* Logo Section */}
       <div className="p-6 border-b border-sidebar-border">
@@ -35,17 +41,16 @@ export function AdminSidebar() {
       {/* Navigation Items */}
       <nav className="flex-1 p-4 space-y-3">
         {navItems.map((item) => {
-          const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
+          // "/admin" is a prefix of every admin route, so it only matches exactly.
+          const isActive = item.href === '/admin' ? pathname === '/admin' : pathname === item.href || pathname.startsWith(item.href + '/')
           const Icon = item.icon
 
           return (
-            <Link key={item.href} href={item.href}>
+            <Link key={item.href} href={item.href} aria-current={isActive ? 'page' : undefined}>
               <motion.div
                 whileTap={{ scale: 0.98 }}
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all cursor-pointer ${
-                  isActive
-                    ? 'bg-gray-900 text-white'
-                    : 'text-gray-600 hover:bg-gray-100'
+                  isActive ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
                 <Icon className="w-5 h-5" />
@@ -57,8 +62,16 @@ export function AdminSidebar() {
       </nav>
 
       {/* Footer Section */}
-      <div className="p-4 border-t border-sidebar-border">
+      <div className="p-4 border-t border-sidebar-border space-y-2">
+        <Link href="/" className="block px-4 text-xs text-gray-500 hover:text-gray-900">
+          ← View store
+        </Link>
+        <p className="px-4 text-xs text-gray-500 truncate" title={email}>
+          {email}
+        </p>
         <motion.button
+          type="button"
+          onClick={onSignOut}
           whileTap={{ scale: 0.98 }}
           className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-gray-600 hover:bg-gray-100 transition-all cursor-pointer font-[family-name:var(--font-inter)] text-sm"
         >
