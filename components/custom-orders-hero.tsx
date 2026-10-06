@@ -56,7 +56,7 @@ export function CustomOrdersHero() {
             <motion.div variants={itemVariants}>
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-full border border-gray-200">
                 <div className="w-2 h-2 rounded-full bg-primary" />
-                <span className="text-xs font-medium text-gray-700 font-[var(--font-inter)] uppercase tracking-wider">
+                <span className="text-xs font-medium text-gray-700 font-[family-name:var(--font-inter)] uppercase tracking-wider">
                   Made to Order
                 </span>
               </div>
@@ -65,7 +65,7 @@ export function CustomOrdersHero() {
             {/* Headline */}
             <motion.h1
               variants={itemVariants}
-              className="text-5xl lg:text-7xl font-black text-gray-900 leading-tight font-[var(--font-poppins)] text-balance tracking-tight"
+              className="text-5xl lg:text-7xl font-black text-gray-900 leading-tight font-[family-name:var(--font-poppins)] text-balance tracking-tight"
             >
               Your Vision,{' '}
               <span className="text-primary">Perfectly Printed</span>
@@ -74,7 +74,7 @@ export function CustomOrdersHero() {
             {/* Description */}
             <motion.p
               variants={itemVariants}
-              className="text-lg text-gray-600 leading-relaxed max-w-lg font-[var(--font-inter)] font-light"
+              className="text-lg text-gray-600 leading-relaxed max-w-lg font-[family-name:var(--font-inter)] font-light"
             >
               Share your ideas and let our team bring them to life. From personalized gifts to custom prototypes, we craft exactly what you imagine.
             </motion.p>
@@ -90,7 +90,7 @@ export function CustomOrdersHero() {
               >
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 text-base font-[var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
+                  className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 text-base font-[family-name:var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
                   onClick={() => document.getElementById('custom-form')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   Start Your Order
@@ -103,7 +103,7 @@ export function CustomOrdersHero() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full px-8 py-6 text-base font-[var(--font-poppins)] transition-all"
+                  className="border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full px-8 py-6 text-base font-[family-name:var(--font-poppins)] transition-all"
                 >
                   See Examples
                 </Button>
@@ -116,12 +116,12 @@ export function CustomOrdersHero() {
               className="flex items-center gap-8 pt-8 border-t border-gray-200"
             >
               <div className="flex items-center gap-2">
-                <div className="text-2xl font-bold text-primary font-[var(--font-poppins)]">500+</div>
-                <p className="text-sm text-gray-600 font-[var(--font-inter)]">Custom Orders Completed</p>
+                <div className="text-2xl font-bold text-primary font-[family-name:var(--font-poppins)]">500+</div>
+                <p className="text-sm text-gray-600 font-[family-name:var(--font-inter)]">Custom Orders Completed</p>
               </div>
               <div className="flex items-center gap-2">
-                <div className="text-2xl font-bold text-primary font-[var(--font-poppins)]">4.9★</div>
-                <p className="text-sm text-gray-600 font-[var(--font-inter)]">Average Rating</p>
+                <div className="text-2xl font-bold text-primary font-[family-name:var(--font-poppins)]">4.9★</div>
+                <p className="text-sm text-gray-600 font-[family-name:var(--font-inter)]">Average Rating</p>
               </div>
             </motion.div>
           </motion.div>
@@ -148,7 +148,7 @@ export function CustomOrdersHero() {
                   <div className="w-40 h-40 bg-gradient-to-br from-accent/80 to-accent/60 rounded-2xl shadow-2xl flex items-center justify-center text-white relative">
                     <div className="text-center">
                       <div className="text-5xl mb-2 opacity-30">✨</div>
-                      <p className="text-xs font-medium tracking-widest opacity-60 font-[var(--font-inter)]">CUSTOM</p>
+                      <p className="text-xs font-medium tracking-widest opacity-60 font-[family-name:var(--font-inter)]">CUSTOM</p>
                     </div>
                     <div className="absolute top-0 left-1/4 w-20 h-20 bg-white/20 rounded-full blur-2xl" />
                   </div>

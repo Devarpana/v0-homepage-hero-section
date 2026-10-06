@@ -43,13 +43,13 @@ export function TrendingProducts() {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-5xl lg:text-6xl font-black text-gray-900 font-[var(--font-poppins)] text-balance tracking-tight"
+            className="text-5xl lg:text-6xl font-black text-gray-900 font-[family-name:var(--font-poppins)] text-balance tracking-tight"
           >
             Trending Now
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="mt-4 text-lg text-gray-600 font-[var(--font-inter)] max-w-2xl"
+            className="mt-4 text-lg text-gray-600 font-[family-name:var(--font-inter)] max-w-2xl"
           >
             What our community is loving this month
           </motion.p>
@@ -78,7 +78,7 @@ export function TrendingProducts() {
                     whileHover={{ scale: 1.1, rotate: 5 }}
                   />
                   <div className="absolute top-4 right-4 px-3 py-1 bg-primary/10 rounded-full border border-primary/20">
-                    <span className="text-xs font-semibold text-primary font-[var(--font-poppins)]">
+                    <span className="text-xs font-semibold text-primary font-[family-name:var(--font-poppins)]">
                       Trending
                     </span>
                   </div>
@@ -86,10 +86,10 @@ export function TrendingProducts() {
 
                 {/* Product info */}
                 <div className="p-4">
-                  <p className="text-xs text-gray-500 font-[var(--font-inter)] uppercase tracking-wider mb-1">
+                  <p className="text-xs text-gray-500 font-[family-name:var(--font-inter)] uppercase tracking-wider mb-1">
                     {product.category}
                   </p>
-                  <h3 className="text-sm font-bold text-gray-900 font-[var(--font-poppins)]">
+                  <h3 className="text-sm font-bold text-gray-900 font-[family-name:var(--font-poppins)]">
                     {product.name}
                   </h3>
                 </div>

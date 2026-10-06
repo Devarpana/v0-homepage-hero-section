@@ -57,13 +57,13 @@ export function FeaturedCollections() {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-5xl lg:text-6xl font-black text-gray-900 font-[var(--font-poppins)] text-balance tracking-tight"
+            className="text-5xl lg:text-6xl font-black text-gray-900 font-[family-name:var(--font-poppins)] text-balance tracking-tight"
           >
             Featured Collections
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="mt-4 text-lg text-gray-600 font-[var(--font-inter)] max-w-2xl"
+            className="mt-4 text-lg text-gray-600 font-[family-name:var(--font-inter)] max-w-2xl"
           >
             Curated selections of our finest 3D-printed creations
           </motion.p>
@@ -90,13 +90,13 @@ export function FeaturedCollections() {
 
                 {/* Content */}
                 <div className="relative h-full flex flex-col justify-end p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 font-[var(--font-poppins)] mb-2">
+                  <h3 className="text-2xl font-bold text-gray-900 font-[family-name:var(--font-poppins)] mb-2">
                     {collection.name}
                   </h3>
-                  <p className="text-sm text-gray-600 font-[var(--font-inter)]">
+                  <p className="text-sm text-gray-600 font-[family-name:var(--font-inter)]">
                     {collection.description}
                   </p>
-                  <div className="mt-4 flex items-center gap-2 text-primary font-semibold font-[var(--font-poppins)] text-sm">
+                  <div className="mt-4 flex items-center gap-2 text-primary font-semibold font-[family-name:var(--font-poppins)] text-sm">
                     Explore
                     <motion.span
                       animate={{ x: [0, 4, 0] }}

@@ -39,7 +39,7 @@ export function ExploreMore() {
       >
         <motion.h2
           variants={itemVariants}
-          className="text-5xl lg:text-6xl font-black text-gray-900 font-[var(--font-poppins)] text-balance tracking-tight mb-6"
+          className="text-5xl lg:text-6xl font-black text-gray-900 font-[family-name:var(--font-poppins)] text-balance tracking-tight mb-6"
         >
           Ready to Create Something{' '}
           <span className="text-primary">Extraordinary</span>?
@@ -47,7 +47,7 @@ export function ExploreMore() {
 
         <motion.p
           variants={itemVariants}
-          className="text-lg text-gray-600 font-[var(--font-inter)] max-w-2xl mx-auto mb-12 leading-relaxed"
+          className="text-lg text-gray-600 font-[family-name:var(--font-inter)] max-w-2xl mx-auto mb-12 leading-relaxed"
         >
           Whether you&apos;re looking for ready-made designs or have a custom vision, we&apos;re here to bring your ideas to life through precision 3D printing.
         </motion.p>
@@ -62,7 +62,7 @@ export function ExploreMore() {
           >
             <Button
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 text-base font-[var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
+              className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 text-base font-[family-name:var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
             >
               Start Exploring
             </Button>
@@ -74,7 +74,7 @@ export function ExploreMore() {
             <Button
               size="lg"
               variant="outline"
-              className="border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full px-8 py-6 text-base font-[var(--font-poppins)] transition-all"
+              className="border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full px-8 py-6 text-base font-[family-name:var(--font-poppins)] transition-all"
             >
               Request a Demo
             </Button>
@@ -84,7 +84,7 @@ export function ExploreMore() {
         {/* Trust line */}
         <motion.p
           variants={itemVariants}
-          className="mt-16 text-sm text-gray-500 font-[var(--font-inter)]"
+          className="mt-16 text-sm text-gray-500 font-[family-name:var(--font-inter)]"
         >
           Trusted by 500+ creators and businesses across India
         </motion.p>

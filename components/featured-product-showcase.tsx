@@ -46,9 +46,9 @@ export function FeaturedProductShowcase() {
               className="relative z-10 text-center"
             >
               <div className="w-40 h-40 mx-auto bg-gradient-to-br from-primary/80 to-primary/60 rounded-3xl shadow-2xl flex items-center justify-center text-white mb-4">
-                <div className="text-6xl font-black font-[var(--font-poppins)] opacity-20">◆</div>
+                <div className="text-6xl font-black font-[family-name:var(--font-poppins)] opacity-20">◆</div>
               </div>
-              <p className="text-sm text-gray-600 font-[var(--font-inter)] mt-6">Premium 3D Printed Piece</p>
+              <p className="text-sm text-gray-600 font-[family-name:var(--font-inter)] mt-6">Premium 3D Printed Piece</p>
             </motion.div>
 
             {/* Floating elements */}
@@ -67,46 +67,46 @@ export function FeaturedProductShowcase() {
           {/* Right - Product Story */}
           <motion.div variants={itemVariants} className="flex flex-col gap-6">
             <div>
-              <p className="text-sm text-primary font-bold uppercase tracking-widest mb-3 font-[var(--font-poppins)]">
+              <p className="text-sm text-primary font-bold uppercase tracking-widest mb-3 font-[family-name:var(--font-poppins)]">
                 Featured
               </p>
-              <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 font-[var(--font-poppins)] leading-tight">
+              <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 font-[family-name:var(--font-poppins)] leading-tight">
                 Articulated Dragon Figurine
               </h2>
             </div>
 
-            <p className="text-lg text-gray-600 leading-relaxed font-[var(--font-inter)]">
+            <p className="text-lg text-gray-600 leading-relaxed font-[family-name:var(--font-inter)]">
               This mesmerizing articulated dragon combines mechanical precision with artistic design. 
               Each segment moves fluidly, created through advanced 3D printing techniques and finished with meticulous care.
             </p>
 
             <div className="grid grid-cols-3 gap-6 py-8 border-y border-gray-200">
               <div>
-                <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-2 font-[var(--font-inter)]">
+                <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-2 font-[family-name:var(--font-inter)]">
                   Material
                 </p>
-                <p className="font-bold text-gray-900 font-[var(--font-poppins)]">Premium PLA</p>
+                <p className="font-bold text-gray-900 font-[family-name:var(--font-poppins)]">Premium PLA</p>
               </div>
               <div>
-                <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-2 font-[var(--font-inter)]">
+                <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-2 font-[family-name:var(--font-inter)]">
                   Finish
                 </p>
-                <p className="font-bold text-gray-900 font-[var(--font-poppins)]">Hand-polished</p>
+                <p className="font-bold text-gray-900 font-[family-name:var(--font-poppins)]">Hand-polished</p>
               </div>
               <div>
-                <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-2 font-[var(--font-inter)]">
+                <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-2 font-[family-name:var(--font-inter)]">
                   Size
                 </p>
-                <p className="font-bold text-gray-900 font-[var(--font-poppins)]">25cm Length</p>
+                <p className="font-bold text-gray-900 font-[family-name:var(--font-poppins)]">25cm Length</p>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <div>
-                <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-2 font-[var(--font-inter)]">
+                <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-2 font-[family-name:var(--font-inter)]">
                   Price
                 </p>
-                <p className="text-3xl font-black text-primary font-[var(--font-poppins)]">₹4,999</p>
+                <p className="text-3xl font-black text-primary font-[family-name:var(--font-poppins)]">₹4,999</p>
               </div>
             </div>
 
@@ -114,7 +114,7 @@ export function FeaturedProductShowcase() {
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 font-[var(--font-poppins)] shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
+                  className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 font-[family-name:var(--font-poppins)] shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
                 >
                   Add to Cart
                 </Button>
@@ -123,7 +123,7 @@ export function FeaturedProductShowcase() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full px-8 py-6 font-[var(--font-poppins)] transition-all w-full sm:w-auto"
+                  className="border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full px-8 py-6 font-[family-name:var(--font-poppins)] transition-all w-full sm:w-auto"
                 >
                   View Details
                 </Button>

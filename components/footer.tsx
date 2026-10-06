@@ -27,10 +27,10 @@ export function Footer() {
           {/* Brand */}
           <motion.div variants={itemVariants} className="col-span-1">
             <div className="mb-4">
-              <h3 className="text-2xl font-black font-[var(--font-poppins)] text-white mb-2">
+              <h3 className="text-2xl font-black font-[family-name:var(--font-poppins)] text-white mb-2">
                 XYZ Layers
               </h3>
-              <p className="text-sm text-gray-400 font-[var(--font-inter)]">
+              <p className="text-sm text-gray-400 font-[family-name:var(--font-inter)]">
                 Precision 3D printing for creators
               </p>
             </div>
@@ -49,10 +49,10 @@ export function Footer() {
 
           {/* Products */}
           <motion.div variants={itemVariants}>
-            <h4 className="font-bold font-[var(--font-poppins)] text-white mb-4">
+            <h4 className="font-bold font-[family-name:var(--font-poppins)] text-white mb-4">
               Products
             </h4>
-            <ul className="space-y-2 text-sm text-gray-400 font-[var(--font-inter)]">
+            <ul className="space-y-2 text-sm text-gray-400 font-[family-name:var(--font-inter)]">
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
                   Collections
@@ -78,10 +78,10 @@ export function Footer() {
 
           {/* Company */}
           <motion.div variants={itemVariants}>
-            <h4 className="font-bold font-[var(--font-poppins)] text-white mb-4">
+            <h4 className="font-bold font-[family-name:var(--font-poppins)] text-white mb-4">
               Company
             </h4>
-            <ul className="space-y-2 text-sm text-gray-400 font-[var(--font-inter)]">
+            <ul className="space-y-2 text-sm text-gray-400 font-[family-name:var(--font-inter)]">
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
                   About Us
@@ -107,10 +107,10 @@ export function Footer() {
 
           {/* Legal */}
           <motion.div variants={itemVariants}>
-            <h4 className="font-bold font-[var(--font-poppins)] text-white mb-4">
+            <h4 className="font-bold font-[family-name:var(--font-poppins)] text-white mb-4">
               Legal
             </h4>
-            <ul className="space-y-2 text-sm text-gray-400 font-[var(--font-inter)]">
+            <ul className="space-y-2 text-sm text-gray-400 font-[family-name:var(--font-inter)]">
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
                   Privacy Policy
@@ -144,7 +144,7 @@ export function Footer() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 font-[var(--font-inter)]"
+          className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 font-[family-name:var(--font-inter)]"
         >
           <p>© {currentYear} XYZ Layers. All rights reserved.</p>
           <p>Designed & Printed in India with Precision</p>

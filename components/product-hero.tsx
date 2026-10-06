@@ -70,7 +70,7 @@ export function ProductHero() {
               variants={itemVariants}
               className="aspect-square bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl overflow-hidden flex items-center justify-center border border-gray-200"
             >
-              <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm font-[var(--font-inter)]">
+              <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm font-[family-name:var(--font-inter)]">
                 Product Image
               </div>
             </motion.div>
@@ -85,7 +85,7 @@ export function ProductHero() {
                   key={i}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`w-20 h-20 rounded-lg border-2 transition-all flex items-center justify-center text-gray-400 text-xs font-[var(--font-inter)] ${
+                  className={`w-20 h-20 rounded-lg border-2 transition-all flex items-center justify-center text-gray-400 text-xs font-[family-name:var(--font-inter)] ${
                     i === 1
                       ? 'border-primary bg-primary/5'
                       : 'border-gray-200 hover:border-primary'
@@ -108,13 +108,13 @@ export function ProductHero() {
             <div>
               <motion.p
                 variants={itemVariants}
-                className="text-sm font-medium text-primary uppercase tracking-wider font-[var(--font-inter)]"
+                className="text-sm font-medium text-primary uppercase tracking-wider font-[family-name:var(--font-inter)]"
               >
                 Daily Essentials
               </motion.p>
               <motion.h1
                 variants={itemVariants}
-                className="text-4xl lg:text-5xl font-black text-gray-900 mt-2 leading-tight font-[var(--font-poppins)]"
+                className="text-4xl lg:text-5xl font-black text-gray-900 mt-2 leading-tight font-[family-name:var(--font-poppins)]"
               >
                 Modular Desk Organizer
               </motion.h1>
@@ -122,13 +122,13 @@ export function ProductHero() {
 
             {/* Price and Rating */}
             <motion.div variants={itemVariants} className="flex items-center gap-4">
-              <span className="text-3xl font-bold text-gray-900 font-[var(--font-poppins)]">
+              <span className="text-3xl font-bold text-gray-900 font-[family-name:var(--font-poppins)]">
                 ₹1,499
               </span>
-              <span className="text-sm text-gray-600 line-through font-[var(--font-inter)]">
+              <span className="text-sm text-gray-600 line-through font-[family-name:var(--font-inter)]">
                 ₹1,999
               </span>
-              <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium font-[var(--font-inter)]">
+              <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium font-[family-name:var(--font-inter)]">
                 25% Off
               </span>
             </motion.div>
@@ -136,7 +136,7 @@ export function ProductHero() {
             {/* Short Description */}
             <motion.p
               variants={itemVariants}
-              className="text-lg text-gray-600 leading-relaxed font-[var(--font-inter)]"
+              className="text-lg text-gray-600 leading-relaxed font-[family-name:var(--font-inter)]"
             >
               Keep your workspace organized and stylish with our precision 3D-printed modular organizer. 
               Perfect for desk organization, customizable to your needs, and built to last.
@@ -155,14 +155,14 @@ export function ProductHero() {
               ].map((feature, i) => (
                 <div key={i} className="flex items-center gap-3">
                   <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-gray-700 font-[var(--font-inter)]">{feature}</span>
+                  <span className="text-gray-700 font-[family-name:var(--font-inter)]">{feature}</span>
                 </div>
               ))}
             </motion.div>
 
             {/* Color Selection */}
             <motion.div variants={itemVariants}>
-              <label className="block text-sm font-semibold text-gray-900 mb-4 font-[var(--font-poppins)]">
+              <label className="block text-sm font-semibold text-gray-900 mb-4 font-[family-name:var(--font-poppins)]">
                 Choose Color
               </label>
               <div className="flex gap-3">
@@ -185,22 +185,22 @@ export function ProductHero() {
 
             {/* Quantity Selector */}
             <motion.div variants={itemVariants}>
-              <label className="block text-sm font-semibold text-gray-900 mb-4 font-[var(--font-poppins)]">
+              <label className="block text-sm font-semibold text-gray-900 mb-4 font-[family-name:var(--font-poppins)]">
                 Quantity
               </label>
               <div className="flex items-center gap-4 w-fit">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-12 h-12 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors flex items-center justify-center font-[var(--font-poppins)]"
+                  className="w-12 h-12 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors flex items-center justify-center font-[family-name:var(--font-poppins)]"
                 >
                   −
                 </button>
-                <span className="w-12 text-center font-semibold text-gray-900 font-[var(--font-poppins)]">
+                <span className="w-12 text-center font-semibold text-gray-900 font-[family-name:var(--font-poppins)]">
                   {quantity}
                 </span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="w-12 h-12 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors flex items-center justify-center font-[var(--font-poppins)]"
+                  className="w-12 h-12 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors flex items-center justify-center font-[family-name:var(--font-poppins)]"
                 >
                   +
                 </button>
@@ -214,14 +214,14 @@ export function ProductHero() {
             >
               <Button
                 size="lg"
-                className="flex-1 bg-primary hover:bg-primary/90 text-white font-semibold rounded-full h-12 text-base font-[var(--font-poppins)]"
+                className="flex-1 bg-primary hover:bg-primary/90 text-white font-semibold rounded-full h-12 text-base font-[family-name:var(--font-poppins)]"
               >
                 Add To Cart
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="flex-1 border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full h-12 text-base font-[var(--font-poppins)]"
+                className="flex-1 border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full h-12 text-base font-[family-name:var(--font-poppins)]"
               >
                 Buy Now
               </Button>
@@ -232,11 +232,11 @@ export function ProductHero() {
               variants={itemVariants}
               className="flex gap-4 pt-4 border-t border-gray-200"
             >
-              <button className="flex-1 flex items-center justify-center gap-2 py-3 hover:bg-gray-50 rounded-lg transition-colors font-[var(--font-inter)]">
+              <button className="flex-1 flex items-center justify-center gap-2 py-3 hover:bg-gray-50 rounded-lg transition-colors font-[family-name:var(--font-inter)]">
                 <Heart className="w-5 h-5" />
                 <span className="text-sm">Save</span>
               </button>
-              <button className="flex-1 flex items-center justify-center gap-2 py-3 hover:bg-gray-50 rounded-lg transition-colors font-[var(--font-inter)]">
+              <button className="flex-1 flex items-center justify-center gap-2 py-3 hover:bg-gray-50 rounded-lg transition-colors font-[family-name:var(--font-inter)]">
                 <Share2 className="w-5 h-5" />
                 <span className="text-sm">Share</span>
               </button>

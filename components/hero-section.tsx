@@ -64,7 +64,7 @@ export function HeroSection() {
             <motion.div variants={itemVariants}>
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-full border border-gray-200">
                 <div className="w-2 h-2 rounded-full bg-primary" />
-                <span className="text-xs font-medium text-gray-700 font-[var(--font-inter)] uppercase tracking-wider">
+                <span className="text-xs font-medium text-gray-700 font-[family-name:var(--font-inter)] uppercase tracking-wider">
                   Precision Engineering
                 </span>
               </div>
@@ -73,7 +73,7 @@ export function HeroSection() {
             {/* Headline - Bold Poppins */}
             <motion.h1
               variants={itemVariants}
-              className="text-5xl lg:text-7xl font-black text-gray-900 leading-tight font-[var(--font-poppins)] text-balance tracking-tight"
+              className="text-5xl lg:text-7xl font-black text-gray-900 leading-tight font-[family-name:var(--font-poppins)] text-balance tracking-tight"
             >
               Objects of{' '}
               <span className="text-primary">Intent</span>
@@ -82,7 +82,7 @@ export function HeroSection() {
             {/* Description */}
             <motion.p
               variants={itemVariants}
-              className="text-lg text-gray-600 leading-relaxed max-w-lg font-[var(--font-inter)] font-light"
+              className="text-lg text-gray-600 leading-relaxed max-w-lg font-[family-name:var(--font-inter)] font-light"
             >
               Every layer matters. We design and print products that merge form with function, 
               creating pieces that last.
@@ -99,7 +99,7 @@ export function HeroSection() {
               >
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 text-base font-[var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
+                  className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 text-base font-[family-name:var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
                 >
                   Explore
                 </Button>
@@ -111,7 +111,7 @@ export function HeroSection() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full px-8 py-6 text-base font-[var(--font-poppins)] transition-all"
+                  className="border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full px-8 py-6 text-base font-[family-name:var(--font-poppins)] transition-all"
                 >
                   Custom Design
                 </Button>
@@ -125,19 +125,19 @@ export function HeroSection() {
             >
               <div className="flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                <p className="text-sm text-gray-700 font-[var(--font-inter)]">
+                <p className="text-sm text-gray-700 font-[family-name:var(--font-inter)]">
                   <span className="font-medium">Designed & Printed in India</span>
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                <p className="text-sm text-gray-700 font-[var(--font-inter)]">
+                <p className="text-sm text-gray-700 font-[family-name:var(--font-inter)]">
                   <span className="font-medium">Made with Precision</span>
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                <p className="text-sm text-gray-700 font-[var(--font-inter)]">
+                <p className="text-sm text-gray-700 font-[family-name:var(--font-inter)]">
                   <span className="font-medium">Custom Orders Available</span>
                 </p>
               </div>
@@ -177,10 +177,10 @@ export function HeroSection() {
                     >
                       <div className="w-40 h-40 bg-gradient-to-br from-primary/80 to-primary/60 rounded-2xl shadow-2xl flex items-center justify-center text-white relative transform perspective">
                         <div className="text-center">
-                          <div className="text-6xl font-black font-[var(--font-poppins)] mb-2 opacity-20">
+                          <div className="text-6xl font-black font-[family-name:var(--font-poppins)] mb-2 opacity-20">
                             ●
                           </div>
-                          <p className="text-xs font-medium tracking-widest opacity-60 font-[var(--font-inter)]">
+                          <p className="text-xs font-medium tracking-widest opacity-60 font-[family-name:var(--font-inter)]">
                             3D PRINTED
                           </p>
                         </div>

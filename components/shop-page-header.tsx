@@ -34,13 +34,13 @@ export function ShopPageHeader() {
         >
           <motion.h1
             variants={itemVariants}
-            className="text-5xl lg:text-6xl font-black text-gray-900 font-[var(--font-poppins)] mb-4 tracking-tight"
+            className="text-5xl lg:text-6xl font-black text-gray-900 font-[family-name:var(--font-poppins)] mb-4 tracking-tight"
           >
             Shop
           </motion.h1>
           <motion.p
             variants={itemVariants}
-            className="text-lg text-gray-600 max-w-2xl font-[var(--font-inter)] leading-relaxed"
+            className="text-lg text-gray-600 max-w-2xl font-[family-name:var(--font-inter)] leading-relaxed"
           >
             Thoughtfully designed 3D printed products for your home, workspace, and creative projects. 
             Each piece is crafted with precision and care.

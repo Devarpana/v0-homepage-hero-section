@@ -81,13 +81,13 @@ export function WhatWeCanCreate() {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-5xl lg:text-6xl font-black text-gray-900 font-[var(--font-poppins)] text-balance tracking-tight"
+            className="text-5xl lg:text-6xl font-black text-gray-900 font-[family-name:var(--font-poppins)] text-balance tracking-tight"
           >
             What We Can Create
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="mt-4 text-lg text-gray-600 font-[var(--font-inter)] max-w-2xl"
+            className="mt-4 text-lg text-gray-600 font-[family-name:var(--font-inter)] max-w-2xl"
           >
             From personalized gifts to complex prototypes, we bring your ideas to life
           </motion.p>
@@ -121,10 +121,10 @@ export function WhatWeCanCreate() {
                   >
                     {category.icon}
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-gray-900 font-[var(--font-poppins)] mb-3">
+                  <h3 className="text-2xl font-bold text-gray-900 font-[family-name:var(--font-poppins)] mb-3">
                     {category.title}
                   </h3>
-                  <p className="text-gray-600 font-[var(--font-inter)] text-sm leading-relaxed">
+                  <p className="text-gray-600 font-[family-name:var(--font-inter)] text-sm leading-relaxed">
                     {category.description}
                   </p>
                 </div>
@@ -138,7 +138,7 @@ export function WhatWeCanCreate() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-6 py-3 bg-primary text-white rounded-full font-semibold text-sm font-[var(--font-poppins)] shadow-lg"
+                    className="px-6 py-3 bg-primary text-white rounded-full font-semibold text-sm font-[family-name:var(--font-poppins)] shadow-lg"
                   >
                     Learn More
                   </motion.button>

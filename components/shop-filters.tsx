@@ -33,7 +33,7 @@ export function ShopFilters() {
               placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-6 py-4 rounded-full border border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all font-[var(--font-inter)]"
+              className="w-full pl-12 pr-6 py-4 rounded-full border border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all font-[family-name:var(--font-inter)]"
             />
           </div>
         </motion.div>
@@ -51,7 +51,7 @@ export function ShopFilters() {
               onClick={() => setActiveFilter(filter.id)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 font-[var(--font-poppins)] ${
+              className={`px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 font-[family-name:var(--font-poppins)] ${
                 activeFilter === filter.id
                   ? 'bg-primary text-white shadow-lg'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'

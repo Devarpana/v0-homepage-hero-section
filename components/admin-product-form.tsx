@@ -120,7 +120,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       <div className="flex items-center gap-4 mb-8">
         <Link
           href="/admin/products"
-          className="text-primary hover:text-primary/80 transition-colors font-[var(--font-inter)]"
+          className="text-primary hover:text-primary/80 transition-colors font-[family-name:var(--font-inter)]"
         >
           ← Back to Products
         </Link>
@@ -128,11 +128,11 @@ const handleSubmit = async (e: React.FormEvent) => {
 
       {/* Basic Information */}
       <Card className="p-6">
-        <h2 className="text-lg font-semibold mb-6 font-[var(--font-poppins)]">Basic Information</h2>
+        <h2 className="text-lg font-semibold mb-6 font-[family-name:var(--font-poppins)]">Basic Information</h2>
 
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-foreground mb-2 font-[var(--font-poppins)]">
+            <label className="block text-sm font-medium text-foreground mb-2 font-[family-name:var(--font-poppins)]">
               Product Name *
             </label>
             <Input
@@ -147,7 +147,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2 font-[var(--font-poppins)]">
+              <label className="block text-sm font-medium text-foreground mb-2 font-[family-name:var(--font-poppins)]">
                 Category *
               </label>
               <select
@@ -164,7 +164,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2 font-[var(--font-poppins)]">
+              <label className="block text-sm font-medium text-foreground mb-2 font-[family-name:var(--font-poppins)]">
                 Stock *
               </label>
               <Input
@@ -179,7 +179,7 @@ const handleSubmit = async (e: React.FormEvent) => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-foreground mb-2 font-[var(--font-poppins)]">
+            <label className="block text-sm font-medium text-foreground mb-2 font-[family-name:var(--font-poppins)]">
               Price (₹) *
             </label>
             <Input
@@ -194,7 +194,7 @@ const handleSubmit = async (e: React.FormEvent) => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-foreground mb-2 font-[var(--font-poppins)]">
+            <label className="block text-sm font-medium text-foreground mb-2 font-[family-name:var(--font-poppins)]">
               Description
             </label>
             <Textarea
@@ -210,7 +210,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
       {/* Image Management */}
       <Card className="p-6">
-        <h2 className="text-lg font-semibold mb-6 font-[var(--font-poppins)]">Images</h2>
+        <h2 className="text-lg font-semibold mb-6 font-[family-name:var(--font-poppins)]">Images</h2>
 
         <div className="space-y-6">
           <ImageUploader
@@ -243,14 +243,14 @@ const handleSubmit = async (e: React.FormEvent) => {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-primary hover:bg-primary/90 text-primary-foreground font-[var(--font-poppins)]"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground font-[family-name:var(--font-poppins)]"
           >
             {isSubmitting ? 'Saving...' : isEditing ? 'Update Product' : 'Create Product'}
           </Button>
         </motion.div>
 
         <Link href="/admin/products">
-          <Button variant="outline" type="button" className="font-[var(--font-poppins)]">
+          <Button variant="outline" type="button" className="font-[family-name:var(--font-poppins)]">
             Cancel
           </Button>
         </Link>

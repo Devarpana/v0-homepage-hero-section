@@ -63,13 +63,13 @@ export function HowItWorks() {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-5xl lg:text-6xl font-black text-gray-900 font-[var(--font-poppins)] text-balance tracking-tight"
+            className="text-5xl lg:text-6xl font-black text-gray-900 font-[family-name:var(--font-poppins)] text-balance tracking-tight"
           >
             How It Works
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="mt-4 text-lg text-gray-600 font-[var(--font-inter)] max-w-2xl"
+            className="mt-4 text-lg text-gray-600 font-[family-name:var(--font-inter)] max-w-2xl"
           >
             From concept to reality in four simple steps
           </motion.p>
@@ -92,7 +92,7 @@ export function HowItWorks() {
               {/* Number and connector */}
               <div className="flex flex-col items-center flex-shrink-0">
                 <div className="w-16 h-16 rounded-full bg-white border-2 border-primary flex items-center justify-center">
-                  <span className="text-2xl font-black text-primary font-[var(--font-poppins)]">
+                  <span className="text-2xl font-black text-primary font-[family-name:var(--font-poppins)]">
                     {step.id}
                   </span>
                 </div>
@@ -109,10 +109,10 @@ export function HowItWorks() {
 
               {/* Content */}
               <div className="pt-2 flex-1">
-                <h3 className="text-2xl font-bold text-gray-900 font-[var(--font-poppins)] mb-2">
+                <h3 className="text-2xl font-bold text-gray-900 font-[family-name:var(--font-poppins)] mb-2">
                   {step.title}
                 </h3>
-                <p className="text-gray-600 font-[var(--font-inter)] leading-relaxed">
+                <p className="text-gray-600 font-[family-name:var(--font-inter)] leading-relaxed">
                   {step.description}
                 </p>
               </div>

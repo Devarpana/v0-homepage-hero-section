@@ -29,13 +29,13 @@ export function AdminProductsTable({ products, onDelete }: AdminProductsTablePro
         <table className="w-full">
           <thead className="border-b border-border bg-muted/50">
             <tr>
-              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Product</th>
-              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Category</th>
-              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Price</th>
-              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Stock</th>
-              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Featured</th>
-              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Visibility</th>
-              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Actions</th>
+              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[family-name:var(--font-poppins)]">Product</th>
+              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[family-name:var(--font-poppins)]">Category</th>
+              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[family-name:var(--font-poppins)]">Price</th>
+              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[family-name:var(--font-poppins)]">Stock</th>
+              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[family-name:var(--font-poppins)]">Featured</th>
+              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[family-name:var(--font-poppins)]">Visibility</th>
+              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[family-name:var(--font-poppins)]">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -56,14 +56,14 @@ export function AdminProductsTable({ products, onDelete }: AdminProductsTablePro
                         <Package className="w-5 h-5 text-muted-foreground" />
                       )}
                     </div>
-                    <p className="font-medium text-foreground font-[var(--font-poppins)]">{product.name}</p>
+                    <p className="font-medium text-foreground font-[family-name:var(--font-poppins)]">{product.name}</p>
                   </div>
                 </td>
                 <td className="px-6 py-4">
                   <p className="text-sm text-muted-foreground">{product.category}</p>
                 </td>
                 <td className="px-6 py-4">
-                  <p className="font-medium text-foreground font-[var(--font-poppins)]">₹{product.price.toLocaleString()}</p>
+                  <p className="font-medium text-foreground font-[family-name:var(--font-poppins)]">₹{product.price.toLocaleString()}</p>
                 </td>
                 <td className="px-6 py-4">
                   <p className={`text-sm font-medium ${product.stock > 10 ? 'text-green-600' : product.stock > 0 ? 'text-orange-600' : 'text-red-600'}`}>

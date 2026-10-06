@@ -81,13 +81,13 @@ export default function ProductsPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-foreground font-[var(--font-poppins)]">Products</h1>
+          <h1 className="text-3xl font-bold text-foreground font-[family-name:var(--font-poppins)]">Products</h1>
           <p className="text-muted-foreground mt-2">Manage your product catalog</p>
         </div>
 
         <Link href="/admin/products/new">
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 font-[var(--font-poppins)]">
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 font-[family-name:var(--font-poppins)]">
               <Plus className="w-4 h-4" />
               Add Product
             </Button>
@@ -117,7 +117,7 @@ export default function ProductsPage() {
         >
           <p className="text-muted-foreground mb-4">No products found</p>
           <Link href="/admin/products/new">
-            <Button variant="outline" className="gap-2 font-[var(--font-poppins)]">
+            <Button variant="outline" className="gap-2 font-[family-name:var(--font-poppins)]">
               <Plus className="w-4 h-4" />
               Create First Product
             </Button>

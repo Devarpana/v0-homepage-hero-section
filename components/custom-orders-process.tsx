@@ -59,13 +59,13 @@ export function CustomOrdersProcess() {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-5xl lg:text-6xl font-black text-gray-900 font-[var(--font-poppins)] text-balance tracking-tight"
+            className="text-5xl lg:text-6xl font-black text-gray-900 font-[family-name:var(--font-poppins)] text-balance tracking-tight"
           >
             How It Works
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="mt-4 text-lg text-gray-600 font-[var(--font-inter)] max-w-2xl"
+            className="mt-4 text-lg text-gray-600 font-[family-name:var(--font-inter)] max-w-2xl"
           >
             A simple four-step process from idea to delivery
           </motion.p>
@@ -89,7 +89,7 @@ export function CustomOrdersProcess() {
               <div className="flex items-start gap-6">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
-                  className="flex-shrink-0 w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center font-bold text-2xl font-[var(--font-poppins)] shadow-lg"
+                  className="flex-shrink-0 w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center font-bold text-2xl font-[family-name:var(--font-poppins)] shadow-lg"
                 >
                   {step.number}
                 </motion.div>
@@ -102,10 +102,10 @@ export function CustomOrdersProcess() {
 
               {/* Content */}
               <div className="mt-6 pl-6 lg:pl-0">
-                <h3 className="text-xl font-bold text-gray-900 font-[var(--font-poppins)] mb-2">
+                <h3 className="text-xl font-bold text-gray-900 font-[family-name:var(--font-poppins)] mb-2">
                   {step.title}
                 </h3>
-                <p className="text-gray-600 font-[var(--font-inter)] leading-relaxed">
+                <p className="text-gray-600 font-[family-name:var(--font-inter)] leading-relaxed">
                   {step.description}
                 </p>
               </div>

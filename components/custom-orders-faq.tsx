@@ -72,13 +72,13 @@ export function CustomOrdersFAQ() {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-5xl lg:text-6xl font-black text-gray-900 font-[var(--font-poppins)] text-balance tracking-tight"
+            className="text-5xl lg:text-6xl font-black text-gray-900 font-[family-name:var(--font-poppins)] text-balance tracking-tight"
           >
             Frequently Asked Questions
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="mt-4 text-lg text-gray-600 font-[var(--font-inter)] max-w-2xl mx-auto"
+            className="mt-4 text-lg text-gray-600 font-[family-name:var(--font-inter)] max-w-2xl mx-auto"
           >
             Everything you need to know about custom orders
           </motion.p>
@@ -102,7 +102,7 @@ export function CustomOrdersFAQ() {
                 onClick={() => setOpenId(openId === faq.id ? null : faq.id)}
                 className="w-full px-6 py-5 flex items-center justify-between hover:bg-gray-50 transition-colors"
               >
-                <h3 className="text-lg font-semibold text-gray-900 font-[var(--font-poppins)] text-left">
+                <h3 className="text-lg font-semibold text-gray-900 font-[family-name:var(--font-poppins)] text-left">
                   {faq.question}
                 </h3>
                 <motion.div
@@ -124,7 +124,7 @@ export function CustomOrdersFAQ() {
                     className="overflow-hidden"
                   >
                     <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
-                      <p className="text-gray-600 font-[var(--font-inter)] leading-relaxed">
+                      <p className="text-gray-600 font-[family-name:var(--font-inter)] leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>
@@ -143,16 +143,16 @@ export function CustomOrdersFAQ() {
           viewport={{ once: true, margin: '-100px' }}
           className="mt-16 p-8 bg-gray-50 rounded-2xl border border-gray-200 text-center"
         >
-          <h3 className="text-xl font-bold text-gray-900 font-[var(--font-poppins)] mb-2">
+          <h3 className="text-xl font-bold text-gray-900 font-[family-name:var(--font-poppins)] mb-2">
             Still have questions?
           </h3>
-          <p className="text-gray-600 font-[var(--font-inter)] mb-4">
+          <p className="text-gray-600 font-[family-name:var(--font-inter)] mb-4">
             Our team is here to help. Contact us for personalized support.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-full font-semibold font-[var(--font-poppins)] transition-all"
+            className="px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-full font-semibold font-[family-name:var(--font-poppins)] transition-all"
           >
             Get in Touch
           </motion.button>

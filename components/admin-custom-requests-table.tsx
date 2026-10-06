@@ -53,13 +53,13 @@ export function AdminCustomRequestsTable({ requests }: AdminCustomRequestsTableP
           <table className="w-full">
             <thead className="border-b border-border bg-muted/50">
               <tr>
-                <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">ID</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Customer</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Project</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Priority</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Status</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Quotation</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Action</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[family-name:var(--font-poppins)]">ID</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[family-name:var(--font-poppins)]">Customer</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[family-name:var(--font-poppins)]">Project</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[family-name:var(--font-poppins)]">Priority</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[family-name:var(--font-poppins)]">Status</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[family-name:var(--font-poppins)]">Quotation</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[family-name:var(--font-poppins)]">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -72,7 +72,7 @@ export function AdminCustomRequestsTable({ requests }: AdminCustomRequestsTableP
                   className="border-b border-border hover:bg-muted/30 transition-colors"
                 >
                   <td className="px-6 py-4">
-                    <p className="font-medium text-foreground font-[var(--font-poppins)]">#{request.id}</p>
+                    <p className="font-medium text-foreground font-[family-name:var(--font-poppins)]">#{request.id}</p>
                   </td>
                   <td className="px-6 py-4">
                     <p className="text-sm text-foreground">{request.customer}</p>
@@ -91,7 +91,7 @@ export function AdminCustomRequestsTable({ requests }: AdminCustomRequestsTableP
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <p className="font-medium text-foreground font-[var(--font-poppins)]">
+                    <p className="font-medium text-foreground font-[family-name:var(--font-poppins)]">
                       {request.quotationAmount ? `₹${request.quotationAmount.toLocaleString()}` : '—'}
                     </p>
                   </td>

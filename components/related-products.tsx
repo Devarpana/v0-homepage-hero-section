@@ -65,10 +65,10 @@ export function RelatedProducts() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-black text-gray-900 font-[var(--font-poppins)]">
+          <h2 className="text-4xl lg:text-5xl font-black text-gray-900 font-[family-name:var(--font-poppins)]">
             Related Products
           </h2>
-          <p className="text-lg text-gray-600 mt-4 font-[var(--font-inter)]">
+          <p className="text-lg text-gray-600 mt-4 font-[family-name:var(--font-inter)]">
             You might also like these items.
           </p>
         </motion.div>
@@ -95,16 +95,16 @@ export function RelatedProducts() {
               {/* Product Info */}
               <div className="p-6 space-y-4">
                 <div>
-                  <p className="text-xs font-medium text-primary uppercase tracking-wider font-[var(--font-inter)] mb-2">
+                  <p className="text-xs font-medium text-primary uppercase tracking-wider font-[family-name:var(--font-inter)] mb-2">
                     {product.category}
                   </p>
-                  <h3 className="text-lg font-semibold text-gray-900 font-[var(--font-poppins)] line-clamp-2">
+                  <h3 className="text-lg font-semibold text-gray-900 font-[family-name:var(--font-poppins)] line-clamp-2">
                     {product.name}
                   </h3>
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold text-gray-900 font-[var(--font-poppins)]">
+                  <span className="text-2xl font-bold text-gray-900 font-[family-name:var(--font-poppins)]">
                     ₹{product.price}
                   </span>
                 </div>
@@ -115,7 +115,7 @@ export function RelatedProducts() {
                 >
                   <Button
                     size="sm"
-                    className="w-full bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg text-sm font-[var(--font-poppins)]"
+                    className="w-full bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg text-sm font-[family-name:var(--font-poppins)]"
                   >
                     Quick View
                   </Button>

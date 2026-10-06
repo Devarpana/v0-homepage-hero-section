@@ -57,10 +57,10 @@ export function WhyYoullLoveIt() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-black text-gray-900 font-[var(--font-poppins)] text-balance">
+          <h2 className="text-4xl lg:text-5xl font-black text-gray-900 font-[family-name:var(--font-poppins)] text-balance">
             Why You&apos;ll Love It
           </h2>
-          <p className="text-xl text-gray-600 mt-4 max-w-2xl font-[var(--font-inter)]">
+          <p className="text-xl text-gray-600 mt-4 max-w-2xl font-[family-name:var(--font-inter)]">
             Designed for those who appreciate quality and attention to detail.
           </p>
         </motion.div>
@@ -83,10 +83,10 @@ export function WhyYoullLoveIt() {
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                   <Icon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 font-[var(--font-poppins)]">
+                <h3 className="text-lg font-semibold text-gray-900 font-[family-name:var(--font-poppins)]">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed font-[var(--font-inter)]">
+                <p className="text-gray-600 text-sm leading-relaxed font-[family-name:var(--font-inter)]">
                   {feature.description}
                 </p>
               </motion.div>

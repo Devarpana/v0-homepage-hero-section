@@ -81,13 +81,13 @@ export function PreviousCustomProjects() {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-5xl lg:text-6xl font-black text-gray-900 font-[var(--font-poppins)] text-balance tracking-tight"
+            className="text-5xl lg:text-6xl font-black text-gray-900 font-[family-name:var(--font-poppins)] text-balance tracking-tight"
           >
             Previous Custom Projects
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="mt-4 text-lg text-gray-600 font-[var(--font-inter)] max-w-2xl"
+            className="mt-4 text-lg text-gray-600 font-[family-name:var(--font-inter)] max-w-2xl"
           >
             See what we&apos;ve created for clients like you
           </motion.p>
@@ -118,14 +118,14 @@ export function PreviousCustomProjects() {
                     initial={{ opacity: 0, y: 10 }}
                     whileHover={{ opacity: 1, y: 0 }}
                   >
-                    <span className="inline-block px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full mb-3 font-[var(--font-poppins)]">
+                    <span className="inline-block px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full mb-3 font-[family-name:var(--font-poppins)]">
                       {project.category}
                     </span>
                   </motion.div>
-                  <h3 className="text-xl font-bold text-white font-[var(--font-poppins)] mb-2">
+                  <h3 className="text-xl font-bold text-white font-[family-name:var(--font-poppins)] mb-2">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-gray-300 font-[var(--font-inter)]">
+                  <p className="text-sm text-gray-300 font-[family-name:var(--font-inter)]">
                     by {project.client}
                   </p>
                 </div>
@@ -145,7 +145,7 @@ export function PreviousCustomProjects() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-primary hover:bg-primary/90 text-white rounded-full font-semibold font-[var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
+            className="px-8 py-4 bg-primary hover:bg-primary/90 text-white rounded-full font-semibold font-[family-name:var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
           >
             Browse All Projects
           </motion.button>

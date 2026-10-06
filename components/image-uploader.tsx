@@ -84,7 +84,7 @@ export function ImageUploader({
 
   return (
     <div>
-      <label className="block text-sm font-medium text-foreground mb-2 font-[var(--font-poppins)]">
+      <label className="block text-sm font-medium text-foreground mb-2 font-[family-name:var(--font-poppins)]">
         {label}
       </label>
       <p className="text-xs text-muted-foreground mb-4">{description}</p>
@@ -115,7 +115,7 @@ export function ImageUploader({
           className="flex flex-col items-center gap-2 cursor-pointer"
         >
           <Upload className="w-8 h-8 text-muted-foreground" />
-          <p className="text-sm font-medium text-foreground font-[var(--font-poppins)]">
+          <p className="text-sm font-medium text-foreground font-[family-name:var(--font-poppins)]">
             Drag images here or click to browse
           </p>
           <p className="text-xs text-muted-foreground">PNG, JPG, GIF up to 10MB</p>

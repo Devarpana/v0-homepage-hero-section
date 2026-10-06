@@ -40,14 +40,14 @@ export function CustomOrdersFinalCTA() {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-5xl lg:text-6xl font-black text-gray-900 font-[var(--font-poppins)] text-balance tracking-tight"
+            className="text-5xl lg:text-6xl font-black text-gray-900 font-[family-name:var(--font-poppins)] text-balance tracking-tight"
           >
             Ready to Bring Your Idea to Life?
           </motion.h2>
 
           <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-600 font-[var(--font-inter)] max-w-2xl mx-auto"
+            className="text-xl text-gray-600 font-[family-name:var(--font-inter)] max-w-2xl mx-auto"
           >
             Our team of designers and craftspeople are ready to transform your vision into reality. Let&apos;s create something extraordinary together.
           </motion.p>
@@ -58,16 +58,16 @@ export function CustomOrdersFinalCTA() {
             className="grid grid-cols-1 md:grid-cols-3 gap-8 py-8"
           >
             <div>
-              <p className="text-4xl font-black text-primary font-[var(--font-poppins)]">500+</p>
-              <p className="text-gray-600 text-sm font-[var(--font-inter)]">Projects Completed</p>
+              <p className="text-4xl font-black text-primary font-[family-name:var(--font-poppins)]">500+</p>
+              <p className="text-gray-600 text-sm font-[family-name:var(--font-inter)]">Projects Completed</p>
             </div>
             <div>
-              <p className="text-4xl font-black text-primary font-[var(--font-poppins)]">4.9★</p>
-              <p className="text-gray-600 text-sm font-[var(--font-inter)]">Customer Rating</p>
+              <p className="text-4xl font-black text-primary font-[family-name:var(--font-poppins)]">4.9★</p>
+              <p className="text-gray-600 text-sm font-[family-name:var(--font-inter)]">Customer Rating</p>
             </div>
             <div>
-              <p className="text-4xl font-black text-primary font-[var(--font-poppins)]">24h</p>
-              <p className="text-gray-600 text-sm font-[var(--font-inter)]">Response Time</p>
+              <p className="text-4xl font-black text-primary font-[family-name:var(--font-poppins)]">24h</p>
+              <p className="text-gray-600 text-sm font-[family-name:var(--font-inter)]">Response Time</p>
             </div>
           </motion.div>
 
@@ -82,7 +82,7 @@ export function CustomOrdersFinalCTA() {
             >
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 text-base font-[var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
+                className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 text-base font-[family-name:var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
               >
                 Start Your Custom Order
               </Button>
@@ -94,7 +94,7 @@ export function CustomOrdersFinalCTA() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border border-gray-400 text-gray-900 hover:bg-white font-semibold rounded-full px-8 py-6 text-base font-[var(--font-poppins)] transition-all"
+                className="border border-gray-400 text-gray-900 hover:bg-white font-semibold rounded-full px-8 py-6 text-base font-[family-name:var(--font-poppins)] transition-all"
               >
                 Schedule Consultation
               </Button>
@@ -104,7 +104,7 @@ export function CustomOrdersFinalCTA() {
           {/* Trust message */}
           <motion.p
             variants={itemVariants}
-            className="text-sm text-gray-500 font-[var(--font-inter)]"
+            className="text-sm text-gray-500 font-[family-name:var(--font-inter)]"
           >
             No obligation. Our design consultants will review your request and get back to you within 24 hours.
           </motion.p>

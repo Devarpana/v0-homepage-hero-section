@@ -44,10 +44,10 @@ export function Specifications() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-black text-gray-900 font-[var(--font-poppins)]">
+          <h2 className="text-4xl lg:text-5xl font-black text-gray-900 font-[family-name:var(--font-poppins)]">
             Specifications
           </h2>
-          <p className="text-lg text-gray-600 mt-4 max-w-2xl font-[var(--font-inter)]">
+          <p className="text-lg text-gray-600 mt-4 max-w-2xl font-[family-name:var(--font-inter)]">
             Detailed information about your desk organizer.
           </p>
         </motion.div>
@@ -69,10 +69,10 @@ export function Specifications() {
                     i % 2 === 0 ? 'bg-gray-50' : 'bg-white'
                   }`}
                 >
-                  <td className="px-8 py-5 text-gray-600 font-medium font-[var(--font-poppins)]">
+                  <td className="px-8 py-5 text-gray-600 font-medium font-[family-name:var(--font-poppins)]">
                     {spec.label}
                   </td>
-                  <td className="px-8 py-5 text-gray-900 text-right font-[var(--font-inter)]">
+                  <td className="px-8 py-5 text-gray-900 text-right font-[family-name:var(--font-inter)]">
                     {spec.value}
                   </td>
                 </motion.tr>

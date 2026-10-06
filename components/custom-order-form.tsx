@@ -64,13 +64,13 @@ export function CustomOrderForm() {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-5xl lg:text-6xl font-black text-gray-900 font-[var(--font-poppins)] text-balance tracking-tight"
+            className="text-5xl lg:text-6xl font-black text-gray-900 font-[family-name:var(--font-poppins)] text-balance tracking-tight"
           >
             Tell Us Your Vision
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="mt-4 text-lg text-gray-600 font-[var(--font-inter)] max-w-2xl mx-auto"
+            className="mt-4 text-lg text-gray-600 font-[family-name:var(--font-inter)] max-w-2xl mx-auto"
           >
             Fill out the form below and our team will get back to you within 24 hours
           </motion.p>
@@ -88,7 +88,7 @@ export function CustomOrderForm() {
           {/* Row 1: Name & Email */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <motion.div variants={itemVariants}>
-              <label className="block text-sm font-semibold text-gray-900 font-[var(--font-poppins)] mb-2">
+              <label className="block text-sm font-semibold text-gray-900 font-[family-name:var(--font-poppins)] mb-2">
                 Full Name
               </label>
               <input
@@ -97,12 +97,12 @@ export function CustomOrderForm() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors font-[var(--font-inter)]"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors font-[family-name:var(--font-inter)]"
                 placeholder="Your name"
               />
             </motion.div>
             <motion.div variants={itemVariants}>
-              <label className="block text-sm font-semibold text-gray-900 font-[var(--font-poppins)] mb-2">
+              <label className="block text-sm font-semibold text-gray-900 font-[family-name:var(--font-poppins)] mb-2">
                 Email Address
               </label>
               <input
@@ -111,7 +111,7 @@ export function CustomOrderForm() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors font-[var(--font-inter)]"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors font-[family-name:var(--font-inter)]"
                 placeholder="your@email.com"
               />
             </motion.div>
@@ -120,7 +120,7 @@ export function CustomOrderForm() {
           {/* Row 2: Phone & Project Title */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <motion.div variants={itemVariants}>
-              <label className="block text-sm font-semibold text-gray-900 font-[var(--font-poppins)] mb-2">
+              <label className="block text-sm font-semibold text-gray-900 font-[family-name:var(--font-poppins)] mb-2">
                 Phone Number
               </label>
               <input
@@ -129,12 +129,12 @@ export function CustomOrderForm() {
                 value={formData.phone}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors font-[var(--font-inter)]"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors font-[family-name:var(--font-inter)]"
                 placeholder="+91 9876543210"
               />
             </motion.div>
             <motion.div variants={itemVariants}>
-              <label className="block text-sm font-semibold text-gray-900 font-[var(--font-poppins)] mb-2">
+              <label className="block text-sm font-semibold text-gray-900 font-[family-name:var(--font-poppins)] mb-2">
                 Project Title
               </label>
               <input
@@ -143,7 +143,7 @@ export function CustomOrderForm() {
                 value={formData.projectTitle}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors font-[var(--font-inter)]"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors font-[family-name:var(--font-inter)]"
                 placeholder="e.g., Custom Desk Organizer"
               />
             </motion.div>
@@ -151,7 +151,7 @@ export function CustomOrderForm() {
 
           {/* Description */}
           <motion.div variants={itemVariants}>
-            <label className="block text-sm font-semibold text-gray-900 font-[var(--font-poppins)] mb-2">
+            <label className="block text-sm font-semibold text-gray-900 font-[family-name:var(--font-poppins)] mb-2">
               Project Description
             </label>
             <textarea
@@ -160,7 +160,7 @@ export function CustomOrderForm() {
               onChange={handleChange}
               required
               rows={5}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors font-[var(--font-inter)] resize-none"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors font-[family-name:var(--font-inter)] resize-none"
               placeholder="Describe your project in detail. Share your ideas, inspirations, and any specific requirements..."
             />
           </motion.div>
@@ -168,14 +168,14 @@ export function CustomOrderForm() {
           {/* Row 3: Budget & Deadline */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <motion.div variants={itemVariants}>
-              <label className="block text-sm font-semibold text-gray-900 font-[var(--font-poppins)] mb-2">
+              <label className="block text-sm font-semibold text-gray-900 font-[family-name:var(--font-poppins)] mb-2">
                 Budget (Optional)
               </label>
               <select
                 name="budget"
                 value={formData.budget}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors font-[var(--font-inter)]"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors font-[family-name:var(--font-inter)]"
               >
                 <option value="">Select budget range</option>
                 <option value="under-5000">Under ₹5,000</option>
@@ -186,7 +186,7 @@ export function CustomOrderForm() {
               </select>
             </motion.div>
             <motion.div variants={itemVariants}>
-              <label className="block text-sm font-semibold text-gray-900 font-[var(--font-poppins)] mb-2">
+              <label className="block text-sm font-semibold text-gray-900 font-[family-name:var(--font-poppins)] mb-2">
                 Deadline (Optional)
               </label>
               <input
@@ -194,14 +194,14 @@ export function CustomOrderForm() {
                 name="deadline"
                 value={formData.deadline}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors font-[var(--font-inter)]"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors font-[family-name:var(--font-inter)]"
               />
             </motion.div>
           </div>
 
           {/* File Upload */}
           <motion.div variants={itemVariants}>
-            <label className="block text-sm font-semibold text-gray-900 font-[var(--font-poppins)] mb-2">
+            <label className="block text-sm font-semibold text-gray-900 font-[family-name:var(--font-poppins)] mb-2">
               Upload Files (Optional)
             </label>
             <div className="relative border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-primary transition-colors cursor-pointer group">
@@ -212,10 +212,10 @@ export function CustomOrderForm() {
               />
               <div className="text-center">
                 <div className="text-3xl mb-2">📎</div>
-                <p className="text-sm text-gray-600 font-[var(--font-inter)]">
+                <p className="text-sm text-gray-600 font-[family-name:var(--font-inter)]">
                   Drag and drop your files here, or click to browse
                 </p>
-                <p className="text-xs text-gray-500 mt-1 font-[var(--font-inter)]">
+                <p className="text-xs text-gray-500 mt-1 font-[family-name:var(--font-inter)]">
                   Supported: Images, PDFs, sketches (Max 10MB)
                 </p>
               </div>
@@ -228,7 +228,7 @@ export function CustomOrderForm() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               type="submit"
-              className="w-full py-4 bg-primary hover:bg-primary/90 text-white rounded-full font-bold text-lg font-[var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
+              className="w-full py-4 bg-primary hover:bg-primary/90 text-white rounded-full font-bold text-lg font-[family-name:var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
             >
               {submitted ? '✓ Request Submitted!' : 'Submit Custom Order Request'}
             </motion.button>
@@ -237,7 +237,7 @@ export function CustomOrderForm() {
           {/* Legal note */}
           <motion.p
             variants={itemVariants}
-            className="text-xs text-gray-500 text-center font-[var(--font-inter)]"
+            className="text-xs text-gray-500 text-center font-[family-name:var(--font-inter)]"
           >
             By submitting this form, you agree to our Terms of Service and Privacy Policy
           </motion.p>

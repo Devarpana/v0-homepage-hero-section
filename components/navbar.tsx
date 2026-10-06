@@ -16,23 +16,23 @@ export function Navbar() {
         {/* Logo Placeholder */}
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-white text-sm font-bold font-[var(--font-poppins)]">XL</span>
+            <span className="text-white text-sm font-bold font-[family-name:var(--font-poppins)]">XL</span>
           </div>
-          <span className="text-sm font-semibold text-gray-900 font-[var(--font-poppins)]">XYZ Layers</span>
+          <span className="text-sm font-semibold text-gray-900 font-[family-name:var(--font-poppins)]">XYZ Layers</span>
         </div>
 
         {/* Navigation Links */}
         <div className="hidden md:flex items-center gap-8">
-          <Link href="/" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
+          <Link href="/" className="text-sm text-gray-700 hover:text-primary transition-colors font-[family-name:var(--font-inter)]">
             Home
           </Link>
-          <Link href="/shop" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
+          <Link href="/shop" className="text-sm text-gray-700 hover:text-primary transition-colors font-[family-name:var(--font-inter)]">
             Shop
           </Link>
-          <Link href="/custom-orders" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
+          <Link href="/custom-orders" className="text-sm text-gray-700 hover:text-primary transition-colors font-[family-name:var(--font-inter)]">
             Custom Orders
           </Link>
-          <Link href="#" className="text-sm text-gray-700 hover:text-primary transition-colors font-[var(--font-inter)]">
+          <Link href="#" className="text-sm text-gray-700 hover:text-primary transition-colors font-[family-name:var(--font-inter)]">
             Contact
           </Link>
         </div>

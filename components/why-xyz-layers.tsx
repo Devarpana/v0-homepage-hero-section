@@ -69,13 +69,13 @@ export function WhyXYZLayers() {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-5xl lg:text-6xl font-black text-gray-900 font-[var(--font-poppins)] text-balance tracking-tight"
+            className="text-5xl lg:text-6xl font-black text-gray-900 font-[family-name:var(--font-poppins)] text-balance tracking-tight"
           >
             Why XYZ Layers
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="mt-4 text-lg text-gray-600 font-[var(--font-inter)] max-w-2xl"
+            className="mt-4 text-lg text-gray-600 font-[family-name:var(--font-inter)] max-w-2xl"
           >
             We&apos;re reimagining what 3D printing can be
           </motion.p>
@@ -99,10 +99,10 @@ export function WhyXYZLayers() {
                 <div className="w-2 h-2 rounded-full bg-primary" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-gray-900 font-[var(--font-poppins)] mb-2">
+                <h3 className="text-xl font-bold text-gray-900 font-[family-name:var(--font-poppins)] mb-2">
                   {reason.title}
                 </h3>
-                <p className="text-gray-600 font-[var(--font-inter)] leading-relaxed">
+                <p className="text-gray-600 font-[family-name:var(--font-inter)] leading-relaxed">
                   {reason.description}
                 </p>
               </div>

@@ -14,7 +14,7 @@ const activities = [
 export function AdminActivityFeed() {
   return (
     <Card className="p-6">
-      <h2 className="text-lg font-semibold mb-6 font-[var(--font-poppins)]">Recent Activity</h2>
+      <h2 className="text-lg font-semibold mb-6 font-[family-name:var(--font-poppins)]">Recent Activity</h2>
       <div className="space-y-6">
         {activities.map((activity, index) => {
           const Icon = activity.icon
@@ -41,7 +41,7 @@ export function AdminActivityFeed() {
                 }`} />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-medium text-sm text-foreground font-[var(--font-poppins)]">{activity.label}</p>
+                <p className="font-medium text-sm text-foreground font-[family-name:var(--font-poppins)]">{activity.label}</p>
                 <p className="text-sm text-muted-foreground truncate">{activity.description}</p>
                 <p className="text-xs text-muted-foreground mt-1">{activity.time}</p>
               </div>

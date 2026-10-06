@@ -26,7 +26,7 @@ export default function OrdersPage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-foreground font-[var(--font-poppins)]">Orders</h1>
+        <h1 className="text-3xl font-bold text-foreground font-[family-name:var(--font-poppins)]">Orders</h1>
         <p className="text-muted-foreground mt-2">View and manage all orders</p>
       </div>
 

@@ -61,7 +61,7 @@ export function ProductCard({
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 bg-primary text-white rounded-full font-semibold text-sm font-[var(--font-poppins)] shadow-lg hover:shadow-xl transition-shadow"
+              className="px-6 py-3 bg-primary text-white rounded-full font-semibold text-sm font-[family-name:var(--font-poppins)] shadow-lg hover:shadow-xl transition-shadow"
             >
               View Product
             </motion.button>
@@ -72,7 +72,7 @@ export function ProductCard({
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-bold font-[var(--font-poppins)]"
+              className="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-bold font-[family-name:var(--font-poppins)]"
             >
               Trending
             </motion.div>
@@ -84,13 +84,13 @@ export function ProductCard({
           animate={{ y: isHovered ? -4 : 0 }}
           transition={{ duration: 0.3 }}
         >
-          <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-2 font-[var(--font-inter)] cursor-pointer">
+          <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-2 font-[family-name:var(--font-inter)] cursor-pointer">
             {category}
           </p>
-          <h3 className="text-lg font-semibold text-gray-900 mb-3 font-[var(--font-poppins)] line-clamp-2 cursor-pointer">
+          <h3 className="text-lg font-semibold text-gray-900 mb-3 font-[family-name:var(--font-poppins)] line-clamp-2 cursor-pointer">
             {name}
           </h3>
-          <p className="text-xl font-bold text-primary font-[var(--font-poppins)]">
+          <p className="text-xl font-bold text-primary font-[family-name:var(--font-poppins)]">
             ₹{price.toLocaleString()}
           </p>
         </motion.div>

@@ -70,10 +70,10 @@ export function PersonalizationSection() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-black text-gray-900 font-[var(--font-poppins)] text-balance">
+          <h2 className="text-4xl lg:text-5xl font-black text-gray-900 font-[family-name:var(--font-poppins)] text-balance">
             Make It Yours
           </h2>
-          <p className="text-xl text-gray-600 mt-4 max-w-2xl font-[var(--font-inter)]">
+          <p className="text-xl text-gray-600 mt-4 max-w-2xl font-[family-name:var(--font-inter)]">
             Personalize your desk organizer with custom options that reflect your style.
           </p>
         </motion.div>
@@ -112,10 +112,10 @@ export function PersonalizationSection() {
                   <div className="flex gap-4">
                     <span className="text-3xl">{option.icon}</span>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 font-[var(--font-poppins)]">
+                      <h3 className="text-lg font-semibold text-gray-900 font-[family-name:var(--font-poppins)]">
                         {option.title}
                       </h3>
-                      <p className="text-gray-600 text-sm mt-1 font-[var(--font-inter)]">
+                      <p className="text-gray-600 text-sm mt-1 font-[family-name:var(--font-inter)]">
                         {option.description}
                       </p>
                     </div>
@@ -147,40 +147,40 @@ export function PersonalizationSection() {
               <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-6xl mb-4">📦</div>
-                  <p className="text-gray-500 font-[var(--font-inter)]">Personalization Preview</p>
+                  <p className="text-gray-500 font-[family-name:var(--font-inter)]">Personalization Preview</p>
                 </div>
               </div>
 
               {/* Preview Details */}
               <div className="p-8 space-y-6">
                 <div>
-                  <p className="text-sm text-gray-600 uppercase tracking-wider font-[var(--font-inter)] mb-2">
+                  <p className="text-sm text-gray-600 uppercase tracking-wider font-[family-name:var(--font-inter)] mb-2">
                     Your Custom Organizer
                   </p>
-                  <h3 className="text-2xl font-bold text-gray-900 font-[var(--font-poppins)]">
+                  <h3 className="text-2xl font-bold text-gray-900 font-[family-name:var(--font-poppins)]">
                     Modular Desk Organizer
                   </h3>
                 </div>
 
                 <div className="space-y-3 py-6 border-y border-gray-200">
                   {selectedOptions.addName && (
-                    <p className="text-sm text-gray-700 font-[var(--font-inter)]">
+                    <p className="text-sm text-gray-700 font-[family-name:var(--font-inter)]">
                       ✓ Name Engraving: Your Name
                     </p>
                   )}
                   {selectedOptions.addText && (
-                    <p className="text-sm text-gray-700 font-[var(--font-inter)]">
+                    <p className="text-sm text-gray-700 font-[family-name:var(--font-inter)]">
                       ✓ Custom Text: Your Message Here
                     </p>
                   )}
                   {selectedOptions.uploadLogo && (
-                    <p className="text-sm text-gray-700 font-[var(--font-inter)]">
+                    <p className="text-sm text-gray-700 font-[family-name:var(--font-inter)]">
                       ✓ Logo Engraving: Included
                     </p>
                   )}
                   {Object.values(selectedOptions).some(v => v === true || (typeof v === 'string' && v !== 'blue')) && (
                     <div className="pt-3">
-                      <p className="text-sm font-medium text-primary font-[var(--font-poppins)]">
+                      <p className="text-sm font-medium text-primary font-[family-name:var(--font-poppins)]">
                         {Object.values(selectedOptions).filter(v => v === true || (typeof v === 'string' && v !== 'blue')).length} options selected
                       </p>
                     </div>
@@ -188,15 +188,15 @@ export function PersonalizationSection() {
                 </div>
 
                 <div className="text-right">
-                  <p className="text-sm text-gray-600 mb-2 font-[var(--font-inter)]">From</p>
-                  <p className="text-3xl font-bold text-gray-900 font-[var(--font-poppins)]">
+                  <p className="text-sm text-gray-600 mb-2 font-[family-name:var(--font-inter)]">From</p>
+                  <p className="text-3xl font-bold text-gray-900 font-[family-name:var(--font-poppins)]">
                     ₹1,499
                   </p>
                 </div>
 
                 <Button
                   size="lg"
-                  className="w-full bg-primary hover:bg-primary/90 text-white font-semibold rounded-full h-12 text-base font-[var(--font-poppins)]"
+                  className="w-full bg-primary hover:bg-primary/90 text-white font-semibold rounded-full h-12 text-base font-[family-name:var(--font-poppins)]"
                 >
                   Add to Cart
                 </Button>

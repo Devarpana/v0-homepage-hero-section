@@ -31,7 +31,7 @@ export function AdminOverviewCards() {
                 </div>
               </div>
               <h3 className="text-sm font-medium text-muted-foreground mb-1">{stat.label}</h3>
-              <p className="text-2xl font-bold text-foreground font-[var(--font-poppins)]">{stat.value}</p>
+              <p className="text-2xl font-bold text-foreground font-[family-name:var(--font-poppins)]">{stat.value}</p>
             </Card>
           </motion.div>
         )

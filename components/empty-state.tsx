@@ -21,11 +21,11 @@ export function EmptyState() {
         </div>
       </motion.div>
 
-      <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-3 font-[var(--font-poppins)] text-center">
+      <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-3 font-[family-name:var(--font-poppins)] text-center">
         No products found
       </h3>
 
-      <p className="text-gray-600 mb-8 max-w-md text-center font-[var(--font-inter)]">
+      <p className="text-gray-600 mb-8 max-w-md text-center font-[family-name:var(--font-inter)]">
         We couldn&apos;t find any products matching your search. Try adjusting your filters or 
         exploring our full collection.
       </p>
@@ -33,7 +33,7 @@ export function EmptyState() {
       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
         <Button
           size="lg"
-          className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 font-[var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
+          className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 font-[family-name:var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
         >
           View All Products
         </Button>

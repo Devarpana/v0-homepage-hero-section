@@ -47,7 +47,7 @@ export function CustomRequestDetail({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
-          <DialogTitle className="font-[var(--font-poppins)]">Request #{request.id}</DialogTitle>
+          <DialogTitle className="font-[family-name:var(--font-poppins)]">Request #{request.id}</DialogTitle>
           <DialogDescription>{request.project}</DialogDescription>
         </DialogHeader>
 
@@ -61,16 +61,16 @@ export function CustomRequestDetail({
           <div className="grid grid-cols-2 gap-6">
             <div>
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Customer</p>
-              <p className="text-sm font-medium text-foreground font-[var(--font-poppins)]">{request.customer}</p>
+              <p className="text-sm font-medium text-foreground font-[family-name:var(--font-poppins)]">{request.customer}</p>
             </div>
             <div>
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Submitted</p>
-              <p className="text-sm font-medium text-foreground font-[var(--font-poppins)]">{request.date}</p>
+              <p className="text-sm font-medium text-foreground font-[family-name:var(--font-poppins)]">{request.date}</p>
             </div>
           </div>
 
           <div className="border-t border-border pt-6">
-            <h3 className="font-semibold text-foreground mb-4 font-[var(--font-poppins)]">Project Details</h3>
+            <h3 className="font-semibold text-foreground mb-4 font-[family-name:var(--font-poppins)]">Project Details</h3>
             <p className="text-sm text-muted-foreground mb-6">{request.project}</p>
 
             <div className="grid grid-cols-2 gap-6">
@@ -90,13 +90,13 @@ export function CustomRequestDetail({
           </div>
 
           <div className="border-t border-border pt-6">
-            <h3 className="font-semibold text-foreground mb-4 font-[var(--font-poppins)]">Quotation & Notes</h3>
+            <h3 className="font-semibold text-foreground mb-4 font-[family-name:var(--font-poppins)]">Quotation & Notes</h3>
 
             <div className="space-y-4">
               <div>
                 <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Quotation Amount</p>
                 {request.quotationAmount ? (
-                  <p className="text-lg font-bold text-primary font-[var(--font-poppins)]">₹{request.quotationAmount.toLocaleString()}</p>
+                  <p className="text-lg font-bold text-primary font-[family-name:var(--font-poppins)]">₹{request.quotationAmount.toLocaleString()}</p>
                 ) : (
                   <p className="text-sm text-muted-foreground italic">No quotation provided yet</p>
                 )}
@@ -116,17 +116,17 @@ export function CustomRequestDetail({
           {/* Actions */}
           <div className="flex gap-4 pt-6 border-t border-border">
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-[var(--font-poppins)]">
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-[family-name:var(--font-poppins)]">
                 Update Status
               </Button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button variant="outline" className="font-[var(--font-poppins)]">
+              <Button variant="outline" className="font-[family-name:var(--font-poppins)]">
                 Edit Notes
               </Button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="ml-auto">
-              <Button variant="ghost" onClick={onClose} className="font-[var(--font-poppins)]">
+              <Button variant="ghost" onClick={onClose} className="font-[family-name:var(--font-poppins)]">
                 Close
               </Button>
             </motion.div>

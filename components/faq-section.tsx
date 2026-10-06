@@ -64,10 +64,10 @@ export function FAQSection() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-black text-gray-900 font-[var(--font-poppins)]">
+          <h2 className="text-4xl lg:text-5xl font-black text-gray-900 font-[family-name:var(--font-poppins)]">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-gray-600 mt-4 font-[var(--font-inter)]">
+          <p className="text-xl text-gray-600 mt-4 font-[family-name:var(--font-inter)]">
             Everything you need to know about our products.
           </p>
         </motion.div>
@@ -89,7 +89,7 @@ export function FAQSection() {
                 onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
                 className="w-full px-6 py-5 flex items-center justify-between hover:bg-gray-50 transition-colors text-left"
               >
-                <h3 className="text-lg font-semibold text-gray-900 font-[var(--font-poppins)] pr-4">
+                <h3 className="text-lg font-semibold text-gray-900 font-[family-name:var(--font-poppins)] pr-4">
                   {faq.question}
                 </h3>
                 <motion.div
@@ -110,7 +110,7 @@ export function FAQSection() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden border-t border-gray-200"
                   >
-                    <p className="px-6 py-5 text-gray-600 leading-relaxed font-[var(--font-inter)]">
+                    <p className="px-6 py-5 text-gray-600 leading-relaxed font-[family-name:var(--font-inter)]">
                       {faq.answer}
                     </p>
                   </motion.div>
