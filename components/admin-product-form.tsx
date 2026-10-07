@@ -130,26 +130,35 @@ const handleSubmit = async (e: React.FormEvent) => {
     }
     if (!productId) throw new Error("Product was saved without an id")
 
-    // A new main or featured image replaces the old one.
-    const toDelete = existingImages.filter(
-      (image) =>
-        removedImageIds.includes(image.id) ||
-        (mainImage && image.image_type === "main") ||
-        (featuredImage && image.image_type === "featured")
-    )
-    if (toDelete.length > 0) {
-      setSavingStep("Removing old images...")
-      await deleteProductImages(toDelete)
-    }
+    // The product itself is saved at this point; report image problems separately so it isn't created twice.
+    try {
+      // A new main or featured image replaces the old one.
+      const toDelete = existingImages.filter(
+        (image) =>
+          removedImageIds.includes(image.id) ||
+          (mainImage && image.image_type === "main") ||
+          (featuredImage && image.image_type === "featured")
+      )
+      if (toDelete.length > 0) {
+        setSavingStep("Removing old images...")
+        await deleteProductImages(toDelete)
+      }
 
-    const uploads: [File, ImageType][] = [
-      ...(mainImage ? [[mainImage, "main"] as [File, ImageType]] : []),
-      ...galleryImages.slice(0, galleryLimit).map((file) => [file, "gallery"] as [File, ImageType]),
-      ...(featuredImage ? [[featuredImage, "featured"] as [File, ImageType]] : []),
-    ]
-    for (const [index, [file, type]] of uploads.entries()) {
-      setSavingStep(`Uploading image ${index + 1} of ${uploads.length}...`)
-      await uploadProductImage(productId, file, type)
+      const uploads: [File, ImageType][] = [
+        ...(mainImage ? [[mainImage, "main"] as [File, ImageType]] : []),
+        ...galleryImages.slice(0, galleryLimit).map((file) => [file, "gallery"] as [File, ImageType]),
+        ...(featuredImage ? [[featuredImage, "featured"] as [File, ImageType]] : []),
+      ]
+      for (const [index, [file, type]] of uploads.entries()) {
+        setSavingStep(`Uploading image ${index + 1} of ${uploads.length}...`)
+        await uploadProductImage(productId, file, type)
+      }
+    } catch (imageError) {
+      console.error(imageError)
+      const message = (imageError as { message?: string })?.message
+      alert(`The product details were saved, but the photos could not be saved${message ? `: ${message}` : ""}. You can add the photos again from this page.`)
+      if (!isEditing) router.push(`/admin/products/${productId}/edit`)
+      return
     }
 
     alert(isEditing ? "Product updated successfully!" : "Product created successfully!")
