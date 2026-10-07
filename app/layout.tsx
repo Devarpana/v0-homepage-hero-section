@@ -6,7 +6,7 @@ import './globals.css'
 const poppins = Poppins({ 
   subsets: ["latin"],
   variable: "--font-poppins",
-  weight: ["400", "500", "600", "700"]
+  weight: ["400", "500", "600", "700", "800"]
 });
 
 const inter = Inter({ 
@@ -27,10 +27,6 @@ export const metadata: Metadata = {
       {
         url: '/icon-dark-32x32.png',
         media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
       },
     ],
     apple: '/apple-icon.png',

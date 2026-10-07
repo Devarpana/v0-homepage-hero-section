@@ -1,114 +1,56 @@
 'use client'
 
 import { motion } from 'framer-motion'
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' },
-  },
-}
+import { Crosshair, MapPin, Wand2 } from 'lucide-react'
+import { SectionHeading } from '@/components/section-heading'
 
 const reasons = [
   {
-    id: 1,
-    title: 'Uncompromising Quality',
-    description: 'Each product undergoes rigorous quality control to ensure durability and precision.',
+    icon: MapPin,
+    title: 'Designed & printed in India',
+    description: 'Every piece is designed and printed by our own team in India, supporting local makers and innovation.',
   },
   {
-    id: 2,
-    title: 'Design-First Philosophy',
-    description: 'We believe technology should serve design. Every layer is intentional.',
+    icon: Crosshair,
+    title: 'Precision in every layer',
+    description: 'Each product is checked for fit, finish and strength before it leaves our workshop.',
   },
   {
-    id: 3,
-    title: 'Local Craftsmanship',
-    description: 'Designed and printed in India, supporting local innovation and creativity.',
-  },
-  {
-    id: 4,
-    title: 'Sustainable Practices',
-    description: 'Using eco-conscious materials and minimal waste production methods.',
-  },
-  {
-    id: 5,
-    title: 'Custom at Scale',
-    description: 'Personalization without compromise. Make it uniquely yours.',
-  },
-  {
-    id: 6,
-    title: 'Community-Driven',
-    description: 'Built by creators, for creators. Your feedback shapes what we build next.',
+    icon: Wand2,
+    title: 'Made to be yours',
+    description: 'Choose colours, add names or bring your own idea. Personalisation is built into what we do.',
   },
 ]
 
 export function WhyXYZLayers() {
   return (
-    <section className="relative w-full py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="mb-16"
-        >
-          <motion.h2
-            variants={itemVariants}
-            className="text-5xl lg:text-6xl font-black text-gray-900 font-[var(--font-poppins)] text-balance tracking-tight"
-          >
-            Why XYZ Layers
-          </motion.h2>
-          <motion.p
-            variants={itemVariants}
-            className="mt-4 text-lg text-gray-600 font-[var(--font-inter)] max-w-2xl"
-          >
-            We&apos;re reimagining what 3D printing can be
-          </motion.p>
-        </motion.div>
+    <section className="w-full bg-white py-24">
+      <div className="container-site">
+        <SectionHeading
+          eyebrow="Why XYZ Layers"
+          title="Small brand. Serious craft."
+          description="A modern Indian brand creating smart products through 3D printing."
+          align="center"
+        />
 
-        {/* Reasons Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {reasons.map((reason) => (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {reasons.map(({ icon: Icon, title, description }, index) => (
             <motion.div
-              key={reason.id}
-              variants={itemVariants}
-              className="flex flex-col gap-4"
+              key={title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group rounded-2xl border border-border bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft-lg"
             >
-              <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
-                <div className="w-2 h-2 rounded-full bg-primary" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-gray-900 font-[var(--font-poppins)] mb-2">
-                  {reason.title}
-                </h3>
-                <p className="text-gray-600 font-[var(--font-inter)] leading-relaxed">
-                  {reason.description}
-                </p>
-              </div>
+              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/[0.07] text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
+                <Icon className="h-6 w-6" />
+              </span>
+              <h3 className="mt-6 font-heading text-xl font-semibold text-foreground">{title}</h3>
+              <p className="mt-3 leading-relaxed text-muted-foreground">{description}</p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

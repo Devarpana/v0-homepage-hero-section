@@ -1,94 +1,64 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { SectionHeading } from '@/components/section-heading'
+import { ProductImage } from '@/components/product-image'
+import { formatPrice, sampleProducts } from '@/lib/sample-products'
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' },
-  },
-}
+// Varying heights give the Pinterest-style staggered grid.
+const ratios = ['aspect-[4/5]', 'aspect-[3/4]', 'aspect-square', 'aspect-[4/6]']
 
 export function ExploreMore() {
   return (
-    <section className="relative w-full py-32 bg-white overflow-hidden">
-      {/* Decorative background */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -mr-48" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -ml-48" />
+    <section className="w-full bg-muted py-24">
+      <div className="container-site">
+        <SectionHeading
+          eyebrow="Explore more"
+          title="Discover something new"
+          description="Wander through the full range. You might find your new favourite."
+        />
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        className="relative z-10 max-w-4xl mx-auto px-6 text-center"
-      >
-        <motion.h2
-          variants={itemVariants}
-          className="text-5xl lg:text-6xl font-black text-gray-900 font-[var(--font-poppins)] text-balance tracking-tight mb-6"
-        >
-          Ready to Create Something{' '}
-          <span className="text-primary">Extraordinary</span>?
-        </motion.h2>
-
-        <motion.p
-          variants={itemVariants}
-          className="text-lg text-gray-600 font-[var(--font-inter)] max-w-2xl mx-auto mb-12 leading-relaxed"
-        >
-          Whether you&apos;re looking for ready-made designs or have a custom vision, we&apos;re here to bring your ideas to life through precision 3D printing.
-        </motion.p>
-
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <Button
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-full px-8 py-6 text-base font-[var(--font-poppins)] shadow-lg hover:shadow-xl transition-all"
+        <div className="columns-2 gap-4 md:columns-3 lg:columns-4 lg:gap-5">
+          {sampleProducts.map((product, index) => (
+            <motion.div
+              key={product.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.4, delay: (index % 4) * 0.06 }}
+              className="mb-4 break-inside-avoid lg:mb-5"
             >
-              Start Exploring
-            </Button>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <Button
-              size="lg"
-              variant="outline"
-              className="border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full px-8 py-6 text-base font-[var(--font-poppins)] transition-all"
-            >
-              Request a Demo
-            </Button>
-          </motion.div>
-        </motion.div>
+              <Link
+                href={`/product/${product.id}`}
+                className={`group relative block overflow-hidden rounded-2xl bg-white shadow-soft ${ratios[index % ratios.length]}`}
+              >
+                <ProductImage src={product.image} alt={product.name} />
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 rounded-xl bg-white/90 px-3 py-2 backdrop-blur transition-transform duration-300 group-hover:-translate-y-1">
+                  <p className="truncate font-heading text-sm font-semibold text-foreground">{product.name}</p>
+                  <p className="shrink-0 text-sm font-semibold text-primary">{formatPrice(product.price)}</p>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
 
-        {/* Trust line */}
-        <motion.p
-          variants={itemVariants}
-          className="mt-16 text-sm text-gray-500 font-[var(--font-inter)]"
-        >
-          Trusted by 500+ creators and businesses across India
-        </motion.p>
-      </motion.div>
+        <div className="mt-12 flex justify-center">
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="h-12 rounded-full border-foreground/15 bg-white px-8 font-heading font-semibold hover:border-primary hover:text-primary"
+          >
+            <Link href="/shop">
+              Browse the full shop
+              <ArrowRight className="ml-1 h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+      </div>
     </section>
   )
 }

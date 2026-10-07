@@ -1,102 +1,78 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import Link from 'next/link'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { SectionHeading } from '@/components/section-heading'
+import { ProductImage } from '@/components/product-image'
+import { formatPrice, sampleProducts } from '@/lib/sample-products'
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' },
-  },
-}
-
-const products = [
-  { id: 1, name: 'Modular Organizer', category: 'Home' },
-  { id: 2, name: 'Geometric Planter', category: 'Garden' },
-  { id: 3, name: 'Precision Organizer', category: 'Office' },
-  { id: 4, name: 'Designer Phone Stand', category: 'Accessories' },
-]
+const trending = sampleProducts.filter((p) => p.isTrending)
 
 export function TrendingProducts() {
+  const scroller = useRef<HTMLDivElement>(null)
+
+  const scrollBy = (direction: 1 | -1) => {
+    const el = scroller.current
+    if (!el) return
+    el.scrollBy({ left: direction * el.clientWidth * 0.8, behavior: 'smooth' })
+  }
+
   return (
-    <section className="relative w-full py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="mb-16"
-        >
-          <motion.h2
-            variants={itemVariants}
-            className="text-5xl lg:text-6xl font-black text-gray-900 font-[var(--font-poppins)] text-balance tracking-tight"
-          >
-            Trending Now
-          </motion.h2>
-          <motion.p
-            variants={itemVariants}
-            className="mt-4 text-lg text-gray-600 font-[var(--font-inter)] max-w-2xl"
-          >
-            What our community is loving this month
-          </motion.p>
-        </motion.div>
+    <section className="w-full overflow-hidden bg-muted py-24">
+      <div className="container-site">
+        <SectionHeading
+          eyebrow="Trending this week"
+          title="What everyone's printing"
+          description="The pieces our customers can't stop ordering right now."
+          action={
+            <div className="hidden gap-2 md:flex">
+              <button
+                onClick={() => scrollBy(-1)}
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-foreground/15 bg-white transition-colors hover:border-primary hover:text-primary"
+                aria-label="Scroll left"
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </button>
+              <button
+                onClick={() => scrollBy(1)}
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white transition-colors hover:bg-primary/90"
+                aria-label="Scroll right"
+              >
+                <ArrowRight className="h-5 w-5" />
+              </button>
+            </div>
+          }
+        />
 
-        {/* Products Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        <div
+          ref={scroller}
+          className="no-scrollbar -mx-6 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-6 px-6 pb-4 lg:-mx-12 lg:scroll-px-12 lg:px-12"
         >
-          {products.map((product) => (
-            <motion.div
+          {trending.map((product) => (
+            <Link
               key={product.id}
-              variants={itemVariants}
-              whileHover={{ y: -4 }}
-              className="group cursor-pointer"
+              href={`/product/${product.id}`}
+              className="group w-[72%] shrink-0 snap-start sm:w-[44%] lg:w-[calc(25%-15px)]"
             >
-              <div className="relative overflow-hidden rounded-xl bg-white border border-gray-200">
-                {/* Product image area */}
-                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center relative overflow-hidden">
-                  <motion.div
-                    className="w-24 h-24 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg group-hover:from-primary/30 group-hover:to-accent/30 transition-all duration-300"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                  />
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-primary/10 rounded-full border border-primary/20">
-                    <span className="text-xs font-semibold text-primary font-[var(--font-poppins)]">
-                      Trending
-                    </span>
-                  </div>
-                </div>
-
-                {/* Product info */}
-                <div className="p-4">
-                  <p className="text-xs text-gray-500 font-[var(--font-inter)] uppercase tracking-wider mb-1">
-                    {product.category}
-                  </p>
-                  <h3 className="text-sm font-bold text-gray-900 font-[var(--font-poppins)]">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-white shadow-soft transition-shadow duration-300 group-hover:shadow-soft-lg">
+                <ProductImage src={product.image} alt={product.name} />
+                <span className="absolute left-4 top-4 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-white">
+                  Trending
+                </span>
+              </div>
+              <div className="mt-4 flex items-start justify-between gap-4 px-1">
+                <div>
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground">{product.category}</p>
+                  <h3 className="mt-1 font-heading text-lg font-semibold text-foreground transition-colors group-hover:text-primary">
                     {product.name}
                   </h3>
                 </div>
+                <p className="font-heading text-lg font-bold text-primary">{formatPrice(product.price)}</p>
               </div>
-            </motion.div>
+            </Link>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

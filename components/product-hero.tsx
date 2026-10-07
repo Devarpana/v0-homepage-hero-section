@@ -38,7 +38,7 @@ export function ProductHero() {
 
   return (
     <section className="w-full min-h-screen bg-white pt-32 pb-12">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="container-site">
         {/* Breadcrumb */}
         <motion.div
           initial={{ opacity: 0 }}

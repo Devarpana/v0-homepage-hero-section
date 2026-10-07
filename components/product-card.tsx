@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { ProductImage } from '@/components/product-image'
+import { formatPrice } from '@/lib/sample-products'
 
 
 interface ProductCardProps {
@@ -11,7 +13,7 @@ interface ProductCardProps {
   category: string
   price: number
   image?: string
-  imageGradient: string
+  imageGradient?: string
   isTrending?: boolean
 }
 
@@ -21,7 +23,6 @@ export function ProductCard({
   category,
   price,
   image,
-  imageGradient,
   isTrending = false,
 }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false)
@@ -38,25 +39,15 @@ export function ProductCard({
         className="flex flex-col group cursor-pointer"
       >
         {/* Image Container */}
-        <div className="relative w-full aspect-[4/5] bg-gray-100 rounded-2xl overflow-hidden mb-4 cursor-pointer">
-          {/* Gradient Background */}
-          <div className={`absolute inset-0 ${imageGradient} opacity-30`} />
-
-          {/* Image Placeholder */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-24 h-24 mx-auto mb-3 bg-white/50 rounded-xl flex items-center justify-center text-3xl font-bold text-gray-400">
-                3D
-              </div>
-            </div>
-          </div>
+        <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl mb-4 shadow-soft transition-shadow duration-300 group-hover:shadow-soft-lg">
+          <ProductImage src={image} alt={name} />
 
           {/* Hover Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: isHovered ? 1 : 0 }}
             transition={{ duration: 0.3 }}
-            className="absolute inset-0 bg-black/5 backdrop-blur-sm flex items-center justify-center"
+            className="absolute inset-0 bg-black/5 backdrop-blur-[2px] flex items-center justify-center"
           >
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -91,7 +82,7 @@ export function ProductCard({
             {name}
           </h3>
           <p className="text-xl font-bold text-primary font-[var(--font-poppins)]">
-            ₹{price.toLocaleString()}
+            {formatPrice(price)}
           </p>
         </motion.div>
       </motion.div>

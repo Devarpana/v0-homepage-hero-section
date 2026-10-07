@@ -1,124 +1,56 @@
 'use client'
 
 import { motion } from 'framer-motion'
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' },
-  },
-}
+import { Lightbulb, PenTool, Printer, Truck } from 'lucide-react'
+import { SectionHeading } from '@/components/section-heading'
 
 const steps = [
-  {
-    id: 1,
-    title: 'Design Your Vision',
-    description: 'Start with your ideas. Upload a design or work with our team to bring your vision to life.',
-    icon: '✎',
-  },
-  {
-    id: 2,
-    title: 'Prototype Review',
-    description: 'We create a 3D model and send samples for your approval. Perfect it before production.',
-    icon: '✓',
-  },
-  {
-    id: 3,
-    title: 'Precision Printing',
-    description: 'Using state-of-the-art 3D printers, we manufacture your products layer by layer with precision.',
-    icon: '⚙',
-  },
-  {
-    id: 4,
-    title: 'Quality & Finishing',
-    description: 'Every piece is inspected, finished, and packaged with care for delivery to your doorstep.',
-    icon: '★',
-  },
+  { icon: Lightbulb, title: 'Idea', description: 'It starts with a need, a sketch or a spark. Yours or ours.' },
+  { icon: PenTool, title: 'Design', description: 'We model it in 3D and refine every detail until it is right.' },
+  { icon: Printer, title: 'Print', description: 'Printed layer by layer, then cleaned, checked and finished.' },
+  { icon: Truck, title: 'Deliver', description: 'Packed with care and delivered to your doorstep.' },
 ]
 
 export function HowItWorks() {
   return (
-    <section className="relative w-full py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="mb-16"
-        >
-          <motion.h2
-            variants={itemVariants}
-            className="text-5xl lg:text-6xl font-black text-gray-900 font-[var(--font-poppins)] text-balance tracking-tight"
-          >
-            How It Works
-          </motion.h2>
-          <motion.p
-            variants={itemVariants}
-            className="mt-4 text-lg text-gray-600 font-[var(--font-inter)] max-w-2xl"
-          >
-            From concept to reality in four simple steps
-          </motion.p>
-        </motion.div>
+    <section className="w-full bg-white py-24">
+      <div className="container-site">
+        <SectionHeading
+          eyebrow="How it's made"
+          title="From idea to your doorstep"
+          align="center"
+        />
 
-        {/* Steps */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="space-y-8"
-        >
-          {steps.map((step, index) => (
+        <div className="relative grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          {/* Connecting line (desktop) */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: 'easeInOut' }}
+            className="absolute left-[12.5%] right-[12.5%] top-10 hidden h-0.5 origin-left bg-gradient-to-r from-primary via-primary/60 to-accent lg:block"
+          />
+
+          {steps.map(({ icon: Icon, title, description }, index) => (
             <motion.div
-              key={step.id}
-              variants={itemVariants}
-              className="flex gap-8 items-start"
+              key={title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
+              className="relative flex flex-col items-center text-center"
             >
-              {/* Number and connector */}
-              <div className="flex flex-col items-center flex-shrink-0">
-                <div className="w-16 h-16 rounded-full bg-white border-2 border-primary flex items-center justify-center">
-                  <span className="text-2xl font-black text-primary font-[var(--font-poppins)]">
-                    {step.id}
-                  </span>
-                </div>
-                {index < steps.length - 1 && (
-                  <motion.div
-                    className="w-0.5 h-20 bg-gradient-to-b from-primary/30 to-transparent mt-4"
-                    initial={{ scaleY: 0 }}
-                    whileInView={{ scaleY: 1 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    viewport={{ once: true }}
-                  />
-                )}
+              <div className="relative flex h-20 w-20 items-center justify-center rounded-2xl border border-border bg-white text-primary shadow-soft">
+                <Icon className="h-8 w-8" />
+                <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full bg-accent font-heading text-xs font-bold text-white">
+                  {index + 1}
+                </span>
               </div>
-
-              {/* Content */}
-              <div className="pt-2 flex-1">
-                <h3 className="text-2xl font-bold text-gray-900 font-[var(--font-poppins)] mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-gray-600 font-[var(--font-inter)] leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
+              <h3 className="mt-6 font-heading text-2xl font-bold text-foreground">{title}</h3>
+              <p className="mt-2 max-w-60 leading-relaxed text-muted-foreground">{description}</p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

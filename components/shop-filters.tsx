@@ -18,7 +18,7 @@ export function ShopFilters() {
 
   return (
     <section className="w-full bg-white py-8 border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="container-site">
         {/* Search Bar */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
