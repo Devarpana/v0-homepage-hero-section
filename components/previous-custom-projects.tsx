@@ -70,7 +70,7 @@ const projects = [
 export function PreviousCustomProjects() {
   return (
     <section className="relative w-full py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="container-site">
         {/* Header */}
         <motion.div
           variants={containerVariants}

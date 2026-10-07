@@ -36,7 +36,7 @@ export function Specifications() {
 
   return (
     <section className="w-full py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="container-site">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

@@ -43,7 +43,7 @@ export function CustomOrdersHero() {
       <div className="absolute top-1/2 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl -ml-32" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-12">
+      <div className="relative z-10 container-site pt-24 pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center min-h-[calc(100vh-150px)]">
           {/* Left Column - Content */}
           <motion.div

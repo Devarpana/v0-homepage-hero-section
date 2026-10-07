@@ -25,9 +25,7 @@ export function AdminSidebar() {
       {/* Logo Section */}
       <div className="p-6 border-b border-sidebar-border">
         <Link href="/admin" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <Package className="w-4 h-4 text-primary-foreground" />
-          </div>
+          <img src="/logo-mark.png" alt="" className="h-9 w-auto" />
           <span className="font-bold text-sidebar-foreground font-[var(--font-poppins)]">XYZ Admin</span>
         </Link>
       </div>
@@ -35,7 +33,7 @@ export function AdminSidebar() {
       {/* Navigation Items */}
       <nav className="flex-1 p-4 space-y-3">
         {navItems.map((item) => {
-          const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
+          const isActive = pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href + '/'))
           const Icon = item.icon
 
           return (
