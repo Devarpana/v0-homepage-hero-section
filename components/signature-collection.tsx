@@ -6,7 +6,6 @@ import { ArrowRight } from 'lucide-react'
 import { SectionHeading } from '@/components/section-heading'
 import { ProductImage } from '@/components/product-image'
 import { formatPrice, type Product } from '@/lib/products'
-import { cn } from '@/lib/utils'
 
 export function SignatureCollection({ products: signature }: { products: Product[] }) {
   if (signature.length === 0) return null
@@ -40,7 +39,6 @@ export function SignatureCollection({ products: signature }: { products: Product
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={cn(index % 3 === 1 && 'md:translate-y-12')}
             >
               <Link href={`/product/${product.id}`} className="group block">
                 <div className="aspect-square overflow-hidden rounded-2xl border border-white/10">
