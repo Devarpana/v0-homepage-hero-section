@@ -2,12 +2,17 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Heart, Share2, Check } from 'lucide-react'
+import { Heart, Share2 } from 'lucide-react'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { ProductImage } from '@/components/product-image'
+import { categorySlug, formatPrice, type Product } from '@/lib/products'
 
-export function ProductHero() {
+export function ProductHero({ product }: { product: Product }) {
   const [selectedColor, setSelectedColor] = useState('blue')
   const [quantity, setQuantity] = useState(1)
+  const gallery = product.images.length > 0 ? product.images : [undefined]
+  const [activeImage, setActiveImage] = useState(0)
 
   const colors = [
     { name: 'Blue', value: 'blue', bg: 'bg-blue-500' },
@@ -47,13 +52,15 @@ export function ProductHero() {
           className="mb-12"
         >
           <nav className="flex items-center gap-2 text-sm text-gray-600">
-            <a href="/" className="hover:text-primary transition-colors">Home</a>
+            <Link href="/" className="hover:text-primary transition-colors">Home</Link>
             <span className="text-gray-400">/</span>
-            <a href="/shop" className="hover:text-primary transition-colors">Shop</a>
+            <Link href="/shop" className="hover:text-primary transition-colors">Shop</Link>
             <span className="text-gray-400">/</span>
-            <a href="/shop" className="hover:text-primary transition-colors">Daily Essentials</a>
+            <Link href={`/shop?category=${categorySlug(product.category)}`} className="hover:text-primary transition-colors">
+              {product.category}
+            </Link>
             <span className="text-gray-400">/</span>
-            <span className="text-gray-900 font-medium">Modular Desk Organizer</span>
+            <span className="text-gray-900 font-medium">{product.name}</span>
           </nav>
         </motion.div>
 
@@ -68,33 +75,27 @@ export function ProductHero() {
             {/* Main Image */}
             <motion.div
               variants={itemVariants}
-              className="aspect-square bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl overflow-hidden flex items-center justify-center border border-gray-200"
+              className="aspect-[4/5] overflow-hidden rounded-2xl border border-border"
             >
-              <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm font-[var(--font-inter)]">
-                Product Image
-              </div>
+              <ProductImage src={gallery[activeImage]} alt={product.name} />
             </motion.div>
 
             {/* Thumbnail Gallery */}
-            <motion.div
-              variants={itemVariants}
-              className="flex gap-4"
-            >
-              {[1, 2, 3, 4].map((i) => (
-                <motion.button
-                  key={i}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`w-20 h-20 rounded-lg border-2 transition-all flex items-center justify-center text-gray-400 text-xs font-[var(--font-inter)] ${
-                    i === 1
-                      ? 'border-primary bg-primary/5'
-                      : 'border-gray-200 hover:border-primary'
-                  }`}
-                >
-                  View {i}
-                </motion.button>
-              ))}
-            </motion.div>
+            {gallery.length > 1 && (
+              <motion.div variants={itemVariants} className="flex gap-4">
+                {gallery.map((src, i) => (
+                  <button
+                    key={src}
+                    onClick={() => setActiveImage(i)}
+                    className={`h-20 w-20 overflow-hidden rounded-xl border-2 transition-all ${
+                      i === activeImage ? 'border-primary' : 'border-border hover:border-primary/50'
+                    }`}
+                  >
+                    <ProductImage src={src} alt={`${product.name} view ${i + 1}`} />
+                  </button>
+                ))}
+              </motion.div>
+            )}
           </motion.div>
 
           {/* Right - Product Details */}
@@ -110,55 +111,36 @@ export function ProductHero() {
                 variants={itemVariants}
                 className="text-sm font-medium text-primary uppercase tracking-wider font-[var(--font-inter)]"
               >
-                Daily Essentials
+                {product.category}
               </motion.p>
               <motion.h1
                 variants={itemVariants}
                 className="text-4xl lg:text-5xl font-black text-gray-900 mt-2 leading-tight font-[var(--font-poppins)]"
               >
-                Modular Desk Organizer
+                {product.name}
               </motion.h1>
             </div>
 
-            {/* Price and Rating */}
+            {/* Price */}
             <motion.div variants={itemVariants} className="flex items-center gap-4">
               <span className="text-3xl font-bold text-gray-900 font-[var(--font-poppins)]">
-                ₹1,499
+                {formatPrice(product.price)}
               </span>
-              <span className="text-sm text-gray-600 line-through font-[var(--font-inter)]">
-                ₹1,999
-              </span>
-              <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium font-[var(--font-inter)]">
-                25% Off
-              </span>
+              {product.stock === 0 && (
+                <span className="rounded-full bg-destructive/10 px-3 py-1 text-sm font-medium text-destructive">
+                  Out of stock
+                </span>
+              )}
             </motion.div>
 
-            {/* Short Description */}
-            <motion.p
-              variants={itemVariants}
-              className="text-lg text-gray-600 leading-relaxed font-[var(--font-inter)]"
-            >
-              Keep your workspace organized and stylish with our precision 3D-printed modular organizer. 
-              Perfect for desk organization, customizable to your needs, and built to last.
-            </motion.p>
-
-            {/* Key Features */}
-            <motion.div
-              variants={itemVariants}
-              className="space-y-3 py-6 border-t border-b border-gray-200"
-            >
-              {[
-                'Material: Premium PLA+',
-                'Dimensions: 15 × 8 × 4 cm',
-                'Weight: 220g',
-                'Color Options: 4 available'
-              ].map((feature, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-gray-700 font-[var(--font-inter)]">{feature}</span>
-                </div>
-              ))}
-            </motion.div>
+            {product.description && (
+              <motion.p
+                variants={itemVariants}
+                className="whitespace-pre-line border-b border-border pb-6 text-lg leading-relaxed text-gray-600"
+              >
+                {product.description}
+              </motion.p>
+            )}
 
             {/* Color Selection */}
             <motion.div variants={itemVariants}>

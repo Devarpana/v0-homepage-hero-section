@@ -5,12 +5,12 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { SectionHeading } from '@/components/section-heading'
 import { ProductImage } from '@/components/product-image'
-import { formatPrice, sampleProducts } from '@/lib/sample-products'
+import { formatPrice, type Product } from '@/lib/products'
 import { cn } from '@/lib/utils'
 
-const signature = sampleProducts.filter((p) => p.isSignature)
+export function SignatureCollection({ products: signature }: { products: Product[] }) {
+  if (signature.length === 0) return null
 
-export function SignatureCollection() {
   return (
     <section className="relative w-full overflow-hidden bg-[#141a2b] py-24 text-white">
       <div className="pointer-events-none absolute -top-40 left-1/3 h-[480px] w-[480px] rounded-full bg-primary/40 blur-[120px]" />
@@ -40,7 +40,7 @@ export function SignatureCollection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={cn(index === 1 && 'md:translate-y-12')}
+              className={cn(index % 3 === 1 && 'md:translate-y-12')}
             >
               <Link href={`/product/${product.id}`} className="group block">
                 <div className="aspect-[4/5] overflow-hidden rounded-2xl border border-white/10">

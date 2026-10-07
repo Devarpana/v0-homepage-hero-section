@@ -14,6 +14,8 @@ interface Product {
   stock: number
   status: 'active' | 'inactive'
   featured?: boolean
+  trending?: boolean
+  signature?: boolean
   visibility?: 'public' | 'hidden'
 }
 
@@ -33,7 +35,7 @@ export function AdminProductsTable({ products, onDelete }: AdminProductsTablePro
               <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Category</th>
               <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Price</th>
               <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Stock</th>
-              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Featured</th>
+              <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Homepage</th>
               <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Visibility</th>
               <th className="text-left px-6 py-4 text-sm font-semibold text-foreground font-[var(--font-poppins)]">Actions</th>
             </tr>
@@ -71,13 +73,12 @@ export function AdminProductsTable({ products, onDelete }: AdminProductsTablePro
                   </p>
                 </td>
                 <td className="px-6 py-4">
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                    product.featured
-                      ? 'bg-primary/10 text-primary'
-                      : 'bg-gray-500/10 text-gray-700'
-                  }`}>
-                    {product.featured ? 'Featured' : 'Not Featured'}
-                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {product.featured && <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">Featured</span>}
+                    {product.trending && <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-accent/10 text-accent">Trending</span>}
+                    {product.signature && <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-gray-900/10 text-gray-900">Signature</span>}
+                    {!product.featured && !product.trending && !product.signature && <span className="text-xs text-muted-foreground">None</span>}
+                  </div>
                 </td>
                 <td className="px-6 py-4">
                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${

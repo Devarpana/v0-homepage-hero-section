@@ -68,8 +68,10 @@ export default function ProductsPage() {
     setProducts(
     (data || []).map((product) => ({
       ...product,
-      featured: false,
-      visibility: "public",
+      featured: Boolean(product.is_featured),
+      trending: Boolean(product.is_trending),
+      signature: Boolean(product.is_signature),
+      visibility: product.status === "hidden" ? "hidden" : "public",
     }))
   )
     }

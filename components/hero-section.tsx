@@ -5,7 +5,8 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Layers, MapPin, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ProductImage } from '@/components/product-image'
-import { formatPrice, sampleProducts } from '@/lib/sample-products'
+import Image from 'next/image'
+import { formatPrice, type Product } from '@/lib/products'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -26,9 +27,7 @@ const trustPoints = [
   { icon: Sparkles, label: 'Custom orders available' },
 ]
 
-const featured = sampleProducts.find((p) => p.isSignature) ?? sampleProducts[0]
-
-export function HeroSection() {
+export function HeroSection({ featured }: { featured?: Product }) {
   return (
     <section className="relative w-full overflow-hidden bg-white">
       {/* Soft brand glow */}
@@ -100,25 +99,33 @@ export function HeroSection() {
             transition={{ duration: 0.9, ease: 'easeOut', delay: 0.2 }}
             className="relative mx-auto w-full max-w-[480px]"
           >
-            <Link href={`/product/${featured.id}`} className="group block">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] shadow-soft-lg">
-                <ProductImage src={featured.image} alt={featured.name} />
-                <span className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-primary backdrop-blur">
-                  Featured
-                </span>
-              </div>
-
-              {/* Product caption card */}
-              <div className="absolute -bottom-6 left-6 right-6 flex items-center justify-between rounded-2xl border border-border bg-white/95 px-5 py-4 shadow-soft backdrop-blur sm:-left-8 sm:right-auto sm:min-w-72">
-                <div>
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground">{featured.category}</p>
-                  <p className="font-heading text-base font-semibold text-foreground">{featured.name}</p>
+            {featured ? (
+              <Link href={`/product/${featured.id}`} className="group block">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] shadow-soft-lg">
+                  <ProductImage src={featured.image} alt={featured.name} />
+                  <span className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-primary backdrop-blur">
+                    Featured
+                  </span>
                 </div>
-                <p className="ml-6 font-heading text-lg font-bold text-primary">{formatPrice(featured.price)}</p>
+
+                {/* Product caption card */}
+                <div className="absolute -bottom-6 left-6 right-6 flex items-center justify-between rounded-2xl border border-border bg-white/95 px-5 py-4 shadow-soft backdrop-blur sm:-left-8 sm:right-auto sm:min-w-72">
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground">{featured.category}</p>
+                    <p className="font-heading text-base font-semibold text-foreground">{featured.name}</p>
+                  </div>
+                  <p className="ml-6 font-heading text-lg font-bold text-primary">{formatPrice(featured.price)}</p>
+                </div>
+              </Link>
+            ) : (
+              // No featured product chosen in admin yet: show the brand mark instead.
+              <div className="flex aspect-[4/5] items-center justify-center rounded-[28px] bg-gradient-to-br from-[#eef2fa] via-[#f6f7fa] to-[#fdf3e9] shadow-soft-lg">
+                <Image src="/logo-mark.png" alt="XYZ Layers" width={181} height={216} priority className="w-2/5" />
               </div>
-            </Link>
+            )}
 
             {/* Floating badge */}
+            {featured?.isSignature && (
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
@@ -127,6 +134,7 @@ export function HeroSection() {
               <p className="text-xs text-white/85">From the</p>
               <p className="font-heading text-base font-bold leading-tight">Signature Collection</p>
             </motion.div>
+            )}
           </motion.div>
         </div>
       </div>

@@ -5,11 +5,9 @@ import Link from 'next/link'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { SectionHeading } from '@/components/section-heading'
 import { ProductImage } from '@/components/product-image'
-import { formatPrice, sampleProducts } from '@/lib/sample-products'
+import { formatPrice, type Product } from '@/lib/products'
 
-const trending = sampleProducts.filter((p) => p.isTrending)
-
-export function TrendingProducts() {
+export function TrendingProducts({ products: trending }: { products: Product[] }) {
   const scroller = useRef<HTMLDivElement>(null)
 
   const scrollBy = (direction: 1 | -1) => {
@@ -17,6 +15,8 @@ export function TrendingProducts() {
     if (!el) return
     el.scrollBy({ left: direction * el.clientWidth * 0.8, behavior: 'smooth' })
   }
+
+  if (trending.length === 0) return null
 
   return (
     <section className="w-full overflow-hidden bg-muted py-24">

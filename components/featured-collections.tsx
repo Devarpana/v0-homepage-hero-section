@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Gift, Lamp, Puzzle, Ruler } from 'lucide-react'
 import { SectionHeading } from '@/components/section-heading'
-import { categories } from '@/lib/sample-products'
+import { categories } from '@/lib/products'
 import { cn } from '@/lib/utils'
 
 const styles: Record<string, { icon: typeof Ruler; card: string; iconBox: string; href: string }> = {

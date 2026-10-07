@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ProductImage } from '@/components/product-image'
-import { formatPrice } from '@/lib/sample-products'
+import { formatPrice } from '@/lib/products'
 
 
 interface ProductCardProps {

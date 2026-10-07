@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { ImageUploader } from '@/components/image-uploader'
+import { Switch } from '@/components/ui/switch'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { supabase } from "@/lib/supabase"
@@ -21,6 +22,11 @@ interface ProductFormProps {
     mainImage?: File
     galleryImages?: File[]
     featuredImage?: File
+    status?: string | null
+    is_featured?: boolean | null
+    is_trending?: boolean | null
+    is_signature?: boolean | null
+    is_customizable?: boolean | null
   }
   isEditing?: boolean
 }
@@ -33,6 +39,23 @@ export function AdminProductForm({ initialData, isEditing = false }: ProductForm
     stock: initialData?.stock || 0,
     description: initialData?.description || '',
   })
+
+  // Controls where the product appears on the website.
+  const [placement, setPlacement] = useState({
+    visible: initialData?.status !== 'hidden',
+    is_featured: Boolean(initialData?.is_featured),
+    is_trending: Boolean(initialData?.is_trending),
+    is_signature: Boolean(initialData?.is_signature),
+    is_customizable: Boolean(initialData?.is_customizable),
+  })
+
+  const placementFields = {
+    status: placement.visible ? 'active' : 'hidden',
+    is_featured: placement.is_featured,
+    is_trending: placement.is_trending,
+    is_signature: placement.is_signature,
+    is_customizable: placement.is_customizable,
+  }
 
   const [mainImage, setMainImage] = useState<File | null>(null)
   const [galleryImages, setGalleryImages] = useState<File[]>([])
@@ -70,6 +93,7 @@ const handleSubmit = async (e: React.FormEvent) => {
           price: formData.price,
           stock: formData.stock,
           description: formData.description,
+          ...placementFields,
         })
         .eq("id", initialData.id)
 
@@ -84,7 +108,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             price: formData.price,
             stock: formData.stock,
             description: formData.description,
-            status: "active",
+            ...placementFields,
           },
         ])
 
@@ -205,6 +229,33 @@ const handleSubmit = async (e: React.FormEvent) => {
               rows={4}
             />
           </div>
+        </div>
+      </Card>
+
+      {/* Website Placement */}
+      <Card className="p-6">
+        <h2 className="text-lg font-semibold mb-2 font-[var(--font-poppins)]">Show on Website</h2>
+        <p className="text-sm text-muted-foreground mb-6">Choose where this product appears on the website.</p>
+
+        <div className="divide-y divide-border">
+          {([
+            ['visible', 'Visible on website', 'Turn off to hide this product from customers'],
+            ['is_featured', 'Featured', 'Shown as the large product at the top of the homepage'],
+            ['is_trending', 'Trending', 'Shown in the "Trending this week" row on the homepage'],
+            ['is_signature', 'Signature Collection', 'Shown in the premium Signature Collection on the homepage'],
+            ['is_customizable', 'Customizable', 'Customers can personalise this product'],
+          ] as const).map(([key, label, help]) => (
+            <label key={key} className="flex items-center justify-between gap-6 py-4 cursor-pointer">
+              <span>
+                <span className="block text-sm font-medium text-foreground font-[var(--font-poppins)]">{label}</span>
+                <span className="block text-xs text-muted-foreground mt-1">{help}</span>
+              </span>
+              <Switch
+                checked={placement[key]}
+                onCheckedChange={(checked) => setPlacement((prev) => ({ ...prev, [key]: checked }))}
+              />
+            </label>
+          ))}
         </div>
       </Card>
 

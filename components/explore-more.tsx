@@ -6,12 +6,14 @@ import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { SectionHeading } from '@/components/section-heading'
 import { ProductImage } from '@/components/product-image'
-import { formatPrice, sampleProducts } from '@/lib/sample-products'
+import { formatPrice, type Product } from '@/lib/products'
 
 // Varying heights give the Pinterest-style staggered grid.
 const ratios = ['aspect-[4/5]', 'aspect-[3/4]', 'aspect-square', 'aspect-[4/6]']
 
-export function ExploreMore() {
+export function ExploreMore({ products }: { products: Product[] }) {
+  if (products.length === 0) return null
+
   return (
     <section className="w-full bg-muted py-24">
       <div className="container-site">
@@ -22,7 +24,7 @@ export function ExploreMore() {
         />
 
         <div className="columns-2 gap-4 md:columns-3 lg:columns-4 lg:gap-5">
-          {sampleProducts.map((product, index) => (
+          {products.map((product, index) => (
             <motion.div
               key={product.id}
               initial={{ opacity: 0, y: 20 }}
