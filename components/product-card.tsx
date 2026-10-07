@@ -39,7 +39,7 @@ export function ProductCard({
         className="flex flex-col group cursor-pointer"
       >
         {/* Image Container */}
-        <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl mb-4 shadow-soft transition-shadow duration-300 group-hover:shadow-soft-lg">
+        <div className="relative w-full aspect-square overflow-hidden rounded-2xl mb-4 shadow-soft transition-shadow duration-300 group-hover:shadow-soft-lg">
           <ProductImage src={image} alt={name} />
 
           {/* Hover Overlay */}

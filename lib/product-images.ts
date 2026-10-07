@@ -20,20 +20,37 @@ function storagePath(imageUrl: string) {
   return index === -1 ? null : decodeURIComponent(imageUrl.slice(index + marker.length))
 }
 
-export async function uploadProductImage(productId: string, file: File, type: ImageType) {
+// Uploads a file to the bucket and returns its storage path and public URL.
+async function uploadFile(productId: string, file: File, prefix: string) {
   const ext = file.name.split('.').pop()?.toLowerCase() || 'jpg'
-  const path = `${productId}/${type}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`
+  const path = `${productId}/${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`
 
-  const { error: uploadError } = await supabase.storage
+  const { error } = await supabase.storage
     .from(PRODUCT_IMAGES_BUCKET)
     .upload(path, file, { contentType: file.type, upsert: false })
-  if (uploadError) throw uploadError
+  if (error) throw error
 
   const { data } = supabase.storage.from(PRODUCT_IMAGES_BUCKET).getPublicUrl(path)
+  return { path, publicUrl: data.publicUrl }
+}
+
+// Photo for one colour option; its URL is stored in products.colors, not product_images.
+export async function uploadColorImage(productId: string, file: File) {
+  return (await uploadFile(productId, file, 'color')).publicUrl
+}
+
+// Removes stored files by their public URLs (used for colour photos that were replaced or removed).
+export async function removeStoredImages(imageUrls: string[]) {
+  const paths = imageUrls.map(storagePath).filter((p): p is string => Boolean(p))
+  if (paths.length > 0) await supabase.storage.from(PRODUCT_IMAGES_BUCKET).remove(paths)
+}
+
+export async function uploadProductImage(productId: string, file: File, type: ImageType) {
+  const { path, publicUrl } = await uploadFile(productId, file, type)
 
   const { data: row, error: insertError } = await supabase
     .from('product_images')
-    .insert({ product_id: productId, image_url: data.publicUrl, image_type: type })
+    .insert({ product_id: productId, image_url: publicUrl, image_type: type })
     .select()
     .single()
   if (insertError) {
@@ -52,8 +69,7 @@ export async function deleteProductImages(images: ProductImageRow[]) {
     .in('id', images.map((image) => image.id))
   if (error) throw error
 
-  const paths = images.map((image) => storagePath(image.image_url)).filter((p): p is string => Boolean(p))
-  if (paths.length > 0) await supabase.storage.from(PRODUCT_IMAGES_BUCKET).remove(paths)
+  await removeStoredImages(images.map((image) => image.image_url))
 }
 
 export async function getProductImages(productId: string) {

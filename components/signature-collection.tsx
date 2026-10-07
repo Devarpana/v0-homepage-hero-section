@@ -43,7 +43,7 @@ export function SignatureCollection({ products: signature }: { products: Product
               className={cn(index % 3 === 1 && 'md:translate-y-12')}
             >
               <Link href={`/product/${product.id}`} className="group block">
-                <div className="aspect-[4/5] overflow-hidden rounded-2xl border border-white/10">
+                <div className="aspect-square overflow-hidden rounded-2xl border border-white/10">
                   <ProductImage src={product.image} alt={product.name} tone="dark" />
                 </div>
                 <div className="mt-5 flex items-start justify-between gap-4">

@@ -9,17 +9,18 @@ import { ProductImage } from '@/components/product-image'
 import { categorySlug, formatPrice, type Product } from '@/lib/products'
 
 export function ProductHero({ product }: { product: Product }) {
-  const [selectedColor, setSelectedColor] = useState('blue')
+  const colors = product.colors
+  const [selectedColor, setSelectedColor] = useState(0)
   const [quantity, setQuantity] = useState(1)
   const gallery = product.images.length > 0 ? product.images : [undefined]
   const [activeImage, setActiveImage] = useState(0)
+  // Photo of the colour the customer clicked; cleared when they pick a gallery thumbnail.
+  const [colorImage, setColorImage] = useState<string | null>(null)
 
-  const colors = [
-    { name: 'Blue', value: 'blue', bg: 'bg-blue-500' },
-    { name: 'Black', value: 'black', bg: 'bg-gray-900' },
-    { name: 'White', value: 'white', bg: 'bg-gray-100 border border-gray-300' },
-    { name: 'Orange', value: 'orange', bg: 'bg-orange-400' },
-  ]
+  const chooseColor = (index: number) => {
+    setSelectedColor(index)
+    if (colors[index].image) setColorImage(colors[index].image)
+  }
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -75,9 +76,12 @@ export function ProductHero({ product }: { product: Product }) {
             {/* Main Image */}
             <motion.div
               variants={itemVariants}
-              className="aspect-[4/5] overflow-hidden rounded-2xl border border-border"
+              className="aspect-square overflow-hidden rounded-2xl border border-border"
             >
-              <ProductImage src={gallery[activeImage]} alt={product.name} />
+              <ProductImage
+                src={colorImage ?? gallery[activeImage]}
+                alt={colorImage ? `${product.name} in ${colors[selectedColor]?.name}` : product.name}
+              />
             </motion.div>
 
             {/* Thumbnail Gallery */}
@@ -86,9 +90,12 @@ export function ProductHero({ product }: { product: Product }) {
                 {gallery.map((src, i) => (
                   <button
                     key={src}
-                    onClick={() => setActiveImage(i)}
+                    onClick={() => {
+                      setActiveImage(i)
+                      setColorImage(null)
+                    }}
                     className={`h-20 w-20 overflow-hidden rounded-xl border-2 transition-all ${
-                      i === activeImage ? 'border-primary' : 'border-border hover:border-primary/50'
+                      !colorImage && i === activeImage ? 'border-primary' : 'border-border hover:border-primary/50'
                     }`}
                   >
                     <ProductImage src={src} alt={`${product.name} view ${i + 1}`} />
@@ -142,28 +149,32 @@ export function ProductHero({ product }: { product: Product }) {
               </motion.p>
             )}
 
-            {/* Color Selection */}
-            <motion.div variants={itemVariants}>
-              <label className="block text-sm font-semibold text-gray-900 mb-4 font-[var(--font-poppins)]">
-                Choose Color
-              </label>
-              <div className="flex gap-3">
-                {colors.map((color) => (
-                  <motion.button
-                    key={color.value}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setSelectedColor(color.value)}
-                    className={`w-12 h-12 rounded-full border-2 transition-all ${
-                      selectedColor === color.value
-                        ? 'border-primary ring-2 ring-primary/50'
-                        : 'border-gray-300'
-                    } ${color.bg}`}
-                    title={color.name}
-                  />
-                ))}
-              </div>
-            </motion.div>
+            {/* Color Selection: only the colours set for this product in admin */}
+            {colors.length > 0 && (
+              <motion.div variants={itemVariants}>
+                <p className="mb-4 text-sm font-semibold text-gray-900 font-[var(--font-poppins)]">
+                  Colour: <span className="font-normal text-gray-600">{colors[selectedColor]?.name}</span>
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {colors.map((color, index) => (
+                    <motion.button
+                      key={`${color.name}-${index}`}
+                      type="button"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => chooseColor(index)}
+                      className={`h-12 w-12 rounded-full border-2 transition-all ${
+                        selectedColor === index ? 'border-primary ring-2 ring-primary/50 ring-offset-2' : 'border-gray-300'
+                      }`}
+                      style={{ backgroundColor: color.hex }}
+                      title={color.name}
+                      aria-label={color.name}
+                      aria-pressed={selectedColor === index}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            )}
 
             {/* Quantity Selector */}
             <motion.div variants={itemVariants}>

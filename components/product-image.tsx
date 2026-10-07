@@ -34,7 +34,7 @@ function LayeredHexagon({ className }: { className?: string }) {
 
 /**
  * Product photo with a branded placeholder for products that have no photo yet.
- * Fills its parent, so the parent sets the aspect ratio (4:5 for product cards).
+ * Fills its parent, so the parent sets the aspect ratio (square for product cards).
  */
 export function ProductImage({ src, alt, className, tone = 'light' }: ProductImageProps) {
   if (src) {

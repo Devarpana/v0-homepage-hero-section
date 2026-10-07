@@ -1,5 +1,8 @@
 import { supabase } from '@/lib/supabase'
 
+// A colour the product is sold in, set in admin. `image` shows the product in that colour.
+export type ProductColor = { name: string; hex: string; image?: string | null }
+
 // A product as the storefront sees it. Everything here comes from the admin panel (Supabase).
 export type Product = {
   id: string
@@ -11,6 +14,7 @@ export type Product = {
   image?: string // main image, used on product cards
   featuredImage?: string // used for the homepage hero, falls back to the main image
   images: string[] // main image first, then the gallery
+  colors: ProductColor[] // empty when the admin hasn't added any colours
   isFeatured: boolean
   isTrending: boolean
   isSignature: boolean
@@ -40,6 +44,13 @@ export function formatPrice(price: number) {
   return `₹${price.toLocaleString('en-IN')}`
 }
 
+export function parseColors(value: unknown): ProductColor[] {
+  if (!Array.isArray(value)) return []
+  return value
+    .filter((c) => c && typeof c.name === 'string' && c.name.trim() && typeof c.hex === 'string')
+    .map((c) => ({ name: c.name.trim(), hex: c.hex, image: typeof c.image === 'string' ? c.image : null }))
+}
+
 type ImageRow = { image_url: string; image_type: string; created_at?: string | null }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -61,6 +72,7 @@ function toProduct(row: any): Product {
     image: main,
     featuredImage: urls('featured').at(-1) ?? main,
     images,
+    colors: parseColors(row.colors),
     isFeatured: Boolean(row.is_featured),
     isTrending: Boolean(row.is_trending),
     isSignature: Boolean(row.is_signature),

@@ -55,7 +55,7 @@ export function TrendingProducts({ products: trending }: { products: Product[] }
               href={`/product/${product.id}`}
               className="group w-[72%] shrink-0 snap-start sm:w-[44%] lg:w-[calc(25%-15px)]"
             >
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-white shadow-soft transition-shadow duration-300 group-hover:shadow-soft-lg">
+              <div className="relative aspect-square overflow-hidden rounded-2xl bg-white shadow-soft transition-shadow duration-300 group-hover:shadow-soft-lg">
                 <ProductImage src={product.image} alt={product.name} />
                 <span className="absolute left-4 top-4 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-white">
                   Trending

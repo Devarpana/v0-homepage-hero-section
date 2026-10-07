@@ -8,9 +8,6 @@ import { SectionHeading } from '@/components/section-heading'
 import { ProductImage } from '@/components/product-image'
 import { formatPrice, type Product } from '@/lib/products'
 
-// Varying heights give the Pinterest-style staggered grid.
-const ratios = ['aspect-[4/5]', 'aspect-[3/4]', 'aspect-square', 'aspect-[4/6]']
-
 export function ExploreMore({ products }: { products: Product[] }) {
   if (products.length === 0) return null
 
@@ -23,7 +20,7 @@ export function ExploreMore({ products }: { products: Product[] }) {
           description="Wander through the full range. You might find your new favourite."
         />
 
-        <div className="columns-2 gap-4 md:columns-3 lg:columns-4 lg:gap-5">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">
           {products.map((product, index) => (
             <motion.div
               key={product.id}
@@ -31,11 +28,10 @@ export function ExploreMore({ products }: { products: Product[] }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.4, delay: (index % 4) * 0.06 }}
-              className="mb-4 break-inside-avoid lg:mb-5"
             >
               <Link
                 href={`/product/${product.id}`}
-                className={`group relative block overflow-hidden rounded-2xl bg-white shadow-soft ${ratios[index % ratios.length]}`}
+                className="group relative block aspect-square overflow-hidden rounded-2xl bg-white shadow-soft"
               >
                 <ProductImage src={product.image} alt={product.name} />
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 rounded-xl bg-white/90 px-3 py-2 backdrop-blur transition-transform duration-300 group-hover:-translate-y-1">

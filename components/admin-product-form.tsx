@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { X } from 'lucide-react'
+import { ImagePlus, Plus, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -12,9 +12,12 @@ import { Switch } from '@/components/ui/switch'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { supabase } from "@/lib/supabase"
+import { parseColors, type ProductColor } from "@/lib/products"
 import {
   deleteProductImages,
   getProductImages,
+  removeStoredImages,
+  uploadColorImage,
   uploadProductImage,
   type ImageType,
   type ProductImageRow,
@@ -36,9 +39,15 @@ interface ProductFormProps {
     is_trending?: boolean | null
     is_signature?: boolean | null
     is_customizable?: boolean | null
+    colors?: unknown
   }
   isEditing?: boolean
 }
+
+// A colour row in the form; `file` is a new photo waiting to be uploaded.
+type ColorDraft = { key: string; name: string; hex: string; image: string | null; file: File | null; preview: string | null }
+
+const newKey = () => Math.random().toString(36).slice(2)
 
 export function AdminProductForm({ initialData, isEditing = false }: ProductFormProps) {
   const [formData, setFormData] = useState({
@@ -64,6 +73,16 @@ export function AdminProductForm({ initialData, isEditing = false }: ProductForm
     is_trending: placement.is_trending,
     is_signature: placement.is_signature,
     is_customizable: placement.is_customizable,
+  }
+
+  const savedColors = parseColors(initialData?.colors)
+  const [colors, setColors] = useState<ColorDraft[]>(() =>
+    savedColors.map((c) => ({ key: newKey(), name: c.name, hex: c.hex, image: c.image ?? null, file: null, preview: null }))
+  )
+  const [colorsChanged, setColorsChanged] = useState(false)
+  const updateColors = (update: (prev: ColorDraft[]) => ColorDraft[]) => {
+    setColors(update)
+    setColorsChanged(true)
   }
 
   const [mainImage, setMainImage] = useState<File | null>(null)
@@ -153,10 +172,27 @@ const handleSubmit = async (e: React.FormEvent) => {
         setSavingStep(`Uploading image ${index + 1} of ${uploads.length}...`)
         await uploadProductImage(productId, file, type)
       }
+
+      if (colorsChanged) {
+        setSavingStep("Saving colours...")
+        const finalColors: ProductColor[] = []
+        for (const color of colors) {
+          const image = color.file ? await uploadColorImage(productId, color.file) : color.image
+          finalColors.push({ name: color.name.trim(), hex: color.hex, image })
+        }
+        const { error } = await supabase.from("products").update({ colors: finalColors }).eq("id", productId)
+        if (error) throw error
+
+        // Delete colour photos that were replaced or whose colour was removed.
+        const stillUsed = new Set(finalColors.map((c) => c.image))
+        await removeStoredImages(
+          savedColors.map((c) => c.image).filter((url): url is string => Boolean(url) && !stillUsed.has(url))
+        )
+      }
     } catch (imageError) {
       console.error(imageError)
       const message = (imageError as { message?: string })?.message
-      alert(`The product details were saved, but the photos could not be saved${message ? `: ${message}` : ""}. You can add the photos again from this page.`)
+      alert(`The product details were saved, but the photos or colours could not be saved${message ? `: ${message}` : ""}. You can add them again from this page.`)
       if (!isEditing) router.push(`/admin/products/${productId}/edit`)
       return
     }
@@ -339,6 +375,83 @@ const handleSubmit = async (e: React.FormEvent) => {
             />
           </div>
         </div>
+      </Card>
+
+      {/* Colours */}
+      <Card className="p-6">
+        <h2 className="text-lg font-semibold mb-2 font-[var(--font-poppins)]">Colours</h2>
+        <p className="text-sm text-muted-foreground mb-6">
+          Add only the colours you have for this product. Customers see these on the product page, and choosing one
+          shows its photo. Leave empty to hide the colour choice.
+        </p>
+
+        <div className="space-y-3">
+          {colors.map((color, index) => (
+            <div key={color.key} className="flex flex-wrap items-center gap-3 rounded-xl border border-border p-3">
+              <input
+                type="color"
+                value={color.hex}
+                onChange={(e) =>
+                  updateColors((prev) => prev.map((c, i) => (i === index ? { ...c, hex: e.target.value } : c)))
+                }
+                className="h-10 w-12 cursor-pointer rounded-md border border-border bg-background p-1"
+                aria-label="Colour"
+              />
+              <Input
+                type="text"
+                value={color.name}
+                onChange={(e) =>
+                  updateColors((prev) => prev.map((c, i) => (i === index ? { ...c, name: e.target.value } : c)))
+                }
+                placeholder="Colour name, e.g. Royal Blue"
+                required
+                className="w-56 flex-1"
+              />
+              <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-dashed border-border px-3 py-2 text-sm text-muted-foreground hover:border-primary hover:text-primary">
+                {color.preview || color.image ? (
+                  <img src={color.preview || color.image || ''} alt="" className="h-8 w-8 rounded object-cover" />
+                ) : (
+                  <ImagePlus className="h-4 w-4" />
+                )}
+                {color.preview || color.image ? 'Change photo' : 'Add photo'}
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0]
+                    if (!file) return
+                    const preview = URL.createObjectURL(file)
+                    updateColors((prev) => prev.map((c, i) => (i === index ? { ...c, file, preview } : c)))
+                  }}
+                />
+              </label>
+              <button
+                type="button"
+                onClick={() => updateColors((prev) => prev.filter((_, i) => i !== index))}
+                className="rounded-full p-2 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                aria-label="Remove colour"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <Button
+          type="button"
+          variant="outline"
+          className="mt-4"
+          onClick={() =>
+            updateColors((prev) => [
+              ...prev,
+              { key: newKey(), name: '', hex: '#23458d', image: null, file: null, preview: null },
+            ])
+          }
+        >
+          <Plus className="h-4 w-4" />
+          Add colour
+        </Button>
       </Card>
 
       {/* Form Actions */}
