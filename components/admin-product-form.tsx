@@ -1,6 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -10,6 +12,13 @@ import { Switch } from '@/components/ui/switch'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { supabase } from "@/lib/supabase"
+import {
+  deleteProductImages,
+  getProductImages,
+  uploadProductImage,
+  type ImageType,
+  type ProductImageRow,
+} from "@/lib/product-images"
 
 interface ProductFormProps {
   initialData?: {
@@ -61,6 +70,23 @@ export function AdminProductForm({ initialData, isEditing = false }: ProductForm
   const [galleryImages, setGalleryImages] = useState<File[]>([])
   const [featuredImage, setFeaturedImage] = useState<File | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [savingStep, setSavingStep] = useState('')
+  const router = useRouter()
+
+  // Images already saved for this product (edit mode), and the ones marked for removal.
+  const [existingImages, setExistingImages] = useState<ProductImageRow[]>([])
+  const [removedImageIds, setRemovedImageIds] = useState<string[]>([])
+
+  useEffect(() => {
+    if (!isEditing || !initialData?.id) return
+    getProductImages(initialData.id)
+      .then(setExistingImages)
+      .catch((err) => console.error('Failed to load product images', err))
+  }, [isEditing, initialData?.id])
+
+  const keptImages = (type: ImageType) =>
+    existingImages.filter((image) => image.image_type === type && !removedImageIds.includes(image.id))
+  const galleryLimit = Math.max(0, 5 - keptImages('gallery').length)
 
 const handleInputChange = (
   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -81,61 +107,61 @@ const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault()
   setIsSubmitting(true)
 
+  const productFields = {
+    name: formData.name,
+    category: formData.category,
+    price: formData.price,
+    stock: formData.stock,
+    description: formData.description,
+    ...placementFields,
+  }
+
   try {
-    let error
+    setSavingStep('Saving product...')
+    let productId = initialData?.id
 
-    if (isEditing && initialData?.id) {
-      const result = await supabase
-        .from("products")
-        .update({
-          name: formData.name,
-          category: formData.category,
-          price: formData.price,
-          stock: formData.stock,
-          description: formData.description,
-          ...placementFields,
-        })
-        .eq("id", initialData.id)
-
-      error = result.error
+    if (isEditing && productId) {
+      const { error } = await supabase.from("products").update(productFields).eq("id", productId)
+      if (error) throw error
     } else {
-      const result = await supabase
-        .from("products")
-        .insert([
-          {
-            name: formData.name,
-            category: formData.category,
-            price: formData.price,
-            stock: formData.stock,
-            description: formData.description,
-            ...placementFields,
-          },
-        ])
-
-      error = result.error
+      const { data, error } = await supabase.from("products").insert([productFields]).select("id").single()
+      if (error) throw error
+      productId = data.id
     }
+    if (!productId) throw new Error("Product was saved without an id")
 
-    if (error) {
-      console.error(error)
-      alert(
-        isEditing
-          ? "Failed to update product"
-          : "Failed to create product"
-      )
-      return
-    }
-
-    alert(
-      isEditing
-        ? "Product updated successfully!"
-        : "Product created successfully!"
+    // A new main or featured image replaces the old one.
+    const toDelete = existingImages.filter(
+      (image) =>
+        removedImageIds.includes(image.id) ||
+        (mainImage && image.image_type === "main") ||
+        (featuredImage && image.image_type === "featured")
     )
+    if (toDelete.length > 0) {
+      setSavingStep("Removing old images...")
+      await deleteProductImages(toDelete)
+    }
 
+    const uploads: [File, ImageType][] = [
+      ...(mainImage ? [[mainImage, "main"] as [File, ImageType]] : []),
+      ...galleryImages.slice(0, galleryLimit).map((file) => [file, "gallery"] as [File, ImageType]),
+      ...(featuredImage ? [[featuredImage, "featured"] as [File, ImageType]] : []),
+    ]
+    for (const [index, [file, type]] of uploads.entries()) {
+      setSavingStep(`Uploading image ${index + 1} of ${uploads.length}...`)
+      await uploadProductImage(productId, file, type)
+    }
+
+    alert(isEditing ? "Product updated successfully!" : "Product created successfully!")
+    router.push("/admin/products")
+    router.refresh()
   } catch (err) {
     console.error(err)
-    alert("Something went wrong")
+    const message = err instanceof Error ? err.message : (err as { message?: string })?.message
+    alert(`${isEditing ? "Failed to update product" : "Failed to create product"}${message ? `: ${message}` : ""}`)
   } finally {
     setIsSubmitting(false)
+    setSavingStep('')
   }
 }
 
@@ -264,27 +290,45 @@ const handleSubmit = async (e: React.FormEvent) => {
         <h2 className="text-lg font-semibold mb-6 font-[var(--font-poppins)]">Images</h2>
 
         <div className="space-y-6">
-          <ImageUploader
-            label="Main Product Image"
-            description="This is the primary image shown on product listings"
-            onImagesSelected={(files) => setMainImage(files[0] || null)}
-            multiple={false}
-          />
+          <div>
+            <ImageUploader
+              label="Main Product Image"
+              description="This is the primary image shown on product listings"
+              onImagesSelected={(files) => setMainImage(files[0] || null)}
+              multiple={false}
+            />
+            <ExistingImages
+              images={keptImages('main')}
+              onRemove={(id) => setRemovedImageIds((prev) => [...prev, id])}
+            />
+          </div>
 
-          <ImageUploader
-            label="Gallery Images"
-            description="Additional product images (up to 5 images)"
-            onImagesSelected={setGalleryImages}
-            multiple={true}
-            maxFiles={5}
-          />
+          <div>
+            <ImageUploader
+              label="Gallery Images"
+              description={`Additional product images (up to 5 images${galleryLimit < 5 ? `, ${galleryLimit} more allowed` : ''})`}
+              onImagesSelected={setGalleryImages}
+              multiple={true}
+              maxFiles={galleryLimit}
+            />
+            <ExistingImages
+              images={keptImages('gallery')}
+              onRemove={(id) => setRemovedImageIds((prev) => [...prev, id])}
+            />
+          </div>
 
-          <ImageUploader
-            label="Featured Image"
-            description="Image used for homepage and featured sections"
-            onImagesSelected={(files) => setFeaturedImage(files[0] || null)}
-            multiple={false}
-          />
+          <div>
+            <ImageUploader
+              label="Featured Image"
+              description="Image used for homepage and featured sections"
+              onImagesSelected={(files) => setFeaturedImage(files[0] || null)}
+              multiple={false}
+            />
+            <ExistingImages
+              images={keptImages('featured')}
+              onRemove={(id) => setRemovedImageIds((prev) => [...prev, id])}
+            />
+          </div>
         </div>
       </Card>
 
@@ -296,7 +340,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             disabled={isSubmitting}
             className="bg-primary hover:bg-primary/90 text-primary-foreground font-[var(--font-poppins)]"
           >
-            {isSubmitting ? 'Saving...' : isEditing ? 'Update Product' : 'Create Product'}
+            {isSubmitting ? savingStep || 'Saving...' : isEditing ? 'Update Product' : 'Create Product'}
           </Button>
         </motion.div>
 
@@ -307,5 +351,35 @@ const handleSubmit = async (e: React.FormEvent) => {
         </Link>
       </div>
     </form>
+  )
+}
+
+function ExistingImages({
+  images,
+  onRemove,
+}: {
+  images: ProductImageRow[]
+  onRemove: (id: string) => void
+}) {
+  if (images.length === 0) return null
+  return (
+    <div className="mt-4">
+      <p className="text-xs font-medium text-muted-foreground mb-2">Saved images</p>
+      <div className="flex flex-wrap gap-3">
+        {images.map((image) => (
+          <div key={image.id} className="relative">
+            <img src={image.image_url} alt="" className="h-24 w-24 rounded-lg border border-border object-cover" />
+            <button
+              type="button"
+              onClick={() => onRemove(image.id)}
+              className="absolute -top-2 -right-2 rounded-full bg-destructive p-1 text-destructive-foreground hover:bg-destructive/90"
+              aria-label="Remove image"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }

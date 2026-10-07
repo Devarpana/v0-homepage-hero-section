@@ -102,7 +102,7 @@ export function HeroSection({ featured }: { featured?: Product }) {
             {featured ? (
               <Link href={`/product/${featured.id}`} className="group block">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] shadow-soft-lg">
-                  <ProductImage src={featured.image} alt={featured.name} />
+                  <ProductImage src={featured.featuredImage} alt={featured.name} />
                   <span className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-primary backdrop-blur">
                     Featured
                   </span>

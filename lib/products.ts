@@ -8,8 +8,9 @@ export type Product = {
   description: string | null
   price: number
   stock: number | null
-  image?: string
-  images: string[]
+  image?: string // main image, used on product cards
+  featuredImage?: string // used for the homepage hero, falls back to the main image
+  images: string[] // main image first, then the gallery
   isFeatured: boolean
   isTrending: boolean
   isSignature: boolean
@@ -39,8 +40,17 @@ export function formatPrice(price: number) {
   return `₹${price.toLocaleString('en-IN')}`
 }
 
+type ImageRow = { image_url: string; image_type: string; created_at?: string | null }
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function toProduct(row: any): Product {
+  const rows: ImageRow[] = [...(row.product_images ?? [])].sort((a: ImageRow, b: ImageRow) =>
+    String(a.created_at ?? '').localeCompare(String(b.created_at ?? ''))
+  )
+  const urls = (type: string) => rows.filter((r) => r.image_type === type).map((r) => r.image_url)
+  const main = urls('main').at(-1) ?? urls('gallery')[0] ?? urls('featured').at(-1)
+  const images = [main, ...urls('gallery')].filter((url, i, all): url is string => Boolean(url) && all.indexOf(url) === i)
+
   return {
     id: String(row.id),
     name: row.name,
@@ -48,7 +58,9 @@ function toProduct(row: any): Product {
     description: row.description ?? null,
     price: Number(row.price ?? 0),
     stock: row.stock ?? null,
-    images: [],
+    image: main,
+    featuredImage: urls('featured').at(-1) ?? main,
+    images,
     isFeatured: Boolean(row.is_featured),
     isTrending: Boolean(row.is_trending),
     isSignature: Boolean(row.is_signature),
@@ -61,10 +73,12 @@ function isVisible(row: { status?: string | null }) {
   return row.status !== 'hidden'
 }
 
+const PRODUCT_COLUMNS = '*, product_images(image_url, image_type, created_at)'
+
 export async function getProducts(): Promise<Product[]> {
   const { data, error } = await supabase
     .from('products')
-    .select('*')
+    .select(PRODUCT_COLUMNS)
     .order('created_at', { ascending: false })
 
   if (error) {
@@ -75,7 +89,7 @@ export async function getProducts(): Promise<Product[]> {
 }
 
 export async function getProduct(id: string): Promise<Product | null> {
-  const { data, error } = await supabase.from('products').select('*').eq('id', id).maybeSingle()
+  const { data, error } = await supabase.from('products').select(PRODUCT_COLUMNS).eq('id', id).maybeSingle()
   if (error || !data || !isVisible(data)) return null
   return toProduct(data)
 }
