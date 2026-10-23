@@ -1,34 +1,35 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Lightbulb, PenTool, Printer, Truck } from 'lucide-react'
+import { Lightbulb, PenTool, Printer, SearchCheck, Truck } from 'lucide-react'
 import { SectionHeading } from '@/components/section-heading'
 
 const steps = [
-  { icon: Lightbulb, title: 'Idea', description: 'It starts with a need, a sketch or a spark. Yours or ours.' },
-  { icon: PenTool, title: 'Design', description: 'We model it in 3D and refine every detail until it is right.' },
-  { icon: Printer, title: 'Print', description: 'Printed layer by layer, then cleaned, checked and finished.' },
-  { icon: Truck, title: 'Deliver', description: 'Packed with care and delivered to your doorstep.' },
+  { icon: Lightbulb, title: 'Share', description: 'Send a sketch, photo, 3D file or the part itself, and tell us what it needs to do.' },
+  { icon: PenTool, title: 'Design', description: 'We model or scan it in 3D and suggest the right material.' },
+  { icon: SearchCheck, title: 'Approve', description: 'You see previews and a clear quote before anything is printed.' },
+  { icon: Printer, title: 'Print', description: 'Printed layer by layer, then cleaned, finished and checked.' },
+  { icon: Truck, title: 'Deliver', description: 'Packed with care and delivered to your door, with the file if you want it.' },
 ]
 
 export function HowItWorks() {
   return (
-    <section className="w-full bg-white py-24">
+    <section id="how-it-works" className="w-full scroll-mt-24 bg-white py-24">
       <div className="container-site">
         <SectionHeading
-          eyebrow="How it's made"
-          title="From idea to your doorstep"
+          eyebrow="How it works"
+          title="From your idea to your doorstep"
           align="center"
         />
 
-        <div className="relative grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        <div className="relative grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
           {/* Connecting line (desktop) */}
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: 'easeInOut' }}
-            className="absolute left-[12.5%] right-[12.5%] top-10 hidden h-0.5 origin-left bg-gradient-to-r from-primary via-primary/60 to-accent lg:block"
+            className="absolute left-[10%] right-[10%] top-10 hidden h-0.5 origin-left bg-gradient-to-r from-primary via-primary/60 to-accent lg:block"
           />
 
           {steps.map(({ icon: Icon, title, description }, index) => (

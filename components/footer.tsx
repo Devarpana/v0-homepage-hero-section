@@ -3,18 +3,22 @@ import Image from 'next/image'
 
 const columns = [
   {
-    title: 'Shop',
+    title: 'Services',
     links: [
-      { label: 'Daily Essentials', href: '/shop?category=daily-essentials' },
-      { label: 'Home Decor', href: '/shop?category=home-decor' },
-      { label: 'Toys', href: '/shop?category=toys' },
-      { label: 'Custom Orders', href: '/custom-orders' },
+      { label: 'Rapid Prototyping', href: '/#service-prototyping' },
+      { label: 'Reverse Engineering', href: '/#service-reverse-engineering' },
+      { label: '3D Design & Modelling', href: '/#service-3d-design' },
+      { label: '3D Printing', href: '/#service-3d-printing' },
+      { label: 'Get a Quote', href: '/custom-orders#custom-form' },
     ],
   },
   {
-    title: 'Company',
+    title: 'Explore',
     links: [
-      { label: 'About Us', href: '#' },
+      { label: 'Materials', href: '/#materials' },
+      { label: 'How It Works', href: '/#how-it-works' },
+      { label: 'Shop', href: '/shop' },
+      { label: 'About Us', href: '/#about' },
       { label: 'Contact', href: '#contact' },
     ],
   },
@@ -44,7 +48,7 @@ export function Footer() {
               <span className="font-heading text-xl font-bold tracking-wide text-primary">XYZ LAYERS</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Smart products, printed layer by layer. Designed and made in India.
+              3D design, prototyping and printing services. Designed and made in India.
             </p>
             <div className="mt-6 flex gap-5">
               {socials.map((name) => (

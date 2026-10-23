@@ -13,23 +13,23 @@ const reasons = [
   {
     icon: Crosshair,
     title: 'Precision in every layer',
-    description: 'Each product is checked for fit, finish and strength before it leaves our workshop.',
+    description: 'Every part is checked for fit, finish and strength before it leaves our workshop.',
   },
   {
     icon: Wand2,
-    title: 'Made to be yours',
-    description: 'Choose colours, add names or bring your own idea. Personalisation is built into what we do.',
+    title: 'Advice before you pay',
+    description: 'Not sure about the design, material or quantity? We explain the options in plain words and quote clearly.',
   },
 ]
 
 export function WhyXYZLayers() {
   return (
-    <section className="w-full bg-white py-24">
+    <section id="about" className="w-full scroll-mt-24 bg-white py-24">
       <div className="container-site">
         <SectionHeading
           eyebrow="Why XYZ Layers"
           title="Small brand. Serious craft."
-          description="A modern Indian brand creating smart products through 3D printing."
+          description="An Indian studio that designs, prototypes and prints, with care in every layer."
           align="center"
         />
 

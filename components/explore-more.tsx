@@ -8,16 +8,26 @@ import { SectionHeading } from '@/components/section-heading'
 import { ProductImage } from '@/components/product-image'
 import { formatPrice, type Product } from '@/lib/products'
 
-export function ExploreMore({ products }: { products: Product[] }) {
+export function ExploreMore({
+  products,
+  eyebrow = 'Explore more',
+  title = 'Discover something new',
+  description = 'Wander through the full range. You might find your new favourite.',
+}: {
+  products: Product[]
+  eyebrow?: string
+  title?: string
+  description?: string
+}) {
   if (products.length === 0) return null
 
   return (
     <section className="w-full bg-muted py-24">
       <div className="container-site">
         <SectionHeading
-          eyebrow="Explore more"
-          title="Discover something new"
-          description="Wander through the full range. You might find your new favourite."
+          eyebrow={eyebrow}
+          title={title}
+          description={description}
         />
 
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">

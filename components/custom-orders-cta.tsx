@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-const ideas = ['Nameplates', 'Gifts', 'Personalised items', 'Your own idea']
+const ideas = ['Send a sketch, photo or file', 'Advice on design and material', 'A clear quote', 'Delivered to your door']
 
 export function CustomOrdersCTA() {
   return (
@@ -30,13 +30,13 @@ export function CustomOrdersCTA() {
           <div className="pointer-events-none absolute -bottom-32 left-1/4 h-80 w-80 rounded-full bg-accent/40 blur-[100px]" />
 
           <div className="relative max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Custom orders</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Start a project</p>
             <h2 className="mt-4 font-heading text-4xl font-bold leading-tight tracking-tight text-balance lg:text-6xl">
-              Have an idea? We&apos;ll print it.
+              Have an idea? Let&apos;s make it real.
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-white/80">
-              Tell us what you have in mind. We&apos;ll design it with you, print it layer by layer and deliver it to
-              your door.
+              Tell us what you need, whether it is a prototype, a replacement part or a batch of products. We reply
+              with advice and a quote.
             </p>
 
             <ul className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-x-6">
@@ -54,8 +54,8 @@ export function CustomOrdersCTA() {
                 size="lg"
                 className="h-14 rounded-full bg-accent px-8 font-heading text-base font-semibold text-white hover:bg-accent/90"
               >
-                <Link href="/custom-orders">
-                  Start a custom order
+                <Link href="/custom-orders#custom-form">
+                  Get a quote
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </Button>
@@ -65,7 +65,7 @@ export function CustomOrdersCTA() {
                 variant="outline"
                 className="h-14 rounded-full border-white/30 bg-transparent px-8 font-heading text-base font-semibold text-white hover:bg-white/10 hover:text-white"
               >
-                <Link href="/custom-orders#custom-form">Send us your idea</Link>
+                <Link href="#contact">Talk to us</Link>
               </Button>
             </div>
           </div>
