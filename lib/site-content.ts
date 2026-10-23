@@ -6,7 +6,8 @@ export const videos = {
   // Short explainer of what 3D printing is, e.g. '/videos/what-is-3d-printing.mp4'
   whatIs3dPrinting: null as string | null,
   // Brand film showing XYZ Layers at work, e.g. '/videos/brand.mp4'
-  brand: null as string | null,
+  // For now this plays the hero video from the current xyzlayers.in site.
+  brand: 'https://www.xyzlayers.in/videos/hero-video.mp4' as string | null,
   // Optional poster images shown before the videos play
   whatIs3dPrintingPoster: null as string | null,
   brandPoster: null as string | null,
