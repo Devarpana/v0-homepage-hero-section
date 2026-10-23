@@ -14,48 +14,44 @@ export function MaterialsSection() {
       <div className="container-site">
         <SectionHeading
           eyebrow="Materials"
-          title="The right material for every part"
-          description="We print with tried and trusted filaments. Here is how each one behaves, and how your finished object will look and feel."
+          title="Choose your material"
+          description="Not sure? Tell us what the part needs to do and we’ll pick for you. Here is how each filament behaves, and how your finished object will look and feel."
         />
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {materials.map((material, index) => (
             <motion.div
               key={material.name}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
             >
               <MaterialCard material={material} />
             </motion.div>
           ))}
+        </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.5, delay: materials.length * 0.1 }}
-            className="flex flex-col justify-between rounded-[28px] border-2 border-dashed border-primary/20 bg-white/60 p-8"
-          >
+        <div className="mt-6 flex flex-col items-start justify-between gap-6 rounded-[28px] border-2 border-dashed border-primary/20 bg-white/60 p-8 md:flex-row md:items-center">
+          <div className="flex items-start gap-5">
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+              <Plus className="h-7 w-7" />
+            </span>
             <div>
-              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                <Plus className="h-7 w-7" />
-              </span>
-              <h3 className="mt-6 font-heading text-2xl font-bold text-foreground">Need something else?</h3>
-              <p className="mt-3 leading-relaxed text-muted-foreground">
-                Flexible, heat-resistant or special finishes: tell us what your part has to do, and we will recommend
-                and source the right material.
+              <h3 className="font-heading text-2xl font-bold text-foreground">Need something else?</h3>
+              <p className="mt-2 max-w-2xl leading-relaxed text-muted-foreground">
+                Special colours, finishes or properties: tell us what your part has to do, and we will recommend and
+                source the right material.
               </p>
             </div>
-            <Link
-              href="/custom-orders#custom-form"
-              className="mt-8 inline-flex items-center gap-2 font-heading font-semibold text-primary hover:text-accent"
-            >
-              Ask about materials
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </motion.div>
+          </div>
+          <Link
+            href="/custom-orders#custom-form"
+            className="inline-flex shrink-0 items-center gap-2 font-heading font-semibold text-primary hover:text-accent"
+          >
+            Ask about materials
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
 
         <p className="mt-8 text-sm text-muted-foreground">

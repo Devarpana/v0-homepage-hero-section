@@ -1,5 +1,7 @@
 import {
   Building2,
+  Cog,
+  Drone,
   FlaskConical,
   Gift,
   Layers,
@@ -8,6 +10,7 @@ import {
   Ruler,
   ScanLine,
   Wrench,
+  Waves,
   type LucideIcon,
 } from 'lucide-react'
 import type { ServiceIcon } from '@/lib/site-content'
@@ -17,9 +20,12 @@ export const serviceIcons: Record<ServiceIcon, LucideIcon> = {
   reverse: ScanLine,
   design: PenTool,
   print: Printer,
+  engineering: Cog,
+  flexible: Waves,
   batch: Layers,
   parts: Wrench,
   jig: Ruler,
+  drone: Drone,
   model: Building2,
   gift: Gift,
 }

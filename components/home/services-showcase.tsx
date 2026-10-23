@@ -83,6 +83,16 @@ export function ServicesShowcase() {
               <p className="mt-3 font-heading text-lg font-medium text-primary">{service.tagline}</p>
               <p className="mt-4 leading-relaxed text-muted-foreground">{service.description}</p>
 
+              <div className="mt-6 rounded-2xl bg-accent/10 px-5 py-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Choose this if</p>
+                <p className="mt-1 font-medium text-foreground">{service.chooseIf}</p>
+              </div>
+
+              <p className="mt-6 text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">Materials: </span>
+                {service.materials}
+              </p>
+
               <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-accent">Ideal for</p>
               <ul className="mt-3 space-y-2">
                 {service.idealFor.map((who) => (
