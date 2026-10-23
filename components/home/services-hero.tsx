@@ -19,9 +19,9 @@ const item = {
 
 export function ServicesHero() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#0f1830] text-white">
+    <section className="relative w-full overflow-hidden bg-[#121417] text-white">
       {/* Brand glow and print-bed grid */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(35,69,141,0.65),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(224,142,60,0.28),transparent_60%)]" />
       <div className="pointer-events-none absolute -bottom-40 -left-24 h-[460px] w-[460px] rounded-full bg-accent/25 blur-[120px]" />
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.07]"
@@ -52,7 +52,7 @@ export function ServicesHero() {
               variants={item}
               className="font-heading text-5xl font-bold leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-7xl"
             >
-              From idea to object, <span className="text-accent">layer by layer.</span>
+              Ideas, built <span className="text-accent">layer by layer.</span>
             </motion.h1>
 
             <motion.p variants={item} className="max-w-xl text-lg leading-relaxed text-white/75">
@@ -103,7 +103,7 @@ export function ServicesHero() {
             <div className="rounded-[32px] border border-white/10 bg-white/[0.04] p-4 shadow-soft-lg backdrop-blur">
               <LayerPrintAnimation className="h-auto w-full" />
             </div>
-            <div className="absolute -bottom-5 left-6 rounded-2xl border border-white/10 bg-[#0f1830]/90 px-5 py-3 backdrop-blur sm:-left-6">
+            <div className="absolute -bottom-5 left-6 rounded-2xl border border-white/10 bg-[#121417]/90 px-5 py-3 backdrop-blur sm:-left-6">
               <p className="text-xs uppercase tracking-wider text-white/50">Printing now</p>
               <p className="font-heading text-sm font-semibold">One layer at a time, about 0.2 mm each</p>
             </div>

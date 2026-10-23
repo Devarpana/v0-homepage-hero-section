@@ -9,8 +9,9 @@ import { videos } from '@/lib/site-content'
 
 export function BrandVideo() {
   return (
-    <section id="our-work" className="relative w-full scroll-mt-24 overflow-hidden bg-[#0f1830] py-24 text-white">
+    <section id="our-work" className="relative w-full scroll-mt-24 overflow-hidden bg-[#121417] py-24 text-white">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(224,142,60,0.22),transparent_55%)]" />
+      <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-accent/20 blur-[110px]" />
       <div className="container-site relative">
         <SectionHeading
           eyebrow="See us at work"
