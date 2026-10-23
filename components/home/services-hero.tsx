@@ -52,12 +52,11 @@ export function ServicesHero() {
               variants={item}
               className="font-heading text-5xl font-bold leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-7xl"
             >
-              Ideas, built <span className="text-accent">layer by layer.</span>
+              Imagination, <span className="text-accent">Layer by Layer.</span>
             </motion.h1>
 
             <motion.p variants={item} className="max-w-xl text-lg leading-relaxed text-white/75">
-              XYZ Layers designs, reverse-engineers, prototypes and 3D prints for people and businesses. Bring us a
-              sketch, a broken part or a 3D file, and we will make it real.
+              The distance between an idea and the real thing is thinner than you think. About 0.2 mm at a time.
             </motion.p>
 
             <motion.div variants={item} className="flex flex-col gap-3 sm:flex-row">
