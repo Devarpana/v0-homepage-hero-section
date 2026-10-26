@@ -6,6 +6,7 @@ import { SectionHeading } from '@/components/section-heading'
 import { LayerPrintAnimation } from '@/components/home/layer-print-animation'
 import { VideoFrame } from '@/components/home/video-frame'
 import { videos } from '@/lib/site-content'
+import { cn } from '@/lib/utils'
 
 const steps = [
   {
@@ -87,7 +88,11 @@ export function WhatIs3DPrinting() {
               src={videos.whatIs3dPrinting}
               poster={videos.whatIs3dPrintingPoster}
               title="What is 3D printing"
-              className="aspect-square rounded-[28px] border border-white/10 bg-white/[0.04] shadow-soft-lg sm:aspect-[4/3]"
+              className={cn(
+                'rounded-[28px] border border-white/10 bg-white/[0.04] shadow-soft-lg',
+                // The real video is 16:9 with captions at the bottom, so show it uncropped
+                videos.whatIs3dPrinting ? 'aspect-video' : 'aspect-square sm:aspect-[4/3]'
+              )}
               fallback={
                 <div className="flex h-full w-full items-center justify-center p-6">
                   <LayerPrintAnimation className="h-full max-h-[440px] w-auto" />
