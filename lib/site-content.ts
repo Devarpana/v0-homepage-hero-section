@@ -267,6 +267,9 @@ export const serviceFinder: { situation: string; service: string; answer: string
   },
 ]
 
+export type MaterialVisual = 'vase' | 'bottle' | 'enclosure' | 'sign' | 'flex' | 'frame'
+export type MaterialCue = 'plant' | 'water' | 'heat' | 'sun' | 'flex' | 'light'
+
 export type Material = {
   name: string
   fullName: string
@@ -277,6 +280,8 @@ export type Material = {
   ratings: { label: string; value: number }[] // out of 5
   specs: { label: string; value: string }[]
   bestFor: string[]
+  visual: MaterialVisual // the drawing shown on the card
+  cue: { icon: MaterialCue; label: string } // what it is best at, shown on the drawing
   image?: string // photo of a real print, e.g. '/materials/pla.jpg'
 }
 
@@ -284,6 +289,8 @@ export type Material = {
 export const materials: Material[] = [
   {
     name: 'PLA',
+    visual: 'vase',
+    cue: { icon: 'plant', label: 'Plant-based' },
     fullName: 'Polylactic Acid',
     speciality: 'The sharpest detail and brightest colours, made from plant-based starch.',
     look: 'Smooth, matte to satin finish with crisp edges and fine detail. Feels hard and rigid.',
@@ -303,6 +310,8 @@ export const materials: Material[] = [
   },
   {
     name: 'PETG',
+    visual: 'bottle',
+    cue: { icon: 'water', label: 'Water-resistant' },
     fullName: 'Polyethylene Terephthalate Glycol',
     speciality: 'Tough, slightly flexible and water-resistant, built for parts that get used.',
     look: 'Glossy, smooth surface with a slight shine. Can be made semi-transparent.',
@@ -322,6 +331,8 @@ export const materials: Material[] = [
   },
   {
     name: 'ABS',
+    visual: 'enclosure',
+    cue: { icon: 'heat', label: 'Heat-resistant' },
     fullName: 'Acrylonitrile Butadiene Styrene',
     speciality: 'The classic engineering plastic: strong, heat-resistant and easy to sand or paint.',
     look: 'Matte surface that becomes very smooth after sanding. Takes paint well.',
@@ -341,11 +352,13 @@ export const materials: Material[] = [
   },
   {
     name: 'ASA',
+    visual: 'sign',
+    cue: { icon: 'sun', label: 'UV-stable outdoors' },
     fullName: 'Acrylonitrile Styrene Acrylate',
     speciality: 'Like ABS, but made to live outdoors without fading or cracking in the sun.',
     look: 'Even, matte finish that keeps its colour outdoors.',
     finish: 'matte',
-    swatches: ['#f5f5f2', '#1e2330', '#23458d', '#e08e3c'],
+    swatches: ['#23458d', '#1e2330', '#f5f5f2', '#e08e3c'],
     ratings: [
       { label: 'Detail', value: 3 },
       { label: 'Strength', value: 4 },
@@ -360,6 +373,8 @@ export const materials: Material[] = [
   },
   {
     name: 'TPU',
+    visual: 'flex',
+    cue: { icon: 'flex', label: 'Bends and bounces back' },
     fullName: 'Thermoplastic Polyurethane',
     speciality: 'Rubber-like and flexible, it bends, grips and bounces back.',
     look: 'Soft, satin surface that feels like rubber in the hand.',
@@ -379,6 +394,8 @@ export const materials: Material[] = [
   },
   {
     name: 'Carbon fibre',
+    visual: 'frame',
+    cue: { icon: 'light', label: 'Light and stiff' },
     fullName: 'Carbon-fibre-filled filament',
     speciality: 'Light as plastic, stiff like metal, with a premium matte finish.',
     look: 'Dark, textured matte surface that hides layer lines and looks premium.',
