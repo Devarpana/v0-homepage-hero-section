@@ -67,6 +67,7 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: 'reverse-engineering',
+    image: '/services/reverse-engineering.jpg',
     name: 'Reverse Engineering',
     icon: 'reverse',
     tagline: 'We measure an existing object and rebuild it as a 3D file.',
@@ -79,6 +80,7 @@ export const services: Service[] = [
   },
   {
     slug: '3d-design',
+    image: '/services/3d-design.jpg',
     name: '3D Design & Modelling',
     icon: 'design',
     tagline: 'We turn your sketch, photo or idea into a print-ready 3D model.',
@@ -91,6 +93,7 @@ export const services: Service[] = [
   },
   {
     slug: 'prototyping',
+    image: '/services/prototyping.jpg',
     name: 'Rapid Prototyping',
     icon: 'prototype',
     tagline: 'Quick test versions of your product so you can hold, test and improve it.',
@@ -103,6 +106,7 @@ export const services: Service[] = [
   },
   {
     slug: '3d-printing',
+    image: '/services/3d-printing.jpg',
     name: '3D Printing on Demand',
     icon: 'print',
     tagline: 'Send us your file, we print it in the material and colour you choose.',
@@ -115,6 +119,7 @@ export const services: Service[] = [
   },
   {
     slug: 'functional-parts',
+    image: '/services/functional-parts.jpg',
     name: 'Functional & Engineering Parts',
     icon: 'engineering',
     tagline: 'Strong parts that handle heat, sun, weather and load.',
@@ -127,6 +132,7 @@ export const services: Service[] = [
   },
   {
     slug: 'flexible-parts',
+    image: '/services/flexible-parts.jpg',
     name: 'Flexible Parts',
     icon: 'flexible',
     tagline: 'Rubber-like parts that bend, grip and absorb shocks.',
@@ -139,6 +145,7 @@ export const services: Service[] = [
   },
   {
     slug: 'low-volume-production',
+    image: '/services/low-volume-production.jpg',
     name: 'Low-Volume Production',
     icon: 'batch',
     tagline: '10 to a few hundred identical parts without expensive moulds.',
@@ -151,6 +158,7 @@ export const services: Service[] = [
   },
   {
     slug: 'spare-parts',
+    image: '/services/spare-parts.jpg',
     name: 'Spare & Replacement Parts',
     icon: 'parts',
     tagline: 'Discontinued or broken parts, made again, often stronger.',
@@ -163,6 +171,7 @@ export const services: Service[] = [
   },
   {
     slug: 'manufacturing-aids',
+    image: '/services/manufacturing-aids.jpg',
     name: 'Manufacturing Aids',
     icon: 'jig',
     tagline: 'Custom jigs, holders and tools that make work faster on a shop floor.',
@@ -175,6 +184,7 @@ export const services: Service[] = [
   },
   {
     slug: 'drone-rc-robotics',
+    image: '/services/drone-rc-robotics.jpg',
     name: 'Drone, RC & Robotics Parts',
     icon: 'drone',
     tagline: 'Light, stiff frames, mounts and bumpers for things that move.',
@@ -187,6 +197,7 @@ export const services: Service[] = [
   },
   {
     slug: 'models-and-props',
+    image: '/services/models-and-props.jpg',
     name: 'Models & Props',
     icon: 'model',
     tagline: 'Architecture models, display pieces, cosplay and film props.',
@@ -199,6 +210,7 @@ export const services: Service[] = [
   },
   {
     slug: 'custom-gifts',
+    image: '/services/custom-gifts.jpg',
     name: 'Custom Gifts & Personalised Items',
     icon: 'gift',
     tagline: 'Name plates, keychains, figurines and trophies made for one person.',
