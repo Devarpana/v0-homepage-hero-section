@@ -1,21 +1,19 @@
-import { CustomOrdersHero } from '@/components/custom-orders-hero'
-import { WhatWeCanCreate } from '@/components/what-we-can-create'
-import { CustomOrdersProcess } from '@/components/custom-orders-process'
-import { CustomOrderForm } from '@/components/custom-order-form'
-import { PreviousCustomProjects } from '@/components/previous-custom-projects'
-import { CustomOrdersFAQ } from '@/components/custom-orders-faq'
-import { CustomOrdersFinalCTA } from '@/components/custom-orders-final-cta'
+import type { Metadata } from 'next'
+import { QuoteHero } from '@/components/quote/quote-hero'
+import { QuoteForm } from '@/components/quote/quote-form'
+import { QuoteFAQ } from '@/components/quote/quote-faq'
+
+export const metadata: Metadata = {
+  title: 'Get a quote | XYZ Layers',
+  description: 'Tell us what you need: 3D design, reverse engineering, prototyping or 3D printing. Asking for a quote is free.',
+}
 
 export default function CustomOrdersPage() {
   return (
     <main className="w-full">
-      <CustomOrdersHero />
-      <WhatWeCanCreate />
-      <CustomOrdersProcess />
-      <CustomOrderForm />
-      <PreviousCustomProjects />
-      <CustomOrdersFAQ />
-      <CustomOrdersFinalCTA />
+      <QuoteHero />
+      <QuoteForm />
+      <QuoteFAQ />
     </main>
   )
 }

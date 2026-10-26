@@ -17,6 +17,8 @@ const links = [
   { href: '#contact', label: 'Contact' },
 ]
 
+const darkHeaderPages = ['/', '/custom-orders']
+
 export function Navbar() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
@@ -33,8 +35,8 @@ export function Navbar() {
 
   // Section links (/#...) are never marked active; page links are active on their page.
   const isActive = (href: string) => href.startsWith('/') && !href.includes('#') && pathname.startsWith(href)
-  // Over the dark homepage header the bar is transparent with light text.
-  const onDark = pathname === '/' && !scrolled && !menuOpen
+  // Over a dark page header (homepage, quote page) the bar is transparent with light text.
+  const onDark = darkHeaderPages.includes(pathname) && !scrolled && !menuOpen
   const iconButton = cn(
     'rounded-full p-2.5 transition-colors',
     onDark ? 'text-white/85 hover:bg-white/10' : 'text-foreground/80 hover:bg-muted'
