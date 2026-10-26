@@ -2,11 +2,12 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Heart, Share2 } from 'lucide-react'
+import { MessageCircle, Share2 } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ProductImage } from '@/components/product-image'
 import { categorySlug, formatPrice, type Product } from '@/lib/products'
+import { contact } from '@/lib/site-content'
 
 export function ProductHero({ product }: { product: Product }) {
   const colors = product.colors
@@ -14,6 +15,29 @@ export function ProductHero({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1)
   const gallery = product.images.length > 0 ? product.images : [undefined]
   const [activeImage, setActiveImage] = useState(0)
+  const [shared, setShared] = useState(false)
+
+  // Checkout isn't built yet, so orders go to WhatsApp with the details already typed.
+  const orderLink = () => {
+    const color = colors[selectedColor]?.name
+    const lines = [
+      `Hi XYZ Layers, I'd like to order:`,
+      `${product.name}${color ? ` (${color})` : ''} × ${quantity}`,
+      `https://www.xyzlayers.in/product/${product.id}`,
+    ]
+    return `${contact.whatsappHref}?text=${encodeURIComponent(lines.filter(Boolean).join('\n'))}`
+  }
+
+  const share = async () => {
+    const url = window.location.href
+    if (navigator.share) {
+      await navigator.share({ title: product.name, url }).catch(() => {})
+      return
+    }
+    await navigator.clipboard?.writeText(url)
+    setShared(true)
+    setTimeout(() => setShared(false), 2000)
+  }
   // Photo of the colour the customer clicked; cleared when they pick a gallery thumbnail.
   const [colorImage, setColorImage] = useState<string | null>(null)
 
@@ -206,17 +230,22 @@ export function ProductHero({ product }: { product: Product }) {
               className="flex flex-col sm:flex-row gap-3"
             >
               <Button
+                asChild
                 size="lg"
-                className="flex-1 bg-primary hover:bg-primary/90 text-white font-semibold rounded-full h-12 text-base font-[var(--font-poppins)]"
+                className="flex-1 bg-[#25D366] hover:bg-[#1ebe5a] text-white font-semibold rounded-full h-12 text-base font-heading"
               >
-                Add To Cart
+                <a href={orderLink()} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="h-5 w-5" />
+                  Order on WhatsApp
+                </a>
               </Button>
               <Button
+                asChild
                 size="lg"
                 variant="outline"
-                className="flex-1 border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full h-12 text-base font-[var(--font-poppins)]"
+                className="flex-1 border border-gray-300 text-gray-900 hover:bg-gray-50 font-semibold rounded-full h-12 text-base font-heading"
               >
-                Buy Now
+                <Link href="/custom-orders#custom-form">Ask for a custom version</Link>
               </Button>
             </motion.div>
 
@@ -225,13 +254,9 @@ export function ProductHero({ product }: { product: Product }) {
               variants={itemVariants}
               className="flex gap-4 pt-4 border-t border-gray-200"
             >
-              <button className="flex-1 flex items-center justify-center gap-2 py-3 hover:bg-gray-50 rounded-lg transition-colors font-[var(--font-inter)]">
-                <Heart className="w-5 h-5" />
-                <span className="text-sm">Save</span>
-              </button>
-              <button className="flex-1 flex items-center justify-center gap-2 py-3 hover:bg-gray-50 rounded-lg transition-colors font-[var(--font-inter)]">
+              <button onClick={share} className="flex-1 flex items-center justify-center gap-2 py-3 hover:bg-gray-50 rounded-lg transition-colors font-[var(--font-inter)]">
                 <Share2 className="w-5 h-5" />
-                <span className="text-sm">Share</span>
+                <span className="text-sm">{shared ? 'Link copied' : 'Share'}</span>
               </button>
             </motion.div>
           </motion.div>

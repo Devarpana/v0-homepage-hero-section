@@ -1,7 +1,7 @@
 import { supabase } from '@/lib/supabase'
 
 // Uploaded files go to a private bucket: visitors can add files but never read or list them.
-const QUOTE_FILES_BUCKET = 'custom-orders'
+export const QUOTE_FILES_BUCKET = 'custom-orders'
 
 export const MAX_FILES = 5
 export const MAX_FILE_MB = 20

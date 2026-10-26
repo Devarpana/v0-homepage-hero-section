@@ -27,10 +27,10 @@ const columns = [
   {
     title: 'Help',
     links: [
-      { label: 'Shipping Info', href: '#' },
-      { label: 'Returns', href: '#' },
-      { label: 'Privacy Policy', href: '#' },
-      { label: 'Terms of Service', href: '#' },
+      { label: 'Questions (FAQ)', href: '/custom-orders#faq' },
+      { label: 'Which service do I need?', href: '/#which-service' },
+      { label: 'Contact us', href: '/contact' },
+      { label: 'Your account', href: '/login' },
     ],
   },
 ]

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { ArrowRight, Menu, ShoppingCart, X } from 'lucide-react'
+import { ArrowRight, Menu, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { AccountMenu } from '@/components/account-menu'
 import { cn } from '@/lib/utils'
@@ -93,9 +93,6 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-1">
-          <button className={iconButton} aria-label="Cart">
-            <ShoppingCart className="h-5 w-5" />
-          </button>
           <AccountMenu className={iconButton} />
           <Link
             href="/custom-orders#custom-form"

@@ -36,7 +36,7 @@ const faqs = [
 
 export function QuoteFAQ() {
   return (
-    <section className="w-full bg-white py-24">
+    <section id="faq" className="w-full bg-white py-24">
       <div className="container-site grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.4fr]">
         <SectionHeading
           eyebrow="Questions"

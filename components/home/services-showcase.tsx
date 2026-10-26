@@ -25,7 +25,23 @@ export function ServicesShowcase() {
     }
     fromHash()
     window.addEventListener('hashchange', fromHash)
-    return () => window.removeEventListener('hashchange', fromHash)
+
+    // Next.js links to "/#service-…" from this same page change the URL without a hashchange
+    // event, so handle those clicks here.
+    const onClick = (e: MouseEvent) => {
+      const link = (e.target as Element | null)?.closest?.('a[href*="#service-"]')
+      if (!link || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey) return
+      const url = new URL(link.getAttribute('href')!, window.location.href)
+      if (url.pathname !== window.location.pathname) return
+      e.preventDefault()
+      history.replaceState(null, '', url.hash)
+      fromHash()
+    }
+    document.addEventListener('click', onClick, true)
+    return () => {
+      window.removeEventListener('hashchange', fromHash)
+      document.removeEventListener('click', onClick, true)
+    }
   }, [])
 
   // Once the section is close to the screen, fetch the other tabs' photos so switching tabs is instant.

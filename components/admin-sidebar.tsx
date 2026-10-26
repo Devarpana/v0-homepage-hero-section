@@ -8,7 +8,7 @@ import { motion } from 'framer-motion'
 const navItems = [
   { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
   { label: 'Products', href: '/admin/products', icon: Package },
-  { label: 'Custom Requests', href: '/admin/custom-requests', icon: FileText },
+  { label: 'Quote Requests', href: '/admin/custom-requests', icon: FileText },
   { label: 'Orders', href: '/admin/orders', icon: ShoppingCart },
 ]
 

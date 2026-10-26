@@ -20,8 +20,10 @@ export function VideoFrame({
 }) {
   const ref = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
+  // If the file can't be loaded (moved or deleted), show the fallback instead of a broken player.
+  const [failed, setFailed] = useState(false)
 
-  if (!src) return <div className={cn('relative overflow-hidden', className)}>{fallback}</div>
+  if (!src || failed) return <div className={cn('relative overflow-hidden', className)}>{fallback}</div>
 
   return (
     <div className={cn('group relative overflow-hidden', className)}>
@@ -34,6 +36,7 @@ export function VideoFrame({
         preload="metadata"
         className="h-full w-full object-cover"
         onPlay={() => setPlaying(true)}
+        onError={() => setFailed(true)}
         aria-label={title}
       />
       {!playing && (
