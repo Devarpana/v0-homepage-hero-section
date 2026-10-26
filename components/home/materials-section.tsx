@@ -3,9 +3,10 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, Plus } from 'lucide-react'
+import { ArrowRight, Droplets, Feather, Flame, Leaf, Plus, Sun, Waves } from 'lucide-react'
 import { SectionHeading } from '@/components/section-heading'
-import { materials, type Material } from '@/lib/site-content'
+import { MaterialVisual } from '@/components/home/material-visual'
+import { materials, type Material, type MaterialCue } from '@/lib/site-content'
 import { cn } from '@/lib/utils'
 
 export function MaterialsSection() {
@@ -62,8 +63,18 @@ export function MaterialsSection() {
   )
 }
 
+const cueIcons: Record<MaterialCue, typeof Leaf> = {
+  plant: Leaf,
+  water: Droplets,
+  heat: Flame,
+  sun: Sun,
+  flex: Waves,
+  light: Feather,
+}
+
 function MaterialCard({ material }: { material: Material }) {
   const [color, setColor] = useState(material.swatches[0])
+  const CueIcon = cueIcons[material.cue.icon]
 
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-[28px] border border-border bg-white shadow-soft">
@@ -72,10 +83,14 @@ function MaterialCard({ material }: { material: Material }) {
         {material.image ? (
           <img src={material.image} alt={`Object printed in ${material.name}`} loading="lazy" decoding="async" className="h-full w-full object-cover" />
         ) : (
-          <SamplePrint color={color} finish={material.finish} />
+          <MaterialVisual kind={material.visual} color={color} finish={material.finish} />
         )}
         <span className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold capitalize text-foreground">
           {material.finish} finish
+        </span>
+        <span className="absolute right-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white">
+          <CueIcon className="h-3.5 w-3.5" />
+          {material.cue.label}
         </span>
         {!material.image && (
           <div className="absolute bottom-4 right-5 flex gap-2" aria-label="Preview colours">
@@ -138,35 +153,5 @@ function MaterialCard({ material }: { material: Material }) {
         </div>
       </div>
     </article>
-  )
-}
-
-// A layered vase drawn in the chosen colour. Glossy prints get a bright highlight, matte ones a soft one.
-function SamplePrint({ color, finish }: { color: string; finish: 'matte' | 'glossy' }) {
-  const layers = 22
-  const id = `${finish}-${color.replace('#', '')}`
-  return (
-    <svg viewBox="0 0 300 225" className="h-full w-full" role="img" aria-label={`Sample print, ${finish} finish`}>
-      <defs>
-        <linearGradient id={`shade-${id}`} x1="0" x2="1">
-          <stop offset="0" stopColor="#000" stopOpacity="0.28" />
-          <stop offset="0.35" stopColor="#fff" stopOpacity={finish === 'glossy' ? 0.55 : 0.12} />
-          <stop offset="0.45" stopColor="#fff" stopOpacity={finish === 'glossy' ? 0.15 : 0.06} />
-          <stop offset="1" stopColor="#000" stopOpacity="0.32" />
-        </linearGradient>
-      </defs>
-      <ellipse cx="150" cy="200" rx="70" ry="9" fill="#1e2330" opacity="0.12" />
-      {Array.from({ length: layers }, (_, i) => {
-        const t = i / (layers - 1)
-        const w = 70 + 55 * Math.sin(Math.PI * (0.12 + t * 0.8)) - 20 * t
-        const y = 196 - (i + 1) * 7.4
-        return (
-          <g key={i}>
-            <rect x={150 - w / 2} y={y} width={w} height={7} rx={3.5} fill={color} />
-            <rect x={150 - w / 2} y={y} width={w} height={7} rx={3.5} fill={`url(#shade-${id})`} />
-          </g>
-        )
-      })}
-    </svg>
   )
 }
