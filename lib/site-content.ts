@@ -13,6 +13,13 @@ export const videos = {
   brandPoster: null as string | null,
 }
 
+// The registered company behind the XYZ Layers brand.
+export const company = {
+  legalName: 'Aqua Fusion Technology Private Limited',
+  shortName: 'Aqua Fusion Technology Pvt. Ltd.',
+  origin: 'IIT Guwahati',
+}
+
 // Contact details, as shown on xyzlayers.in (checked 26 Oct).
 export const contact = {
   phone: '+91 85478 42337',

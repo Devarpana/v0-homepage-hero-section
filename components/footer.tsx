@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Instagram, Linkedin, Mail, MessageCircle, Phone } from 'lucide-react'
-import { contact } from '@/lib/site-content'
+import { company, contact } from '@/lib/site-content'
 
 const columns = [
   {
@@ -107,8 +107,8 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-2 border-t border-border pt-8 text-sm text-muted-foreground md:flex-row">
-          <p>© {currentYear} XYZ Layers. All rights reserved.</p>
+        <div className="mt-14 flex flex-col items-center justify-between gap-2 border-t border-border pt-8 text-center text-sm text-muted-foreground md:flex-row md:text-left">
+          <p>© {currentYear} XYZ Layers, a brand of {company.legalName}. All rights reserved.</p>
           <p>Designed &amp; printed in India</p>
         </div>
       </div>
