@@ -12,7 +12,7 @@ const navItems = [
   { label: 'Orders', href: '/admin/orders', icon: ShoppingCart },
 ]
 
-export function AdminSidebar() {
+export function AdminSidebar({ email, onSignOut }: { email: string; onSignOut: () => void }) {
   const pathname = usePathname()
 
   return (
@@ -56,7 +56,11 @@ export function AdminSidebar() {
 
       {/* Footer Section */}
       <div className="p-4 border-t border-sidebar-border">
+        <p className="px-4 pb-2 text-xs text-gray-500 truncate" title={email}>
+          Signed in as {email}
+        </p>
         <motion.button
+          onClick={onSignOut}
           whileTap={{ scale: 0.98 }}
           className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-gray-600 hover:bg-gray-100 transition-all cursor-pointer font-[var(--font-inter)] text-sm"
         >
