@@ -13,6 +13,22 @@ export const videos = {
   brandPoster: null as string | null,
 }
 
+// Contact details, as shown on xyzlayers.in (checked 26 Oct).
+export const contact = {
+  phone: '+91 85478 42337',
+  phoneHref: 'tel:+918547842337',
+  whatsappHref: 'https://wa.me/918547842337',
+  email: 'Info.xyzlayers@gmail.com',
+  instagram: { handle: '@xyz.layers', href: 'https://instagram.com/xyz.layers' },
+  linkedin: { handle: 'XYZ Layers', href: 'https://linkedin.com/company/xyzlayers' },
+  responseTime: 'We usually reply within 24 hours.',
+  serving: 'Serving customers across India',
+}
+
+// Founders and team for the About page. The section stays hidden while this is empty.
+// e.g. { name: 'Name', role: 'Co-founder, Design', photo: '/team/name.jpg' }
+export const team: { name: string; role: string; photo?: string }[] = []
+
 export type ServiceIcon =
   | 'prototype'
   | 'reverse'

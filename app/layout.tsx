@@ -15,8 +15,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'XYZ Layers | Premium 3D Printed Products',
-  description: 'Discover useful products, home decor, toys and personalized creations crafted through modern 3D printing. Smart products printed layer by layer.',
+  title: 'XYZ Layers | 3D Design, Prototyping & 3D Printing Services',
+  description: 'Reverse engineering, 3D design, rapid prototyping and 3D printing in PLA, PETG, ABS, ASA, TPU and carbon fibre. A startup from IIT Guwahati, serving customers across India.',
   generator: 'v0.app',
   icons: {
     icon: [

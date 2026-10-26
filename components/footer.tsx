@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { Instagram, Linkedin, Mail, MessageCircle, Phone } from 'lucide-react'
+import { contact } from '@/lib/site-content'
 
 const columns = [
   {
@@ -18,8 +20,8 @@ const columns = [
       { label: 'Materials', href: '/#materials' },
       { label: 'How It Works', href: '/#how-it-works' },
       { label: 'Shop', href: '/shop' },
-      { label: 'About Us', href: '/#about' },
-      { label: 'Contact', href: '#contact' },
+      { label: 'About Us', href: '/about' },
+      { label: 'Contact', href: '/contact' },
     ],
   },
   {
@@ -33,7 +35,10 @@ const columns = [
   },
 ]
 
-const socials = ['Instagram', 'Twitter', 'LinkedIn']
+const socials = [
+  { label: 'Instagram', icon: Instagram, href: contact.instagram.href },
+  { label: 'LinkedIn', icon: Linkedin, href: contact.linkedin.href },
+]
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -48,12 +53,39 @@ export function Footer() {
               <span className="font-heading text-xl font-bold tracking-wide text-primary">XYZ LAYERS</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              3D design, prototyping and printing services. Designed and made in India.
+              3D design, prototyping and printing services. A startup from IIT Guwahati, serving customers across India.
             </p>
-            <div className="mt-6 flex gap-5">
-              {socials.map((name) => (
-                <a key={name} href="#" className="text-sm font-medium text-foreground/70 transition-colors hover:text-primary">
-                  {name}
+            <ul className="mt-6 space-y-2.5 text-sm">
+              <li>
+                <a href={contact.whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-foreground/75 hover:text-primary">
+                  <MessageCircle className="h-4 w-4 text-accent" />
+                  WhatsApp {contact.phone}
+                </a>
+              </li>
+              <li>
+                <a href={contact.phoneHref} className="inline-flex items-center gap-2 text-foreground/75 hover:text-primary">
+                  <Phone className="h-4 w-4 text-accent" />
+                  {contact.phone}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${contact.email}`} className="inline-flex items-center gap-2 break-all text-foreground/75 hover:text-primary">
+                  <Mail className="h-4 w-4 shrink-0 text-accent" />
+                  {contact.email}
+                </a>
+              </li>
+            </ul>
+            <div className="mt-6 flex gap-3">
+              {socials.map(({ label, icon: Icon, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-foreground/70 transition-colors hover:border-primary/40 hover:text-primary"
+                >
+                  <Icon className="h-4 w-4" />
                 </a>
               ))}
             </div>

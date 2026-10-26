@@ -65,7 +65,7 @@ export function CustomOrdersCTA() {
                 variant="outline"
                 className="h-14 rounded-full border-white/30 bg-transparent px-8 font-heading text-base font-semibold text-white hover:bg-white/10 hover:text-white"
               >
-                <Link href="#contact">Talk to us</Link>
+                <Link href="/contact">Talk to us</Link>
               </Button>
             </div>
           </div>

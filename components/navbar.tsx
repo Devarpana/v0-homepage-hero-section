@@ -12,12 +12,12 @@ const links = [
   { href: '/#services', label: 'Services' },
   { href: '/#materials', label: 'Materials' },
   { href: '/#how-it-works', label: 'How it works' },
-  { href: '/#our-work', label: 'Our work' },
   { href: '/shop', label: 'Shop' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
 ]
 
-const darkHeaderPages = ['/', '/custom-orders']
+const darkHeaderPages = ['/', '/custom-orders', '/about', '/contact']
 
 export function Navbar() {
   const pathname = usePathname()
@@ -57,22 +57,24 @@ export function Navbar() {
       )}
     >
       <div className="container-site flex h-[72px] items-center justify-between">
-        <Link href="/" className="flex items-center gap-3" aria-label="XYZ Layers home">
+        <Link href="/" className="flex shrink-0 items-center gap-3" aria-label="XYZ Layers home">
           <Image src="/logo-mark.png" alt="" width={36} height={43} priority className="h-10 w-auto" />
-          <span className={cn('font-heading text-lg font-bold tracking-wide', onDark ? 'text-white' : 'text-primary')}>
+          <span className={cn('whitespace-nowrap font-heading text-lg font-bold tracking-wide', onDark ? 'text-white' : 'text-primary')}>
             XYZ <span className="font-semibold">LAYERS</span>
           </span>
         </Link>
 
-        <div className="hidden items-center gap-1 lg:flex">
+        <div className="hidden items-center gap-0 lg:flex xl:gap-1">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                'relative rounded-full px-4 py-2 text-sm font-medium transition-colors',
+                'relative whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition-colors xl:px-4',
                 isActive(link.href)
-                  ? 'text-primary'
+                  ? onDark
+                    ? 'text-white'
+                    : 'text-primary'
                   : onDark
                     ? 'text-white/75 hover:text-white'
                     : 'text-foreground/70 hover:text-primary'
@@ -82,7 +84,7 @@ export function Navbar() {
               {isActive(link.href) && (
                 <motion.span
                   layoutId="nav-active"
-                  className="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-accent"
+                  className="absolute inset-x-3 -bottom-0.5 xl:inset-x-4 h-0.5 rounded-full bg-accent"
                 />
               )}
             </Link>
@@ -103,7 +105,7 @@ export function Navbar() {
           </Link>
           <Link
             href="/custom-orders#custom-form"
-            className="ml-2 hidden items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 font-heading text-sm font-semibold text-white shadow-soft transition-colors hover:bg-accent/90 sm:inline-flex"
+            className="ml-2 hidden shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-accent px-5 py-2.5 font-heading text-sm font-semibold text-white shadow-soft transition-colors hover:bg-accent/90 sm:inline-flex"
           >
             Get a quote
             <ArrowRight className="h-4 w-4" />
