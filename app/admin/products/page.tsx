@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { supabase } from "@/lib/supabase"
+import { deleteProductImages, getProductImages } from "@/lib/product-images"
 import { useEffect } from "react"
 
 
@@ -28,12 +29,12 @@ export default function ProductsPage() {
 
   if (!confirmed) return
 
-  const { error } = await supabase
-    .from("products")
-    .delete()
-    .eq("id", id)
-
-  if (error) {
+  try {
+    // Remove the product's photos first so no files are left behind in Storage.
+    await deleteProductImages(await getProductImages(id))
+    const { error } = await supabase.from("products").delete().eq("id", id)
+    if (error) throw error
+  } catch (error) {
     console.error(error)
     alert("Failed to delete product")
     return
@@ -48,16 +49,9 @@ export default function ProductsPage() {
 
   useEffect(() => {
       const loadProducts = async () => {
-        console.log(
-      "SUPABASE URL:",
-      process.env.NEXT_PUBLIC_SUPABASE_URL
-    )
-
-    console.log("Loading products...")
-    
     const { data, error } = await supabase
       .from("products")
-      .select("*")
+      .select("*, product_images(image_url, image_type)")
       .order("created_at", { ascending: false })
 
     if (error) {
@@ -68,8 +62,13 @@ export default function ProductsPage() {
     setProducts(
     (data || []).map((product) => ({
       ...product,
-      featured: false,
-      visibility: "public",
+      image:
+        product.product_images?.find((img: { image_type: string }) => img.image_type === "main")?.image_url ??
+        product.product_images?.[0]?.image_url,
+      featured: Boolean(product.is_featured),
+      trending: Boolean(product.is_trending),
+      signature: Boolean(product.is_signature),
+      visibility: product.status === "hidden" ? "hidden" : "public",
     }))
   )
     }

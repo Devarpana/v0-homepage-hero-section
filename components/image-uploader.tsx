@@ -139,6 +139,7 @@ export function ImageUploader({
                 className="w-full h-24 object-cover rounded-lg border border-border"
               />
               <button
+                type="button"
                 onClick={() => removeImage(index)}
                 className="absolute -top-2 -right-2 p-1 bg-destructive text-destructive-foreground rounded-full hover:bg-destructive/90 transition-colors"
               >
