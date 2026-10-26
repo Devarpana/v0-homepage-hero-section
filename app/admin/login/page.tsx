@@ -1,5 +1,6 @@
-import { AdminLoginForm } from '@/components/admin-login-form'
+import { redirect } from 'next/navigation'
 
+// Admins now sign in on the same page as everyone else.
 export default function AdminLoginPage() {
-  return <AdminLoginForm />
+  redirect('/login?next=/admin')
 }

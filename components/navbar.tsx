@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { ArrowRight, Menu, ShoppingCart, User, X } from 'lucide-react'
+import { ArrowRight, Menu, ShoppingCart, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { AccountMenu } from '@/components/account-menu'
 import { cn } from '@/lib/utils'
 
 const links = [
@@ -17,7 +18,7 @@ const links = [
   { href: '/contact', label: 'Contact' },
 ]
 
-const darkHeaderPages = ['/', '/custom-orders', '/about', '/contact']
+const darkHeaderPages = ['/', '/custom-orders', '/about', '/contact', '/login', '/reset-password']
 
 export function Navbar() {
   const pathname = usePathname()
@@ -95,14 +96,7 @@ export function Navbar() {
           <button className={iconButton} aria-label="Cart">
             <ShoppingCart className="h-5 w-5" />
           </button>
-          <Link
-            href="/admin"
-            className={cn(iconButton, 'hidden md:inline-flex')}
-            title="Admin Dashboard"
-            aria-label="Admin"
-          >
-            <User className="h-5 w-5" />
-          </Link>
+          <AccountMenu className={iconButton} />
           <Link
             href="/custom-orders#custom-form"
             className="ml-2 hidden shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-accent px-5 py-2.5 font-heading text-sm font-semibold text-white shadow-soft transition-colors hover:bg-accent/90 sm:inline-flex"
