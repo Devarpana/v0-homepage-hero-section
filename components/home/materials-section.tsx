@@ -70,7 +70,7 @@ function MaterialCard({ material }: { material: Material }) {
       {/* Sample print, re-coloured live, or a real photo when one is set */}
       <div className="relative aspect-[4/3] bg-gradient-to-br from-[#f6f7fa] to-[#eceff5]">
         {material.image ? (
-          <img src={material.image} alt={`Object printed in ${material.name}`} className="h-full w-full object-cover" />
+          <img src={material.image} alt={`Object printed in ${material.name}`} loading="lazy" decoding="async" className="h-full w-full object-cover" />
         ) : (
           <SamplePrint color={color} finish={material.finish} />
         )}

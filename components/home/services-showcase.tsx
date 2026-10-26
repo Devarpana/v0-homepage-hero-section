@@ -28,6 +28,24 @@ export function ServicesShowcase() {
     return () => window.removeEventListener('hashchange', fromHash)
   }, [])
 
+  // Once the section is close to the screen, fetch the other tabs' photos so switching tabs is instant.
+  useEffect(() => {
+    const section = document.getElementById('services')
+    if (!section) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return
+        observer.disconnect()
+        services.forEach((s) => {
+          if (s.image) new Image().src = s.image
+        })
+      },
+      { rootMargin: '400px' }
+    )
+    observer.observe(section)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section id="services" className="w-full scroll-mt-24 bg-muted py-24">
       <div className="container-site">
@@ -124,7 +142,7 @@ function ServiceVisual({ service }: { service: Service }) {
   if (service.image) {
     return (
       <div className="relative min-h-[320px] overflow-hidden rounded-[28px] shadow-soft lg:min-h-[460px]">
-        <img src={service.image} alt={service.name} className="absolute inset-0 h-full w-full object-cover" />
+        <img src={service.image} alt={service.name} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
         <ExampleChips examples={service.examples} />
       </div>
     )
