@@ -19,8 +19,11 @@ const titles: Record<Mode, { title: string; text: string }> = {
   forgot: { title: 'Reset your password', text: 'We will email you a link to choose a new password.' },
 }
 
+// Supabase gives the same answer for "no such account" and "wrong password", so one message covers both.
+const NO_MATCH = 'We couldn’t sign you in. Check your email and password, or create an account if you are new here.'
+
 function friendlyError(message: string) {
-  if (message === 'Invalid login credentials') return 'That email and password do not match. Please try again.'
+  if (message === 'Invalid login credentials') return NO_MATCH
   if (/email not confirmed/i.test(message)) return 'Please confirm your email first. Check your inbox for our link.'
   if (/already registered/i.test(message)) return 'An account with this email already exists. Try signing in instead.'
   if (/rate limit/i.test(message)) return 'Too many attempts. Please wait a few minutes and try again.'
@@ -191,9 +194,14 @@ export function AuthForm() {
             )}
 
             {error && (
-              <p role="alert" className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-800">
+              <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-800">
                 {error}
-              </p>
+                {error === NO_MATCH && (
+                  <button type="button" onClick={() => switchMode('signup')} className="mt-2 block font-semibold text-primary hover:text-accent">
+                    Create an account →
+                  </button>
+                )}
+              </div>
             )}
 
             <Button type="submit" disabled={submitting} className="h-12 w-full rounded-full bg-accent font-heading text-base font-semibold hover:bg-accent/90">
